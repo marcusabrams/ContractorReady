@@ -1,0 +1,34 @@
+# NIST 800-171 Tracker
+
+A free, no-account, static web app that helps small government contractors understand their
+NIST SP 800-171 Rev 2 requirements, track what they've completed, and see what's left.
+All progress stays in the browser. See [SPEC.md](SPEC.md) for the full spec.
+
+> This is a self-tracking aid. It is not an assessment, a compliance guarantee, or legal advice.
+
+## Develop
+
+```sh
+npm install
+npm run dev        # http://localhost:5173
+npm test           # content schema, persistence, and filter tests
+npm run build      # typecheck + production build into dist/
+npm run preview    # serve the production build
+```
+
+- Content lives in `src/data/requirements.json`, separate from the UI.
+- Progress is stored in `localStorage` under `n171tracker.v1`.
+- `#/dev` (dev server only) lists schema problems and unreviewed content entries.
+- Production builds include a Content-Security-Policy with `connect-src 'none'`, so the browser
+  blocks any network request the app might try to make after the page loads.
+
+## Build progress
+
+- [x] 1. Scaffold Vite + React + TS, routing, layout
+- [x] 2. Content schema, sample requirements (7 of 110), browser and detail views
+- [x] 3. Progress state, localStorage persistence, export/import, reset
+- [ ] 4. Dashboard
+- [ ] 5. Print summary
+- [ ] 6. About/disclaimer page
+- [ ] 7. Generate and review real content, family by family
+- [ ] 8. Deploy

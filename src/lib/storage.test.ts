@@ -1,0 +1,152 @@
+import { describe, expect, it } from "vitest";
+import {
+  CORRUPT_BACKUP_KEY,
+  STORAGE_KEY,
+  clearData,
+  emptyData,
+  loadData,
+  parseData,
+  parseDataText,
+  saveData,
+  serializeForExport,
+  type KeyValueStore,
+} from "./storage";
+import type { AppData } from "./types";
+
+function memoryStore(): KeyValueStore & { map: Map<string, string> } {
+  const map = new Map<string, string>();
+  return {
+    map,
+    getItem: (k) => map.get(k) ?? null,
+    setItem: (k, v) => void map.set(k, String(v)),
+    removeItem: (k) => void map.delete(k),
+  };
+}
+
+const throwingStore: KeyValueStore = {
+  getItem: () => {
+    throw new Error("SecurityError");
+  },
+  setItem: () => {
+    throw new Error("QuotaExceededError");
+  },
+  removeItem: () => {
+    throw new Error("SecurityError");
+  },
+};
+
+function sample(): AppData {
+  return {
+    schemaVersion: 1,
+    org: { name: "Acme Machining" },
+    progress: {
+      "3.1.1": { status: "implemented", owner: "Pat", dueDate: "2026-12-01", notes: "Done in M365", updatedAt: "2026-10-01T12:00:00.000Z" },
+      "3.5.3": { status: "in_progress", owner: "", dueDate: null, notes: "", updatedAt: "2026-10-02T12:00:00.000Z" },
+    },
+  };
+}
+
+describe("save/load round trip", () => {
+  it("restores exactly what was saved", () => {
+    const store = memoryStore();
+    expect(saveData(store, sample())).toBe(true);
+    expect(loadData(store)).toEqual({ data: sample() });
+  });
+
+  it("returns empty data when nothing is saved", () => {
+    expect(loadData(memoryStore())).toEqual({ data: emptyData() });
+  });
+
+  it("exported JSON re-imports to the same state", () => {
+    const result = parseDataText(serializeForExport(sample()));
+    expect(result).toEqual({ ok: true, data: sample() });
+  });
+
+  it("keeps progress for IDs not in the current content", () => {
+    const d = sample();
+    d.progress["3.14.7"] = { ...d.progress["3.5.3"] };
+    expect(parseData(d)).toEqual({ ok: true, data: d });
+  });
+});
+
+describe("storage unavailable", () => {
+  it("works without storage", () => {
+    expect(loadData(null)).toEqual({ data: emptyData() });
+    expect(saveData(null, sample())).toBe(false);
+    expect(clearData(null)).toBe(false);
+  });
+
+  it("never throws when storage throws", () => {
+    expect(loadData(throwingStore)).toEqual({ data: emptyData() });
+    expect(saveData(throwingStore, sample())).toBe(false);
+    expect(clearData(throwingStore)).toBe(false);
+  });
+});
+
+describe("unreadable saved data", () => {
+  it("starts fresh with a warning and keeps a copy of the original", () => {
+    const store = memoryStore();
+    store.setItem(STORAGE_KEY, "{not json");
+    const result = loadData(store);
+    expect(result.data).toEqual(emptyData());
+    expect(result.warning).toBeTruthy();
+    expect(store.getItem(CORRUPT_BACKUP_KEY)).toBe("{not json");
+  });
+});
+
+describe("import validation", () => {
+  const reject = (value: unknown) => {
+    const r = typeof value === "string" ? parseDataText(value) : parseData(value);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.error.length).toBeGreaterThan(10);
+  };
+
+  it("rejects invalid JSON", () => reject("this is not json"));
+  it("rejects non-objects", () => {
+    reject([]);
+    reject(null);
+    reject("\"a string\"");
+  });
+  it("rejects a missing or wrong schemaVersion", () => {
+    const { schemaVersion: _omit, ...noVersion } = sample();
+    reject(noVersion);
+    reject({ ...sample(), schemaVersion: 2 });
+  });
+  it("rejects a malformed org or progress", () => {
+    reject({ ...sample(), org: null });
+    reject({ ...sample(), org: { name: 5 } });
+    reject({ ...sample(), progress: [] });
+  });
+  it("rejects malformed entries", () => {
+    const entry = sample().progress["3.1.1"];
+    reject({ ...sample(), progress: { "3.1.1": { ...entry, status: "done" } } });
+    reject({ ...sample(), progress: { "3.1.1": { ...entry, owner: null } } });
+    reject({ ...sample(), progress: { "3.1.1": { ...entry, dueDate: "next week" } } });
+    reject({ ...sample(), progress: { "3.1.1": { ...entry, notes: undefined } } });
+    reject({ ...sample(), progress: { "3.1.1": "implemented" } });
+  });
+
+  it("drops unknown extra fields", () => {
+    const withExtra = { ...sample(), extra: true, org: { name: "X", ssn: "nope" } };
+    const r = parseData(withExtra);
+    expect(r.ok && r.data).toEqual({ ...sample(), org: { name: "X" } });
+  });
+
+  it("a rejected import leaves saved data untouched", () => {
+    const store = memoryStore();
+    saveData(store, sample());
+    const before = store.getItem(STORAGE_KEY);
+    expect(parseDataText("{\"schemaVersion\": 1}").ok).toBe(false);
+    expect(store.getItem(STORAGE_KEY)).toBe(before);
+  });
+});
+
+describe("reset", () => {
+  it("clears saved data", () => {
+    const store = memoryStore();
+    saveData(store, sample());
+    expect(clearData(store)).toBe(true);
+    expect(store.getItem(STORAGE_KEY)).toBeNull();
+    expect(loadData(store)).toEqual({ data: emptyData() });
+  });
+});

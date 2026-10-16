@@ -1,0 +1,148 @@
+{
+  "version": "rev2-2026-10",
+  "requirements": [
+    {
+      "id": "3.1.1",
+      "family": "Access Control",
+      "text": "Limit system access to authorized users, processes acting on behalf of authorized users, and devices (including other systems).",
+      "plainEnglish": "Only the people, programs, and devices you have approved should be able to get into your systems. Keep a list of who and what is allowed. Turn off access for anyone or anything not on that list.",
+      "whyItMatters": "If you don't know who can get in, you can't protect what's inside. Most other controls depend on first knowing who is allowed to use your systems.",
+      "examples": [
+        "Every employee signs in with their own named account. No shared logins.",
+        "A list of company laptops and phones that are allowed to connect to company email and files.",
+        "Accounts for people who have left the company are disabled on their last day."
+      ],
+      "evidence": [
+        "List of authorized users and their accounts",
+        "List of authorized devices",
+        "Account management procedure (how accounts are requested, approved, and removed)",
+        "Screenshots of user lists from your systems (for example, Microsoft 365 or Google Workspace admin)"
+      ],
+      "sprsPoints": null,
+      "objectives": ["3.1.1[a]", "3.1.1[b]", "3.1.1[c]", "3.1.1[d]", "3.1.1[e]", "3.1.1[f]"],
+      "relatedIds": ["3.1.2", "3.5.1", "3.5.2"],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.2",
+      "family": "Access Control",
+      "text": "Limit system access to the types of transactions and functions that authorized users are permitted to execute.",
+      "plainEnglish": "Once someone is signed in, they should only be able to do what their job needs. A bookkeeper doesn't need admin rights. A field technician doesn't need access to payroll.",
+      "whyItMatters": "Limiting what each account can do reduces the damage from mistakes, insider misuse, or a stolen password.",
+      "examples": [
+        "Only two people have administrator rights in your email system.",
+        "Shared folders containing contract files are restricted to the project team.",
+        "Regular user accounts cannot install software."
+      ],
+      "evidence": [
+        "Roles or groups and the permissions each one has",
+        "Access control policy",
+        "Screenshots of folder or application permissions"
+      ],
+      "sprsPoints": null,
+      "objectives": ["3.1.2[a]", "3.1.2[b]"],
+      "relatedIds": ["3.1.1"],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.1",
+      "family": "Identification and Authentication",
+      "text": "Identify system users, processes acting on behalf of users, and devices.",
+      "plainEnglish": "Give every person, automated program, and device a unique name or ID in your systems, so you can always tell who or what did something.",
+      "whyItMatters": "Unique IDs make it possible to control access and to trace actions back to a specific person or device.",
+      "examples": [
+        "Each employee has a unique username such as jsmith@yourcompany.com.",
+        "Service accounts used by backup software are named and documented.",
+        "Company laptops are registered in a device management tool by name or serial number."
+      ],
+      "evidence": [
+        "User account list showing unique IDs",
+        "Inventory of devices and service accounts",
+        "Identification and authentication policy"
+      ],
+      "sprsPoints": null,
+      "objectives": ["3.5.1[a]", "3.5.1[b]", "3.5.1[c]"],
+      "relatedIds": ["3.1.1", "3.5.2"],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.2",
+      "family": "Identification and Authentication",
+      "text": "Authenticate (or verify) the identities of users, processes, or devices, as a prerequisite to allowing access to organizational systems.",
+      "plainEnglish": "Before anyone or anything gets in, make them prove they are who they say they are. Usually that means a password plus something else, or a certificate for devices.",
+      "whyItMatters": "A username alone is easy to guess. Verifying identity stops people from simply claiming to be someone else.",
+      "examples": [
+        "Users must enter a password to sign in to their computer and email.",
+        "Devices must be enrolled in device management before they can reach company files."
+      ],
+      "evidence": [
+        "Authentication settings screenshots",
+        "Identification and authentication policy",
+        "Device enrollment or certificate configuration"
+      ],
+      "sprsPoints": null,
+      "objectives": ["3.5.2[a]", "3.5.2[b]", "3.5.2[c]"],
+      "relatedIds": ["3.5.1", "3.5.3"],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.3",
+      "family": "Identification and Authentication",
+      "text": "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts.",
+      "plainEnglish": "Require a second step beyond a password, such as a code from a phone app or a security key. Admin accounts need it everywhere. Regular accounts need it whenever they connect over a network, such as signing in to cloud email or a VPN.",
+      "whyItMatters": "Stolen passwords are one of the most common ways attackers get in. A second factor stops most of those attempts.",
+      "examples": [
+        "All Microsoft 365 or Google Workspace accounts require an authenticator app at sign-in.",
+        "Admin accounts require a hardware security key, even when signing in at the office."
+      ],
+      "evidence": [
+        "MFA configuration screenshots",
+        "Report showing MFA enrollment status for all users",
+        "Identification and authentication policy"
+      ],
+      "sprsPoints": null,
+      "objectives": ["3.5.3[a]", "3.5.3[b]", "3.5.3[c]", "3.5.3[d]"],
+      "relatedIds": ["3.5.2"],
+      "reviewed": false
+    },
+    {
+      "id": "3.9.1",
+      "family": "Personnel Security",
+      "text": "Screen individuals prior to authorizing access to organizational systems containing CUI.",
+      "plainEnglish": "Check people out before you give them access to systems that hold Controlled Unclassified Information (CUI). This usually means a background check appropriate for the role.",
+      "whyItMatters": "Screening lowers the risk of giving sensitive information to someone who shouldn't have it.",
+      "examples": [
+        "New hires complete a background check before their accounts are created.",
+        "Contractors who need system access are screened under the same process as employees."
+      ],
+      "evidence": [
+        "Personnel screening policy",
+        "Records showing screening was completed before access was granted (without storing sensitive personal details in this tool)"
+      ],
+      "sprsPoints": null,
+      "objectives": ["3.9.1[a]"],
+      "relatedIds": ["3.9.2"],
+      "reviewed": false
+    },
+    {
+      "id": "3.9.2",
+      "family": "Personnel Security",
+      "text": "Ensure that organizational systems containing CUI are protected during and after personnel actions such as terminations and transfers.",
+      "plainEnglish": "When someone leaves or changes jobs, promptly remove or adjust their access and get back company equipment.",
+      "whyItMatters": "Former employees with working accounts are a common and avoidable risk.",
+      "examples": [
+        "An offboarding checklist disables accounts, collects laptops and badges, and changes shared passwords.",
+        "When an employee moves to a new role, access they no longer need is removed."
+      ],
+      "evidence": [
+        "Offboarding and transfer procedure",
+        "Completed offboarding checklists",
+        "Account logs showing timely deactivation"
+      ],
+      "sprsPoints": null,
+      "objectives": ["3.9.2[a]", "3.9.2[b]", "3.9.2[c]"],
+      "relatedIds": ["3.9.1", "3.1.1"],
+      "reviewed": false
+    }
+  ]
+}
