@@ -8,6 +8,7 @@ describe("parseHash", () => {
     expect(parseHash("#/requirements/3.1.1")).toEqual({ name: "requirement", id: "3.1.1" });
     expect(parseHash("#/data").name).toBe("data");
     expect(parseHash("#/print").name).toBe("print");
+    expect(parseHash("#/about").name).toBe("about");
     expect(parseHash("#/nope").name).toBe("notFound");
   });
   it("round-trips the filter query", () => {

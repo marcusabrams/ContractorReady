@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Layout } from "./components/Layout";
 import { useRoute, type Route } from "./lib/router";
+import { AboutPage } from "./pages/AboutPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { DataPage } from "./pages/DataPage";
 import { DevPage } from "./pages/DevPage";
@@ -36,6 +37,7 @@ export function App() {
       {route.name === "requirement" && <RequirementDetailPage key={route.id} id={route.id} />}
       {route.name === "data" && <DataPage />}
       {route.name === "print" && <PrintPage />}
+      {route.name === "about" && <AboutPage />}
       {route.name === "dev" && <DevPage />}
       {route.name === "notFound" && <NotFoundPage />}
     </Layout>

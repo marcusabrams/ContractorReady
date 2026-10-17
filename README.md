@@ -32,6 +32,6 @@ npm run preview    # serve the production build
 - [x] 3. Progress state, localStorage persistence, export/import, reset
 - [x] 4. Dashboard
 - [x] 5. Print summary
-- [ ] 6. About/disclaimer page
+- [x] 6. About/disclaimer page
 - [ ] 7. Generate and review real content, family by family
 - [ ] 8. Deploy

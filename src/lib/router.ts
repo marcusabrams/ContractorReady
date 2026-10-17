@@ -10,6 +10,7 @@ export type Route =
   | { name: "requirement"; id: string }
   | { name: "data" }
   | { name: "print" }
+  | { name: "about" }
   | { name: "dev" }
   | { name: "notFound" };
 
@@ -21,6 +22,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "requirements" && parts.length === 2) return { name: "requirement", id: parts[1] };
   if (parts[0] === "data" && parts.length === 1) return { name: "data" };
   if (parts[0] === "print" && parts.length === 1) return { name: "print" };
+  if (parts[0] === "about" && parts.length === 1) return { name: "about" };
   if (parts[0] === "dev" && parts.length === 1 && import.meta.env.DEV) return { name: "dev" };
   return { name: "notFound" };
 }
@@ -44,5 +46,6 @@ export const href = {
   requirement: (id: string) => `#/requirements/${encodeURIComponent(id)}`,
   data: () => "#/data",
   print: () => "#/print",
+  about: () => "#/about",
   dev: () => "#/dev",
 };

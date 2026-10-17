@@ -175,6 +175,9 @@ fieldset { border: 1px solid var(--border); border-radius: var(--radius); paddin
 }
 @media (max-width: 36rem) {
   h1 { font-size: 1.55rem; }
+  .header-inner { padding-top: 0.5rem; padding-bottom: 0.25rem; row-gap: 0.15rem; }
+  .nav-list { column-gap: 0.85rem; row-gap: 0; }
+  .nav-list a { font-size: 0.95rem; padding: 0.35rem 0; }
   .req-row { grid-template-columns: 1fr; }
   .req-meta { flex-direction: row; align-items: center; gap: 0.5rem; }
   .filters { grid-template-columns: 1fr; }
@@ -196,6 +199,10 @@ fieldset { border: 1px solid var(--border); border-radius: var(--radius); paddin
   .meter { border: 1px solid CanvasText; }
   .meter-fill { forced-color-adjust: none; background: CanvasText; }
 }
+
+/* Long-form text pages */
+.prose { max-width: 46rem; }
+.prose li { margin-bottom: 0.4rem; }
 
 /* Print summary (on screen) */
 .print-summary { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.5rem 1.25rem 1.25rem; margin-top: 1rem; }

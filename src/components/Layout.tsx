@@ -7,6 +7,7 @@ const NAV: { label: string; href: string; active: (r: Route) => boolean }[] = [
   { label: "Requirements", href: href.requirements(), active: (r) => r.name === "requirements" || r.name === "requirement" },
   { label: "Print summary", href: href.print(), active: (r) => r.name === "print" },
   { label: "Backup & data", href: href.data(), active: (r) => r.name === "data" },
+  { label: "About", href: href.about(), active: (r) => r.name === "about" },
 ];
 
 export function Layout({ route, children }: { route: Route; children: ReactNode }) {
@@ -71,7 +72,10 @@ export function Layout({ route, children }: { route: Route; children: ReactNode 
         <div className="container">
           <p>
             <strong>This is a self-tracking aid, not an assessment, a compliance guarantee, or legal advice.</strong>{" "}
-            Your data stays in this browser. Nothing is sent anywhere.
+            Your data stays in this browser. Nothing is sent anywhere.{" "}
+            <a className="no-print" href={href.about()}>
+              About &amp; privacy
+            </a>
           </p>
         </div>
       </footer>
