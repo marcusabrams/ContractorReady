@@ -22,6 +22,7 @@ describe("requirements.json", () => {
   // complete: exactly 3.F.1 through 3.F.N, in order, per NIST SP 800-171 Rev 2.
   it.each([
     ["Access Control", "3.1", 22],
+    ["Awareness and Training", "3.2", 3],
     ["Personnel Security", "3.9", 2],
   ] as const)("%s (%s.x) is complete with %i requirements", (family, prefix, count) => {
     const ids = requirements.filter((r) => r.family === family).map((r) => r.id);

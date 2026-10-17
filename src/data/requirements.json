@@ -587,6 +587,87 @@
       "reviewed": false
     },
     {
+      "id": "3.2.1",
+      "family": "Awareness and Training",
+      "text": "Ensure that managers, systems administrators, and users of organizational systems are made aware of the security risks associated with their activities and of the applicable policies, standards, and procedures related to the security of those systems.",
+      "plainEnglish": "Make sure everyone who uses your systems, including managers and whoever runs your IT, knows the security risks that come with their work. They also need to know your security policies and procedures. Usually this means security awareness training when people start and regularly after that.",
+      "whyItMatters": "Many security problems start with a person clicking a bad link, sharing a password, or not knowing a rule. People can't follow rules they've never been told.",
+      "examples": [
+        "New employees complete security awareness training in their first week, covering phishing, passwords, and handling CUI.",
+        "Everyone repeats the training each year and signs that they've read the security policies.",
+        "Short reminders about current scams are shared at staff meetings."
+      ],
+      "evidence": [
+        "Security awareness training materials",
+        "Training records showing who completed training and when",
+        "Signed acknowledgments of your security policies"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.2.1[a]",
+        "3.2.1[b]",
+        "3.2.1[c]",
+        "3.2.1[d]"
+      ],
+      "relatedIds": [
+        "3.2.2",
+        "3.2.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.2.2",
+      "family": "Awareness and Training",
+      "text": "Ensure that personnel are trained to carry out their assigned information security-related duties and responsibilities.",
+      "plainEnglish": "People with security jobs need training for those jobs. First, write down who is responsible for which security tasks, such as managing accounts, reviewing logs, or handling backups. Then make sure each person is trained to do their tasks.",
+      "whyItMatters": "Security tasks done by someone who doesn't know how to do them often aren't done properly. Clear assignments also make sure no task falls through the cracks.",
+      "examples": [
+        "A list of security roles shows that the office manager handles user accounts and the IT provider manages the firewall.",
+        "The person who manages accounts completed the vendor's training for the admin console.",
+        "When an outside IT provider holds a security role, the qualifications of their staff are checked."
+      ],
+      "evidence": [
+        "List of security roles and responsibilities, and who holds each one",
+        "Training records or certificates for the people in those roles",
+        "Contract terms covering the qualifications of outside IT providers"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.2.2[a]",
+        "3.2.2[b]",
+        "3.2.2[c]"
+      ],
+      "relatedIds": [
+        "3.2.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.2.3",
+      "family": "Awareness and Training",
+      "text": "Provide security awareness training on recognizing and reporting potential indicators of insider threat.",
+      "plainEnglish": "An insider threat is a risk from someone who already has access, such as an employee or contractor. They might misuse that access on purpose or by mistake. Teach managers and employees to notice and report the warning signs, and tell them who to report to. Warning signs include asking for access they don't need, copying large amounts of data, or repeatedly ignoring security rules.",
+      "whyItMatters": "People inside the company already have access, so the usual defenses may not stop them. Coworkers are often the first to notice something is wrong.",
+      "examples": [
+        "Annual security training includes a section on insider threat warning signs and how to report concerns.",
+        "Employees know they can report concerns confidentially to a named manager."
+      ],
+      "evidence": [
+        "Insider threat training materials",
+        "Training records showing managers and employees completed it",
+        "The documented way to report concerns"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.2.3[a]",
+        "3.2.3[b]"
+      ],
+      "relatedIds": [
+        "3.2.1"
+      ],
+      "reviewed": false
+    },
+    {
       "id": "3.5.1",
       "family": "Identification and Authentication",
       "text": "Identify system users, processes acting on behalf of users, and devices.",
