@@ -1,5 +1,6 @@
 import { useId, useMemo } from "react";
 import { getRequirement, objectivesFor, requirements } from "../lib/content";
+import { termsIn } from "../lib/glossary";
 import { listOwners, useProgress } from "../lib/progress";
 import { href } from "../lib/router";
 import { STATUSES, STATUS_LABELS, type Status } from "../lib/types";
@@ -16,6 +17,7 @@ export function RequirementDetailPage({ id }: { id: string }) {
   if (!req) return <NotFoundPage message={`There is no requirement with ID "${id}".`} />;
 
   const entry = getEntry(req.id);
+  const terms = termsIn(req);
   const index = requirements.indexOf(req);
   const prev = requirements[index - 1];
   const next = requirements[index + 1];
@@ -62,6 +64,19 @@ export function RequirementDetailPage({ id }: { id: string }) {
               ))}
             </ul>
           </section>
+          {terms.length > 0 && (
+            <section>
+              <h2>Terms in this requirement</h2>
+              <dl className="glossary">
+                {terms.map((t) => (
+                  <div key={t.term}>
+                    <dt>{t.term}</dt>
+                    <dd>{t.definition}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
           <section>
             <h2>Assessment objectives</h2>
             <p className="muted">
@@ -140,7 +155,8 @@ export function RequirementDetailPage({ id }: { id: string }) {
           <div className="field">
             <label htmlFor={`${ids}-notes`}>Notes</label>
             <p id={`${ids}-notes-warning`} className="field-warning">
-              Don't enter CUI or sensitive details here.
+              Don't enter CUI or sensitive details here, including personal information such as background check
+              results.
             </p>
             <textarea
               id={`${ids}-notes`}

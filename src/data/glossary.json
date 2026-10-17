@@ -1,0 +1,44 @@
+{
+  "terms": [
+    {
+      "term": "CUI",
+      "definition": "Controlled Unclassified Information. Government information that isn't classified but still has to be protected, such as technical drawings or contract details your customer marks as CUI."
+    },
+    {
+      "term": "MFA",
+      "definition": "Multifactor authentication. Signing in with a password plus a second proof of identity, such as a code from a phone app or a security key."
+    },
+    {
+      "term": "VPN",
+      "definition": "Virtual private network. A secure, encrypted connection from a device outside the office into the company network."
+    },
+    {
+      "term": "FIPS",
+      "definition": "Federal Information Processing Standards. U.S. government standards; FIPS 140 covers encryption. FIPS-validated means a product's encryption was tested and approved under that standard."
+    },
+    {
+      "term": "SSP",
+      "definition": "System security plan. The document that describes the systems that handle CUI and how you meet each requirement."
+    },
+    {
+      "term": "MDM",
+      "definition": "Mobile device management. Software that sets and enforces security settings on company laptops, phones, and tablets."
+    },
+    {
+      "term": "DLP",
+      "definition": "Data loss prevention. Tools that recognize sensitive information and block or warn when someone tries to send it somewhere it shouldn't go."
+    },
+    {
+      "term": "DMZ",
+      "definition": "Demilitarized zone. A separate network for systems the public can reach, such as a web server, walled off from your internal network."
+    },
+    {
+      "term": "VoIP",
+      "definition": "Voice over Internet Protocol. Phone calls made over the internet, such as with a cloud phone service."
+    },
+    {
+      "term": "DFARS",
+      "definition": "Defense Federal Acquisition Regulation Supplement. The Department of Defense's rules for its contracts, including the cybersecurity clauses that point to NIST SP 800-171."
+    }
+  ]
+}
