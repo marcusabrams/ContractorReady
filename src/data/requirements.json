@@ -2144,7 +2144,8 @@
       ],
       "relatedIds": [
         "3.11.2",
-        "3.11.3"
+        "3.11.3",
+        "3.12.1"
       ],
       "reviewed": false
     },
@@ -2198,7 +2199,116 @@
       ],
       "relatedIds": [
         "3.11.1",
-        "3.11.2"
+        "3.11.2",
+        "3.12.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.12.1",
+      "family": "Security Assessment",
+      "text": "Periodically assess the security controls in organizational systems to determine if the controls are effective in their application.",
+      "plainEnglish": "Regularly check whether your security measures actually work, not just whether they exist. Decide how often you'll do this, such as once a year.",
+      "whyItMatters": "Security measures can quietly stop working, be set up wrong, or be bypassed. Checking catches problems before an attacker does.",
+      "examples": [
+        "Once a year, the owner and IT provider go through each requirement and check the evidence that it works.",
+        "Spot checks confirm multifactor authentication (MFA) is on for every account and that backups can be restored."
+      ],
+      "evidence": [
+        "Records of security assessments, with dates and findings",
+        "Policy stating how often assessments are done"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.12.1[a]",
+        "3.12.1[b]"
+      ],
+      "relatedIds": [
+        "3.11.1",
+        "3.12.2",
+        "3.12.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.12.2",
+      "family": "Security Assessment",
+      "text": "Develop and implement plans of action designed to correct deficiencies and reduce or eliminate vulnerabilities in organizational systems.",
+      "plainEnglish": "When you find gaps or weaknesses, write a plan to fix them and follow it. This is called a plan of action. For each item, list the problem, what you'll do, who's responsible, and a target date.",
+      "whyItMatters": "A written plan turns a list of problems into scheduled work and shows that you're making progress.",
+      "examples": [
+        "A plan of action lists each gap from the last assessment, the fix, the person responsible, and the due date.",
+        "The plan is reviewed monthly and updated as items are completed."
+      ],
+      "evidence": [
+        "Plan of action document",
+        "Records showing items being completed"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.12.2[a]",
+        "3.12.2[b]",
+        "3.12.2[c]"
+      ],
+      "relatedIds": [
+        "3.11.3",
+        "3.12.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.12.3",
+      "family": "Security Assessment",
+      "text": "Monitor security controls on an ongoing basis to ensure the continued effectiveness of the controls.",
+      "plainEnglish": "Keep watching your security measures all the time, not just during a yearly check, so you notice quickly if something stops working.",
+      "whyItMatters": "Problems can appear at any time. Ongoing monitoring catches them in days instead of months.",
+      "examples": [
+        "Your IT provider reviews security dashboards every week, covering multifactor authentication (MFA) status, device settings, and backup results.",
+        "An alert goes out when antivirus is turned off on a computer."
+      ],
+      "evidence": [
+        "Ongoing monitoring procedure",
+        "Monitoring reports or dashboard screenshots",
+        "Sample alerts"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.12.3"
+      ],
+      "relatedIds": [
+        "3.12.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.12.4",
+      "family": "Security Assessment",
+      "text": "Develop, document, and periodically update system security plans that describe system boundaries, system environments of operation, how security requirements are implemented, and the relationships with or connections to other systems.",
+      "plainEnglish": "Write a system security plan (SSP) and keep it up to date. It describes which systems handle CUI, the environment they run in, and how your systems connect to other systems. It also explains how you meet each requirement and lists any requirements that don't apply to you. Decide how often you'll update it.",
+      "whyItMatters": "The SSP is the central document that explains your security to customers and assessors. It also helps you keep track of your own setup.",
+      "examples": [
+        "The SSP includes a network diagram, a list of the systems that handle CUI, and a description of how each requirement is met.",
+        "The SSP is reviewed every year and whenever systems change."
+      ],
+      "evidence": [
+        "System security plan",
+        "Network diagram showing which systems handle CUI",
+        "Records of SSP reviews and updates"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.12.4[a]",
+        "3.12.4[b]",
+        "3.12.4[c]",
+        "3.12.4[d]",
+        "3.12.4[e]",
+        "3.12.4[f]",
+        "3.12.4[g]",
+        "3.12.4[h]"
+      ],
+      "relatedIds": [
+        "3.12.1",
+        "3.12.2"
       ],
       "reviewed": false
     }
