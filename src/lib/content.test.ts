@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import nist from "../data/sources/nist-sp800-171a.json";
 import { compareIds, content, groupByFamily, requirements, validateContent } from "./content";
 import { FAMILIES, type ContentFile, type Requirement } from "./types";
 
@@ -71,5 +72,23 @@ describe("helpers", () => {
     const groups = groupByFamily(requirements);
     const order = groups.map((g) => FAMILIES.indexOf(g.family));
     expect([...order].sort((a, b) => a - b)).toEqual(order);
+  });
+});
+
+describe("official text matches NIST SP 800-171A", () => {
+  // src/data/sources/nist-sp800-171a.json is extracted from the NIST PDF by
+  // scripts/extract_800_171a.py. 800-171A restates each Rev 2 requirement verbatim.
+  const source = new Map(nist.requirements.map((r) => [r.id, r]));
+
+  it("source extract has all 110 requirements and 320 objectives", () => {
+    expect(nist.requirements).toHaveLength(110);
+    expect(nist.requirements.reduce((n, r) => n + r.objectives.length, 0)).toBe(320);
+  });
+
+  it.each(requirements.map((r) => [r.id, r] as const))("%s text and objectives match", (_id, r) => {
+    const s = source.get(r.id);
+    expect(s).toBeDefined();
+    expect(r.text).toBe(s!.text);
+    expect(r.objectives).toEqual(s!.objectives.map((o) => o.id));
   });
 });
