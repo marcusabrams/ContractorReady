@@ -1637,7 +1637,8 @@
         "3.7.4"
       ],
       "relatedIds": [
-        "3.7.2"
+        "3.7.2",
+        "3.14.2"
       ],
       "reviewed": false
     },
@@ -2179,7 +2180,8 @@
         "3.11.2[e]"
       ],
       "relatedIds": [
-        "3.11.3"
+        "3.11.3",
+        "3.14.1"
       ],
       "reviewed": false
     },
@@ -2282,7 +2284,8 @@
         "3.12.3"
       ],
       "relatedIds": [
-        "3.12.1"
+        "3.12.1",
+        "3.14.6"
       ],
       "reviewed": false
     },
@@ -2347,7 +2350,8 @@
       ],
       "relatedIds": [
         "3.13.5",
-        "3.13.6"
+        "3.13.6",
+        "3.14.6"
       ],
       "reviewed": false
     },
@@ -2658,7 +2662,8 @@
         "3.13.13[b]"
       ],
       "relatedIds": [
-        "3.4.8"
+        "3.4.8",
+        "3.14.2"
       ],
       "reviewed": false
     },
@@ -2731,6 +2736,190 @@
         "3.1.19",
         "3.8.9",
         "3.13.11"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.14.1",
+      "family": "System and Information Integrity",
+      "text": "Identify, report, and correct system flaws in a timely manner.",
+      "plainEnglish": "Find, report, and fix security flaws in your systems within set time frames. Mostly this means installing software updates, also called patches. Decide how quickly you'll find, report, and fix flaws.",
+      "whyItMatters": "Unpatched software is one of the most common ways attackers get in.",
+      "examples": [
+        "Operating system and application updates install automatically within 14 days of release.",
+        "Critical security updates are installed within a few days.",
+        "Your IT provider reports monthly on which devices are missing updates."
+      ],
+      "evidence": [
+        "Patch management policy with time frames",
+        "Update or patch reports",
+        "Records of flaws found and fixed"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.14.1[a]",
+        "3.14.1[b]",
+        "3.14.1[c]",
+        "3.14.1[d]",
+        "3.14.1[e]",
+        "3.14.1[f]"
+      ],
+      "relatedIds": [
+        "3.11.2",
+        "3.11.3",
+        "3.14.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.14.2",
+      "family": "System and Information Integrity",
+      "text": "Provide protection from malicious code at designated locations within organizational systems.",
+      "plainEnglish": "Use anti-malware protection at key points in your systems, such as on computers, servers, and email. Decide where it's needed and make sure it's in place.",
+      "whyItMatters": "Malware, such as ransomware and viruses, is one of the biggest threats to small businesses.",
+      "examples": [
+        "Every computer and server runs antivirus or endpoint protection software.",
+        "Email is scanned for malicious attachments and links before it reaches inboxes."
+      ],
+      "evidence": [
+        "List of where malware protection is required",
+        "Reports showing protection is installed and active"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.14.2[a]",
+        "3.14.2[b]"
+      ],
+      "relatedIds": [
+        "3.14.4",
+        "3.14.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.14.3",
+      "family": "System and Information Integrity",
+      "text": "Monitor system security alerts and advisories and take action in response.",
+      "plainEnglish": "Keep an eye on security alerts and advisories, such as notices from your software vendors or government agencies about new threats. Decide how you'll respond, and act on the ones that affect you.",
+      "whyItMatters": "New threats appear all the time. Acting on alerts quickly can stop an attack before it reaches you.",
+      "examples": [
+        "Your IT provider subscribes to vendor security bulletins and to alerts from the federal Cybersecurity and Infrastructure Security Agency (CISA).",
+        "When an alert affects your systems, it's logged along with the action taken."
+      ],
+      "evidence": [
+        "List of the alert and advisory sources you follow",
+        "Records of alerts received and actions taken"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.14.3[a]",
+        "3.14.3[b]",
+        "3.14.3[c]"
+      ],
+      "relatedIds": [
+        "3.14.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.14.4",
+      "family": "System and Information Integrity",
+      "text": "Update malicious code protection mechanisms when new releases are available.",
+      "plainEnglish": "Keep your anti-malware software up to date with the latest versions and threat definitions. Usually this means turning on automatic updates and checking that they're working.",
+      "whyItMatters": "Out-of-date anti-malware can't recognize new threats.",
+      "examples": [
+        "Antivirus threat definitions update automatically several times a day.",
+        "A report flags any computer whose protection is out of date."
+      ],
+      "evidence": [
+        "Settings showing automatic updates are on",
+        "Reports showing protection is up to date"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.14.4"
+      ],
+      "relatedIds": [
+        "3.14.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.14.5",
+      "family": "System and Information Integrity",
+      "text": "Perform periodic scans of organizational systems and real-time scans of files from external sources as files are downloaded, opened, or executed.",
+      "plainEnglish": "Run regular full malware scans of your systems. Also scan files from outside sources in real time, as they're downloaded, opened, or run. Decide how often full scans happen.",
+      "whyItMatters": "Real-time scanning catches threats as they arrive, and regular full scans find anything that slipped through.",
+      "examples": [
+        "Antivirus runs a full scan every week.",
+        "Real-time protection scans every file as it's downloaded or opened."
+      ],
+      "evidence": [
+        "Scan schedule settings",
+        "Settings showing real-time protection is on",
+        "Scan logs"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.14.5[a]",
+        "3.14.5[b]",
+        "3.14.5[c]"
+      ],
+      "relatedIds": [
+        "3.14.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.14.6",
+      "family": "System and Information Integrity",
+      "text": "Monitor organizational systems, including inbound and outbound communications traffic, to detect attacks and indicators of potential attacks.",
+      "plainEnglish": "Watch your systems and network traffic, both incoming and outgoing, for signs of attacks. Tools such as firewalls, endpoint protection, and email security can alert you to suspicious activity.",
+      "whyItMatters": "Spotting an attack early can be the difference between a minor incident and a major breach.",
+      "examples": [
+        "Endpoint protection alerts your IT provider to suspicious behavior on any computer.",
+        "The firewall watches incoming and outgoing traffic for known attack patterns.",
+        "Alerts about unusual sign-ins are reviewed."
+      ],
+      "evidence": [
+        "Description of monitoring tools and what they watch",
+        "Sample alerts and records of how they were handled"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.14.6[a]",
+        "3.14.6[b]",
+        "3.14.6[c]"
+      ],
+      "relatedIds": [
+        "3.6.1",
+        "3.13.1",
+        "3.14.7"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.14.7",
+      "family": "System and Information Integrity",
+      "text": "Identify unauthorized use of organizational systems.",
+      "plainEnglish": "Define what counts as acceptable use of your systems, and watch for use that breaks those rules. Examples include sign-ins at odd hours, access to data someone doesn't need, or unapproved software.",
+      "whyItMatters": "Not every misuse looks like an attack from outside. Some comes from real accounts used in ways they shouldn't be.",
+      "examples": [
+        "An acceptable use policy defines what employees may and may not do on company systems.",
+        "Reports on unusual sign-ins and access to sensitive folders are reviewed regularly."
+      ],
+      "evidence": [
+        "Acceptable use policy",
+        "Monitoring reports and records of follow-up"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.14.7[a]",
+        "3.14.7[b]"
+      ],
+      "relatedIds": [
+        "3.3.1",
+        "3.14.6"
       ],
       "reviewed": false
     }
