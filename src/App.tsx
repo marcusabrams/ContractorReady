@@ -5,6 +5,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { DataPage } from "./pages/DataPage";
 import { DevPage } from "./pages/DevPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { PrintPage } from "./pages/PrintPage";
 import { RequirementDetailPage } from "./pages/RequirementDetailPage";
 import { RequirementsPage } from "./pages/RequirementsPage";
 
@@ -34,6 +35,7 @@ export function App() {
       {route.name === "requirements" && <RequirementsPage query={route.query} />}
       {route.name === "requirement" && <RequirementDetailPage key={route.id} id={route.id} />}
       {route.name === "data" && <DataPage />}
+      {route.name === "print" && <PrintPage />}
       {route.name === "dev" && <DevPage />}
       {route.name === "notFound" && <NotFoundPage />}
     </Layout>

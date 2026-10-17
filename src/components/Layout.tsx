@@ -5,6 +5,7 @@ import { href, type Route } from "../lib/router";
 const NAV: { label: string; href: string; active: (r: Route) => boolean }[] = [
   { label: "Dashboard", href: href.home(), active: (r) => r.name === "home" },
   { label: "Requirements", href: href.requirements(), active: (r) => r.name === "requirements" || r.name === "requirement" },
+  { label: "Print summary", href: href.print(), active: (r) => r.name === "print" },
   { label: "Backup & data", href: href.data(), active: (r) => r.name === "data" },
 ];
 
