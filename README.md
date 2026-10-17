@@ -29,6 +29,20 @@ npm run preview    # serve the production build
   and Netlify. GitHub Pages ignores it and can't set response headers.
 - Open tabs stay in sync: an edit in one tab is picked up by the others instead of being overwritten.
 
+## Deploy
+
+The site is published to GitHub Pages at https://marcusabrams.github.io/contractorready/ by
+`.github/workflows/deploy.yml`:
+
+- Every push and pull request runs the type check, tests, `npm audit`, and build.
+- A push to `main` that passes those checks is deployed. Pull requests are checked but never deployed.
+- One-time setup: in the repository's **Settings → Pages**, set **Source** to **GitHub Actions**.
+- To roll back, revert the bad commit on `main` (the revert deploys automatically), or re-run the
+  deploy job of an earlier successful workflow run from the **Actions** tab.
+
+Dependabot (`.github/dependabot.yml`) opens weekly update pull requests for npm packages and GitHub
+Actions; each runs the same checks.
+
 ## Build progress
 
 - [x] 1. Scaffold Vite + React + TS, routing, layout
