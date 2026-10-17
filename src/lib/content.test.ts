@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import nist171a from "../data/sources/nist-sp800-171a.json";
 import nistRev2 from "../data/sources/nist-sp800-171r2.json";
-import { compareIds, content, groupByFamily, requirements, validateContent } from "./content";
+import { compareIds, content, getRequirement, groupByFamily, objectivesFor, requirements, validateContent } from "./content";
 import { FAMILIES, type ContentFile, type Requirement } from "./types";
 
 describe("requirements.json", () => {
@@ -96,5 +96,20 @@ describe("official text and objectives match NIST", () => {
   it.each(requirements.map((r) => [r.id, r] as const))("%s text matches Rev 2 and objectives match 800-171A", (_id, r) => {
     expect(r.text).toBe(rev2.get(r.id));
     expect(r.objectives).toEqual(assess.get(r.id)!.objectives.map((o) => o.id));
+  });
+});
+
+describe("objectivesFor", () => {
+  it("returns each objective's ID and its NIST SP 800-171A wording, in order", () => {
+    const objs = objectivesFor(getRequirement("3.1.1")!);
+    expect(objs).toHaveLength(6);
+    expect(objs[0]).toEqual({ id: "3.1.1[a]", text: "authorized users are identified." });
+    expect(objs[5].id).toBe("3.1.1[f]");
+  });
+
+  it("handles a requirement with a single unlabeled objective", () => {
+    expect(objectivesFor(getRequirement("3.9.1")!)).toEqual([
+      { id: "3.9.1", text: "individuals are screened prior to authorizing access to organizational systems containing CUI." },
+    ]);
   });
 });

@@ -1,4 +1,5 @@
 import raw from "../data/requirements.json";
+import assessment from "../data/sources/nist-sp800-171a.json";
 import { FAMILIES, type ContentFile, type Family, type Requirement } from "./types";
 
 export const content = raw as ContentFile;
@@ -8,6 +9,19 @@ const byId = new Map(requirements.map((r) => [r.id, r]));
 
 export function getRequirement(id: string): Requirement | undefined {
   return byId.get(id);
+}
+
+export interface Objective {
+  id: string;
+  text: string;
+}
+
+/** Objective wording from NIST SP 800-171A, keyed by objective ID (e.g. "3.1.1[a]"). */
+const objectiveText = new Map(assessment.requirements.flatMap((r) => r.objectives.map((o) => [o.id, o.text] as const)));
+
+/** The requirement's assessment objectives with their official wording, in order. */
+export function objectivesFor(requirement: Requirement): Objective[] {
+  return requirement.objectives.map((id) => ({ id, text: objectiveText.get(id) ?? "" }));
 }
 
 /** Families in document order, each with its requirements. Empty families are omitted. */

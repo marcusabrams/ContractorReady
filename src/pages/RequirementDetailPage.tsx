@@ -1,5 +1,5 @@
 import { useId, useMemo } from "react";
-import { getRequirement, requirements } from "../lib/content";
+import { getRequirement, objectivesFor, requirements } from "../lib/content";
 import { listOwners, useProgress } from "../lib/progress";
 import { href } from "../lib/router";
 import { STATUSES, STATUS_LABELS, type Status } from "../lib/types";
@@ -64,8 +64,16 @@ export function RequirementDetailPage({ id }: { id: string }) {
           </section>
           <section>
             <h2>Assessment objectives</h2>
-            <p className="muted">From NIST SP 800-171A.</p>
-            <p>{req.objectives.join(", ")}</p>
+            <p className="muted">
+              What an assessor checks, from NIST SP 800-171A. The assessor determines whether:
+            </p>
+            <ul className="objectives">
+              {objectivesFor(req).map((o) => (
+                <li key={o.id}>
+                  <span className="objective-id">{o.id}</span> {o.text}
+                </li>
+              ))}
+            </ul>
           </section>
           {req.relatedIds.length > 0 && (
             <section>
