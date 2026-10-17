@@ -913,6 +913,266 @@
       "reviewed": false
     },
     {
+      "id": "3.4.1",
+      "family": "Configuration Management",
+      "text": "Establish and maintain baseline configurations and inventories of organizational systems (including hardware, software, firmware, and documentation) throughout the respective system development life cycles.",
+      "plainEnglish": "Keep an up-to-date list of your equipment and software. Also write down the standard setup for each kind of system, such as how a company laptop is configured. This standard setup is called a baseline configuration. Update both whenever things change.",
+      "whyItMatters": "You can't protect what you don't know you have. A written standard setup makes it easy to spot systems that have drifted from it.",
+      "examples": [
+        "An inventory lists every laptop, phone, server, network device, and software subscription, with its owner.",
+        "A document describes the standard laptop setup: operating system version, required software, and security settings.",
+        "The inventory is reviewed every quarter and whenever equipment is bought or retired."
+      ],
+      "evidence": [
+        "Hardware and software inventory",
+        "Baseline configuration documents",
+        "Records showing the inventory and baselines are reviewed and updated"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.1[a]",
+        "3.4.1[b]",
+        "3.4.1[c]",
+        "3.4.1[d]",
+        "3.4.1[e]",
+        "3.4.1[f]"
+      ],
+      "relatedIds": [
+        "3.4.2",
+        "3.4.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.2",
+      "family": "Configuration Management",
+      "text": "Establish and enforce security configuration settings for information technology products employed in organizational systems.",
+      "plainEnglish": "Choose secure settings for your computers, phones, network equipment, and software, and make sure they stay that way. Published security checklists from vendors or government sources are a good starting point.",
+      "whyItMatters": "Many products come with settings that favor convenience over security. Attackers look for those weak defaults.",
+      "examples": [
+        "Company laptops get a security settings checklist, such as the vendor's recommended security baseline, applied through device management.",
+        "Default passwords on the router and printers are changed.",
+        "Device management reports flag laptops whose settings no longer match."
+      ],
+      "evidence": [
+        "Documented security settings for each type of system",
+        "Device management or group policy settings that enforce them",
+        "Reports showing devices meet the settings"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.2[a]",
+        "3.4.2[b]"
+      ],
+      "relatedIds": [
+        "3.4.1",
+        "3.4.6"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.3",
+      "family": "Configuration Management",
+      "text": "Track, review, approve or disapprove, and log changes to organizational systems.",
+      "plainEnglish": "Keep track of changes to your systems, such as new software, setting changes, or new equipment. Review each change and approve or reject it before it's made, and keep a record.",
+      "whyItMatters": "Unplanned changes can break things or open security holes. A record of changes also helps you work out what went wrong.",
+      "examples": [
+        "Changes are requested by email or ticket and approved by the owner or IT manager.",
+        "A simple change log records what changed, when, who made the change, and who approved it."
+      ],
+      "evidence": [
+        "Change management procedure",
+        "Change log or tickets showing review and approval"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.3[a]",
+        "3.4.3[b]",
+        "3.4.3[c]",
+        "3.4.3[d]"
+      ],
+      "relatedIds": [
+        "3.4.4",
+        "3.4.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.4",
+      "family": "Configuration Management",
+      "text": "Analyze the security impact of changes prior to implementation.",
+      "plainEnglish": "Before making a change, think through how it could affect security. For example, ask whether a new app needs access to CUI, or whether a firewall change opens your network more than it should.",
+      "whyItMatters": "Changes made without thinking about security are a common source of new weaknesses.",
+      "examples": [
+        "The change request form asks how the change affects security.",
+        "Before a new cloud app was approved, someone checked how it stores data."
+      ],
+      "evidence": [
+        "Change requests showing the security impact was considered",
+        "Change management procedure that requires a security review"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.4"
+      ],
+      "relatedIds": [
+        "3.4.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.5",
+      "family": "Configuration Management",
+      "text": "Define, document, approve, and enforce physical and logical access restrictions associated with changes to organizational systems.",
+      "plainEnglish": "Decide who may make changes to your systems, both physically (like opening the network closet) and electronically (like changing settings). Write the rules down, have them approved, and enforce them.",
+      "whyItMatters": "If anyone can change systems, mistakes and unauthorized changes are much more likely.",
+      "examples": [
+        "Only the IT provider and the office manager have keys to the network closet.",
+        "Only admin accounts can install software or change system settings.",
+        "The owner approves the list of people who may make changes."
+      ],
+      "evidence": [
+        "Approved list of who may make physical and electronic changes",
+        "Settings showing only those people have permission to make changes",
+        "Records of who has keys or badge access to equipment rooms"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.5[a]",
+        "3.4.5[b]",
+        "3.4.5[c]",
+        "3.4.5[d]",
+        "3.4.5[e]",
+        "3.4.5[f]",
+        "3.4.5[g]",
+        "3.4.5[h]"
+      ],
+      "relatedIds": [
+        "3.1.5",
+        "3.4.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.6",
+      "family": "Configuration Management",
+      "text": "Employ the principle of least functionality by configuring organizational systems to provide only essential capabilities.",
+      "plainEnglish": "Set up each system to do only what it's needed for, and turn off everything else. For example, a computer used for office work doesn't need to run a web server.",
+      "whyItMatters": "Every extra feature or service is one more thing an attacker could exploit.",
+      "examples": [
+        "Unneeded features and apps are removed from company laptops.",
+        "The office server runs only the file sharing service it's used for."
+      ],
+      "evidence": [
+        "List of the functions each type of system needs",
+        "Configuration settings showing other functions are turned off"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.6[a]",
+        "3.4.6[b]"
+      ],
+      "relatedIds": [
+        "3.4.2",
+        "3.4.7"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.7",
+      "family": "Configuration Management",
+      "text": "Restrict, disable, or prevent the use of nonessential programs, functions, ports, protocols, and services.",
+      "plainEnglish": "Work out which programs, features, network ports, protocols, and services your systems actually need, and block or turn off the rest. Ports and protocols are the channels systems use to talk to each other over a network.",
+      "whyItMatters": "Unneeded programs and open network channels give attackers more ways in.",
+      "examples": [
+        "The firewall blocks all incoming connections except the few that are needed.",
+        "Outdated file sharing protocols are turned off on company computers.",
+        "Games and other unneeded programs are removed from company devices."
+      ],
+      "evidence": [
+        "List of allowed programs, ports, protocols, and services",
+        "Firewall rules",
+        "Configuration settings showing everything else is turned off"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.7[a]",
+        "3.4.7[b]",
+        "3.4.7[c]",
+        "3.4.7[d]",
+        "3.4.7[e]",
+        "3.4.7[f]",
+        "3.4.7[g]",
+        "3.4.7[h]",
+        "3.4.7[i]",
+        "3.4.7[j]",
+        "3.4.7[k]",
+        "3.4.7[l]",
+        "3.4.7[m]",
+        "3.4.7[n]",
+        "3.4.7[o]"
+      ],
+      "relatedIds": [
+        "3.4.6",
+        "3.4.8"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.8",
+      "family": "Configuration Management",
+      "text": "Apply deny-by-exception (blacklisting) policy to prevent the use of unauthorized software or deny-all, permit-by-exception (whitelisting) policy to allow the execution of authorized software.",
+      "plainEnglish": "Control which software can run on your systems in one of two ways. You can block a list of software you don't allow. Or, more securely, you can allow only a list of approved software and block everything else. Decide which approach you use and keep the list up to date.",
+      "whyItMatters": "Stopping unapproved software from running blocks a lot of malware and risky programs.",
+      "examples": [
+        "Device management allows only approved apps to install and run on company laptops.",
+        "A list of banned software is blocked through your antivirus or device management tool."
+      ],
+      "evidence": [
+        "Policy stating whether you allow only approved software or block specific software",
+        "The list of approved or blocked software",
+        "Settings in the tool that enforces the list"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.8[a]",
+        "3.4.8[b]",
+        "3.4.8[c]"
+      ],
+      "relatedIds": [
+        "3.4.7",
+        "3.4.9"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.4.9",
+      "family": "Configuration Management",
+      "text": "Control and monitor user-installed software.",
+      "plainEnglish": "Set a rule about whether employees may install software themselves. Enforce that rule, and keep an eye on what gets installed.",
+      "whyItMatters": "Software installed without oversight can carry malware or quietly send company data somewhere it shouldn't go.",
+      "examples": [
+        "Employees can't install software themselves; they ask IT for it.",
+        "Device management lists the software on each laptop, and new installations are reviewed."
+      ],
+      "evidence": [
+        "Software installation policy",
+        "Settings that restrict who can install software",
+        "Software inventory or installation reports"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.4.9[a]",
+        "3.4.9[b]",
+        "3.4.9[c]"
+      ],
+      "relatedIds": [
+        "3.1.7",
+        "3.4.8"
+      ],
+      "reviewed": false
+    },
+    {
       "id": "3.5.1",
       "family": "Identification and Authentication",
       "text": "Identify system users, processes acting on behalf of users, and devices.",
