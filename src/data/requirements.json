@@ -501,7 +501,8 @@
         "3.1.19[b]"
       ],
       "relatedIds": [
-        "3.1.18"
+        "3.1.18",
+        "3.8.6"
       ],
       "reviewed": false
     },
@@ -556,7 +557,8 @@
         "3.1.21[c]"
       ],
       "relatedIds": [
-        "3.1.20"
+        "3.1.20",
+        "3.8.7"
       ],
       "reviewed": false
     },
@@ -1606,7 +1608,9 @@
       "objectives": [
         "3.7.3"
       ],
-      "relatedIds": [],
+      "relatedIds": [
+        "3.8.3"
+      ],
       "reviewed": false
     },
     {
@@ -1679,6 +1683,227 @@
       ],
       "relatedIds": [
         "3.7.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.1",
+      "family": "Media Protection",
+      "text": "Protect (i.e., physically control and securely store) system media containing CUI, both paper and digital.",
+      "plainEnglish": "Keep paper documents and digital storage that contain CUI under control and stored securely. Digital storage includes USB drives, external hard drives, and backup disks. For example, lock them in a cabinet or a room with limited access.",
+      "whyItMatters": "Paper and portable storage are easy to lose, steal, or read. Keeping them under control stops CUI from walking out the door.",
+      "examples": [
+        "Paper documents with CUI are kept in a locked cabinet when not in use.",
+        "Backup drives containing CUI are stored in a locked room.",
+        "A clean desk rule: CUI isn't left out when people step away."
+      ],
+      "evidence": [
+        "Media protection policy",
+        "Photos or descriptions of secure storage",
+        "Clean desk policy"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.1[a]",
+        "3.8.1[b]",
+        "3.8.1[c]",
+        "3.8.1[d]"
+      ],
+      "relatedIds": [
+        "3.8.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.2",
+      "family": "Media Protection",
+      "text": "Limit access to CUI on system media to authorized users.",
+      "plainEnglish": "Only people authorized to see CUI should be able to get to the paper or digital media that holds it.",
+      "whyItMatters": "Even locked storage doesn't help if too many people have the key.",
+      "examples": [
+        "Only the project team has keys to the CUI file cabinet.",
+        "Encrypted USB drives with CUI require a password that only authorized people know."
+      ],
+      "evidence": [
+        "List of people authorized to access CUI media",
+        "Key or access logs"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.2"
+      ],
+      "relatedIds": [
+        "3.1.1",
+        "3.8.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.3",
+      "family": "Media Protection",
+      "text": "Sanitize or destroy system media containing CUI before disposal or release for reuse.",
+      "plainEnglish": "Before throwing away or reusing anything that held CUI, wipe it so the data can't be recovered, or destroy it. That includes paper, hard drives, USB drives, phones, and copiers with internal storage.",
+      "whyItMatters": "Deleted files can often be recovered. Old equipment and paper in the trash are common sources of data leaks.",
+      "examples": [
+        "Paper with CUI goes in a locked shred bin that a shredding service empties.",
+        "Old hard drives are destroyed or securely wiped, and the vendor provides a certificate of destruction.",
+        "Leased copiers have their storage wiped before they're returned."
+      ],
+      "evidence": [
+        "Media sanitization and disposal procedure",
+        "Certificates of destruction or records of wiping"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.3[a]",
+        "3.8.3[b]"
+      ],
+      "relatedIds": [
+        "3.7.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.4",
+      "family": "Media Protection",
+      "text": "Mark media with necessary CUI markings and distribution limitations.",
+      "plainEnglish": "Label paper documents and digital media that contain CUI with the required CUI markings and any limits on who may receive them. Your contract and your customer's CUI instructions say which markings to use.",
+      "whyItMatters": "Markings tell everyone who handles the material that it needs protection and who may see it.",
+      "examples": [
+        "Documents with CUI carry a CUI banner at the top of each page, as your customer instructs.",
+        "USB drives with CUI are labeled as CUI."
+      ],
+      "evidence": [
+        "Marking procedure",
+        "Examples of marked documents and media"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.4[a]",
+        "3.8.4[b]"
+      ],
+      "relatedIds": [
+        "3.8.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.5",
+      "family": "Media Protection",
+      "text": "Control access to media containing CUI and maintain accountability for media during transport outside of controlled areas.",
+      "plainEnglish": "When CUI on paper or digital media leaves your controlled areas, such as being shipped or carried to a customer, control who handles it. Keep track of it along the way.",
+      "whyItMatters": "Media in transit is easy to lose or intercept. Tracking it means you'll know if something goes missing.",
+      "examples": [
+        "CUI is shipped by a tracked carrier, with a signature required.",
+        "A log records media that leaves the office, who took it, and when it came back."
+      ],
+      "evidence": [
+        "Media transport procedure",
+        "Transport logs or shipping records"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.5[a]",
+        "3.8.5[b]"
+      ],
+      "relatedIds": [
+        "3.8.6"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.6",
+      "family": "Media Protection",
+      "text": "Implement cryptographic mechanisms to protect the confidentiality of CUI stored on digital media during transport unless otherwise protected by alternative physical safeguards.",
+      "plainEnglish": "Encrypt CUI on USB drives, laptops, or other digital media when it's carried or shipped outside your controlled areas. The exception is when it's protected physically in another way, such as a locked container carried by a trusted courier. When encryption protects CUI, it generally needs to be FIPS-validated, meaning tested and approved under a U.S. government standard. Requirement 3.13.11 covers this.",
+      "whyItMatters": "Encrypted media that's lost or stolen in transit can't be read.",
+      "examples": [
+        "Only encrypted USB drives may be used to carry CUI.",
+        "Laptops have full-disk encryption turned on before they leave the office."
+      ],
+      "evidence": [
+        "Encryption policy for media in transport",
+        "Records showing encrypted devices are used"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.6"
+      ],
+      "relatedIds": [
+        "3.1.19",
+        "3.8.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.7",
+      "family": "Media Protection",
+      "text": "Control the use of removable media on system components.",
+      "plainEnglish": "Control the use of removable media, such as USB drives, memory cards, and external hard drives, on your computers and other equipment. For example, block them entirely, or allow only approved, encrypted devices.",
+      "whyItMatters": "Removable media can carry malware in, or carry CUI out, without anyone noticing.",
+      "examples": [
+        "USB storage is blocked on company computers, except for approved encrypted drives.",
+        "Device management settings control which removable devices can be used."
+      ],
+      "evidence": [
+        "Removable media policy",
+        "Device control settings"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.7"
+      ],
+      "relatedIds": [
+        "3.1.21",
+        "3.8.8"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.8",
+      "family": "Media Protection",
+      "text": "Prohibit the use of portable storage devices when such devices have no identifiable owner.",
+      "plainEnglish": "Don't allow USB drives or other portable storage that has no known owner. Examples are a drive found in the parking lot or one handed out at a trade show.",
+      "whyItMatters": "Attackers sometimes leave infected USB drives where people will find them and plug them in.",
+      "examples": [
+        "Employees are trained to hand found USB drives to IT instead of plugging them in.",
+        "Company USB drives are labeled and assigned to named people."
+      ],
+      "evidence": [
+        "Policy banning portable storage with no known owner",
+        "Training materials covering found devices",
+        "List of assigned portable storage devices"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.8"
+      ],
+      "relatedIds": [
+        "3.8.7"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.8.9",
+      "family": "Media Protection",
+      "text": "Protect the confidentiality of backup CUI at storage locations.",
+      "plainEnglish": "Protect backups that contain CUI as carefully as the original data, wherever they're stored. Usually this means encrypting backups and limiting who can access them.",
+      "whyItMatters": "Backups hold copies of everything. A poorly protected backup is an easy way to steal all your CUI at once.",
+      "examples": [
+        "Cloud backups are encrypted, and only two admins can access them.",
+        "Backup drives stored off-site are encrypted and kept in a locked location."
+      ],
+      "evidence": [
+        "Backup policy",
+        "Backup settings showing encryption is on",
+        "List of people with access to backups"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.8.9"
+      ],
+      "relatedIds": [
+        "3.8.1"
       ],
       "reviewed": false
     },
