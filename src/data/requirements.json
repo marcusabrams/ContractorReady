@@ -802,7 +802,8 @@
       ],
       "relatedIds": [
         "3.3.1",
-        "3.3.6"
+        "3.3.6",
+        "3.6.1"
       ],
       "reviewed": false
     },
@@ -1446,6 +1447,92 @@
       ],
       "relatedIds": [
         "3.5.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.6.1",
+      "family": "Incident Response",
+      "text": "Establish an operational incident-handling capability for organizational systems that includes preparation, detection, analysis, containment, recovery, and user response activities.",
+      "plainEnglish": "Be ready to handle security incidents, such as a hacked email account, ransomware, or a lost laptop with CUI on it. Write a plan that covers getting ready, spotting incidents, working out what happened, stopping the damage, recovering, and what users should do. Make sure the people named in the plan know their roles.",
+      "whyItMatters": "When an incident hits, there's no time to work out who to call or what to do. A plan prepared in advance limits the damage and speeds up recovery.",
+      "examples": [
+        "A two-page incident response plan lists who to call, first steps for common incidents, and how to recover from backups.",
+        "Employees know to report anything suspicious to a named person right away.",
+        "Your contract with your IT provider covers help during incidents."
+      ],
+      "evidence": [
+        "Incident response plan",
+        "List of incident response roles and contacts",
+        "Records of past incidents and how they were handled"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.6.1[a]",
+        "3.6.1[b]",
+        "3.6.1[c]",
+        "3.6.1[d]",
+        "3.6.1[e]",
+        "3.6.1[f]",
+        "3.6.1[g]"
+      ],
+      "relatedIds": [
+        "3.3.5",
+        "3.6.2",
+        "3.6.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.6.2",
+      "family": "Incident Response",
+      "text": "Track, document, and report incidents to designated officials and/or authorities both internal and external to the organization.",
+      "plainEnglish": "Keep a record of each security incident: what happened, when, what you did, and how it ended. Decide who inside the company must be told and which outside authorities must be notified, and then notify them. Defense contracts often require reporting certain cyber incidents within a set time, so check your contract.",
+      "whyItMatters": "A written record helps you learn from incidents and shows what you did. Some reports are required by your contracts, and reporting late can cause problems with your customer.",
+      "examples": [
+        "An incident log records each incident, the actions taken, and who was notified.",
+        "If your contract includes clause 252.204-7012 of the DFARS (the Defense Federal Acquisition Regulation Supplement), cyber incidents affecting covered defense information must be reported to the Department of Defense within 72 hours.",
+        "The plan names who inside the company must be told, such as the owner."
+      ],
+      "evidence": [
+        "Incident log or tickets",
+        "List of internal and external parties to notify, with contact details",
+        "Copies of past incident reports"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.6.2[a]",
+        "3.6.2[b]",
+        "3.6.2[c]",
+        "3.6.2[d]",
+        "3.6.2[e]",
+        "3.6.2[f]"
+      ],
+      "relatedIds": [
+        "3.6.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.6.3",
+      "family": "Incident Response",
+      "text": "Test the organizational incident response capability.",
+      "plainEnglish": "Practice your incident response plan to make sure it works. A simple way is a tabletop exercise: walk through a made-up incident, like ransomware, and talk through who does what. Fix any gaps you find.",
+      "whyItMatters": "Plans that are never tested often fail when they're needed, because contacts are out of date or steps don't work.",
+      "examples": [
+        "Once a year, the team walks through a pretend ransomware attack using the plan.",
+        "A test restore from backup confirms that recovery works."
+      ],
+      "evidence": [
+        "Records of incident response tests or exercises, with dates and participants",
+        "Notes on lessons learned and updates made to the plan"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.6.3"
+      ],
+      "relatedIds": [
+        "3.6.1"
       ],
       "reviewed": false
     },
