@@ -208,7 +208,7 @@
       "id": "3.1.8",
       "family": "Access Control",
       "text": "Limit unsuccessful logon attempts.",
-      "plainEnglish": "After several wrong passwords in a row, lock the account for a while or until someone unlocks it. Choose the number of attempts and the lockout time, write them down, and set your systems to enforce them. The requirement doesn't set a specific number. Choose one that fits your risk and write it down.",
+      "plainEnglish": "After several wrong passwords in a row, lock the account for a while or until someone unlocks it. The requirement doesn't set a specific number. Choose one that fits your risk and write it down. Then set your systems to enforce the number of attempts and the lockout time you chose.",
       "whyItMatters": "Attackers often try password after password until one works. Lockouts stop that kind of guessing.",
       "examples": [
         "For example, accounts lock for 15 minutes after 5 failed sign-in attempts.",
