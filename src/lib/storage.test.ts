@@ -4,6 +4,7 @@ import {
   STORAGE_KEY,
   clearData,
   emptyData,
+  isValidDate,
   loadData,
   parseData,
   parseDataText,
@@ -126,6 +127,18 @@ describe("import validation", () => {
     reject({ ...sample(), progress: { "3.1.1": "implemented" } });
   });
 
+  it("rejects keys that aren't requirement IDs, including __proto__", () => {
+    const entry = sample().progress["3.1.1"];
+    reject({ ...sample(), progress: { "not-an-id": entry } });
+    reject(JSON.parse(`{"schemaVersion":1,"org":{"name":""},"progress":{"__proto__":${JSON.stringify(entry)}}}`));
+  });
+
+  it("rejects impossible due dates", () => {
+    const entry = sample().progress["3.1.1"];
+    reject({ ...sample(), progress: { "3.1.1": { ...entry, dueDate: "2026-13-45" } } });
+    reject({ ...sample(), progress: { "3.1.1": { ...entry, dueDate: "2026-02-30" } } });
+  });
+
   it("drops unknown extra fields", () => {
     const withExtra = { ...sample(), extra: true, org: { name: "X", ssn: "nope" } };
     const r = parseData(withExtra);
@@ -141,7 +154,25 @@ describe("import validation", () => {
   });
 });
 
+describe("isValidDate", () => {
+  it("accepts real dates and rejects others", () => {
+    expect(isValidDate("2028-02-29")).toBe(true);
+    expect(isValidDate("2026-02-29")).toBe(false);
+    expect(isValidDate("2026-1-05")).toBe(false);
+    expect(isValidDate("")).toBe(false);
+  });
+});
+
 describe("reset", () => {
+  it("also deletes the copy of unreadable data", () => {
+    const store = memoryStore();
+    store.setItem(STORAGE_KEY, "{not json");
+    loadData(store);
+    expect(store.getItem(CORRUPT_BACKUP_KEY)).not.toBeNull();
+    clearData(store);
+    expect([...store.map.keys()]).toEqual([]);
+  });
+
   it("clears saved data", () => {
     const store = memoryStore();
     saveData(store, sample());

@@ -4,6 +4,8 @@ export const STORAGE_KEY = "n171tracker.v1";
 /** Where unreadable saved data is moved so it is never silently overwritten. */
 export const CORRUPT_BACKUP_KEY = "n171tracker.v1.unreadable-backup";
 export const SCHEMA_VERSION = 1;
+/** Largest backup file we will read. A full backup with long notes is well under 1 MB. */
+export const MAX_IMPORT_BYTES = 5 * 1024 * 1024;
 
 /** The subset of the Web Storage API we use, so tests can pass an in-memory fake. */
 export type KeyValueStore = Pick<Storage, "getItem" | "setItem" | "removeItem">;
@@ -28,7 +30,16 @@ export function getBrowserStorage(): KeyValueStore | null {
 export type ParseResult = { ok: true; data: AppData } | { ok: false; error: string };
 
 const isObject = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
-const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const ID_RE = /^3\.\d{1,2}\.\d{1,2}$/;
+
+/** True for a real calendar date in YYYY-MM-DD form (rejects 2026-13-45, 2026-02-30). */
+export function isValidDate(value: string): boolean {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!m) return false;
+  const [y, mo, d] = [Number(m[1]), Number(m[2]), Number(m[3])];
+  const date = new Date(Date.UTC(y, mo - 1, d));
+  return date.getUTCFullYear() === y && date.getUTCMonth() === mo - 1 && date.getUTCDate() === d;
+}
 
 /**
  * Validates an unknown value (from storage or an imported file) against the
@@ -53,13 +64,15 @@ export function parseData(value: unknown): ParseResult {
 
   const progress: Record<string, ProgressEntry> = {};
   for (const [id, entry] of Object.entries(value.progress)) {
+    // Allowlisting the key shape also rules out "__proto__" and similar keys.
+    if (!ID_RE.test(id)) return { ok: false, error: `The backup contains an unrecognized requirement ID ${JSON.stringify(id)}.` };
     if (!isObject(entry)) return { ok: false, error: `Progress for ${id} is malformed.` };
     const { status, owner, dueDate, notes, updatedAt } = entry;
     if (typeof status !== "string" || !(STATUSES as readonly string[]).includes(status)) {
       return { ok: false, error: `Progress for ${id} has an unknown status ${JSON.stringify(status)}.` };
     }
     if (typeof owner !== "string") return { ok: false, error: `Progress for ${id} has a malformed owner.` };
-    if (!(dueDate === null || (typeof dueDate === "string" && DATE_RE.test(dueDate)))) {
+    if (!(dueDate === null || (typeof dueDate === "string" && isValidDate(dueDate)))) {
       return { ok: false, error: `Progress for ${id} has a malformed due date (expected YYYY-MM-DD or null).` };
     }
     if (typeof notes !== "string") return { ok: false, error: `Progress for ${id} has malformed notes.` };
@@ -118,10 +131,12 @@ export function saveData(store: KeyValueStore | null, data: AppData): boolean {
   }
 }
 
+/** Deletes everything the tracker has stored in this browser, including any unreadable-data copy. */
 export function clearData(store: KeyValueStore | null): boolean {
   if (!store) return false;
   try {
     store.removeItem(STORAGE_KEY);
+    store.removeItem(CORRUPT_BACKUP_KEY);
     return true;
   } catch {
     return false;

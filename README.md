@@ -21,6 +21,9 @@ npm run preview    # serve the production build
 - `#/dev` (dev server only) lists schema problems and unreviewed content entries.
 - Production builds include a Content-Security-Policy with `connect-src 'none'`, so the browser
   blocks any network request the app might try to make after the page loads.
+- `public/_headers` adds security headers (including `frame-ancestors 'none'`) on Cloudflare Pages
+  and Netlify. GitHub Pages ignores it and can't set response headers.
+- Open tabs stay in sync: an edit in one tab is picked up by the others instead of being overwritten.
 
 ## Build progress
 

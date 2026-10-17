@@ -1,7 +1,7 @@
 import { useId, useMemo } from "react";
 import { StatusBadge } from "../components/StatusBadge";
 import { groupByFamily, requirements } from "../lib/content";
-import { entryFor, useProgress } from "../lib/progress";
+import { entryFor, listOwners, useProgress } from "../lib/progress";
 import { href } from "../lib/router";
 import { STATUSES, STATUS_LABELS, type AppData, type Requirement } from "../lib/types";
 
@@ -39,10 +39,7 @@ export function RequirementsPage({ query }: { query: URLSearchParams }) {
   const status = query.get("status") ?? "";
   const owner = query.get("owner") ?? "";
 
-  const owners = useMemo(
-    () => [...new Set(Object.values(data.progress).map((e) => e.owner.trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
-    [data.progress],
-  );
+  const owners = useMemo(() => listOwners(data), [data]);
 
   const filtered = filterRequirements(requirements, data, { q, status, owner });
   const groups = groupByFamily(filtered);

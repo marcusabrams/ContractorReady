@@ -1,6 +1,6 @@
 import { useId, useMemo } from "react";
 import { getRequirement, requirements } from "../lib/content";
-import { useProgress } from "../lib/progress";
+import { listOwners, useProgress } from "../lib/progress";
 import { href } from "../lib/router";
 import { STATUSES, STATUS_LABELS, type Status } from "../lib/types";
 import { NotFoundPage } from "./NotFoundPage";
@@ -11,10 +11,7 @@ export function RequirementDetailPage({ id }: { id: string }) {
   const { data, getEntry, updateEntry } = useProgress();
   const ids = useId();
 
-  const owners = useMemo(
-    () => [...new Set(Object.values(data.progress).map((e) => e.owner.trim()).filter(Boolean))].sort(),
-    [data.progress],
-  );
+  const owners = useMemo(() => listOwners(data), [data]);
 
   if (!req) return <NotFoundPage message={`There is no requirement with ID "${id}".`} />;
 

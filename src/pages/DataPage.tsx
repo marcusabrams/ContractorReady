@@ -1,6 +1,6 @@
 import { useId, useRef, useState } from "react";
 import { useProgress } from "../lib/progress";
-import { parseDataText, serializeForExport } from "../lib/storage";
+import { MAX_IMPORT_BYTES, parseDataText, serializeForExport } from "../lib/storage";
 import type { AppData } from "../lib/types";
 
 function todayStamp(): string {
@@ -42,12 +42,18 @@ export function DataPage() {
     setImportError(null);
     setMessage(null);
     setPendingImport(null);
+    // Clear the input so choosing the same file again still fires onChange.
+    if (fileInput.current) fileInput.current.value = "";
     if (!file) return;
+    if (file.size > MAX_IMPORT_BYTES) {
+      setImportError("Import failed: that file is too large to be a tracker backup. Your current data was not changed.");
+      return;
+    }
     let text: string;
     try {
       text = await file.text();
     } catch {
-      setImportError("That file couldn't be read.");
+      setImportError("Import failed: that file couldn't be read. Your current data was not changed.");
       return;
     }
     const result = parseDataText(text);
@@ -56,7 +62,6 @@ export function DataPage() {
     } else {
       setPendingImport({ name: file.name, data: result.data });
     }
-    if (fileInput.current) fileInput.current.value = "";
   }
 
   function confirmImport() {
@@ -129,7 +134,7 @@ export function DataPage() {
           </p>
         )}
         {pendingImport && (
-          <div className="confirm-box" role="alertdialog" aria-labelledby={`${ids}-import-confirm`}>
+          <div className="confirm-box" role="group" aria-labelledby={`${ids}-import-confirm`}>
             <p id={`${ids}-import-confirm`}>
               Replace your current data ({countTracked(data)} tracked requirement(s)) with <strong>{pendingImport.name}</strong>{" "}
               ({countTracked(pendingImport.data)} tracked requirement(s)
@@ -139,7 +144,7 @@ export function DataPage() {
               <button type="button" className="btn" onClick={confirmImport}>
                 Replace my data
               </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setPendingImport(null)}>
+              <button type="button" className="btn btn-secondary" onClick={() => setPendingImport(null)} autoFocus>
                 Cancel
               </button>
             </div>
@@ -155,7 +160,7 @@ export function DataPage() {
             Reset all data…
           </button>
         ) : (
-          <div className="confirm-box" role="alertdialog" aria-labelledby={`${ids}-reset-confirm`}>
+          <div className="confirm-box" role="group" aria-labelledby={`${ids}-reset-confirm`}>
             <p id={`${ids}-reset-confirm`}>
               <strong>Delete everything?</strong> This can't be undone.
             </p>

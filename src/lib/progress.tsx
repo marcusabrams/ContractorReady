@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { clearData, emptyData, getBrowserStorage, loadData, saveData } from "./storage";
+import { STORAGE_KEY, clearData, emptyData, getBrowserStorage, loadData, parseDataText, saveData } from "./storage";
 import type { AppData, ProgressEntry } from "./types";
 
 export const DEFAULT_ENTRY: Omit<ProgressEntry, "updatedAt"> = {
@@ -11,6 +11,12 @@ export const DEFAULT_ENTRY: Omit<ProgressEntry, "updatedAt"> = {
 
 export function entryFor(data: AppData, id: string): ProgressEntry {
   return data.progress[id] ?? { ...DEFAULT_ENTRY, updatedAt: "" };
+}
+
+/** Distinct, non-empty owner names in alphabetical order. */
+export function listOwners(data: AppData): string[] {
+  const owners = new Set(Object.values(data.progress).map((e) => e.owner.trim()).filter(Boolean));
+  return [...owners].sort((a, b) => a.localeCompare(b));
 }
 
 interface ProgressContextValue {
@@ -47,6 +53,28 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     persisted.current = data;
     setSaveFailed(!saveData(store, data));
   }, [data, store]);
+
+  // Keep tabs in sync. Without this, two open tabs each autosave their own copy
+  // and the last one to save silently erases the other's edits. The browser fires
+  // "storage" only in the *other* tabs, so there is no echo back to the writer.
+  useEffect(() => {
+    if (!store) return;
+    const onStorage = (e: StorageEvent) => {
+      if (e.storageArea !== window.localStorage || (e.key !== STORAGE_KEY && e.key !== null)) return;
+      let next: AppData;
+      if (e.newValue === null) {
+        next = emptyData(); // another tab reset (key removed) or cleared all storage
+      } else {
+        const parsed = parseDataText(e.newValue);
+        if (!parsed.ok) return; // ignore an unreadable write; keep what this tab has
+        next = parsed.data;
+      }
+      persisted.current = next; // already in storage, so don't write it back
+      setData(next);
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [store]);
 
   const updateEntry = useCallback<ProgressContextValue["updateEntry"]>((id, patch) => {
     setData((prev) => ({
