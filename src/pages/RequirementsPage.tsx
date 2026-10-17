@@ -6,6 +6,8 @@ import { href } from "../lib/router";
 import { STATUSES, STATUS_LABELS, type AppData, type Requirement } from "../lib/types";
 
 const UNASSIGNED = "__unassigned__";
+/** Families that have content, in document order. */
+const familyOptions = groupByFamily(requirements).map((g) => g.family);
 
 /** Remembers the last filter query so "Back to requirements" returns to the same view. */
 export let lastRequirementsQuery = new URLSearchParams();
@@ -20,9 +22,10 @@ export function matchesSearch(r: Requirement, notes: string, term: string): bool
 export function filterRequirements(
   list: Requirement[],
   data: AppData,
-  { q, status, owner }: { q: string; status: string; owner: string },
+  { q, status, owner, family = "" }: { q: string; status: string; owner: string; family?: string },
 ): Requirement[] {
   return list.filter((r) => {
+    if (family && r.family !== family) return false;
     const e = entryFor(data, r.id);
     if (status && e.status !== status) return false;
     if (owner === UNASSIGNED ? e.owner.trim() !== "" : owner && e.owner.trim() !== owner) return false;
@@ -38,12 +41,13 @@ export function RequirementsPage({ query }: { query: URLSearchParams }) {
   const q = query.get("q") ?? "";
   const status = query.get("status") ?? "";
   const owner = query.get("owner") ?? "";
+  const family = query.get("family") ?? "";
 
   const owners = useMemo(() => listOwners(data), [data]);
 
-  const filtered = filterRequirements(requirements, data, { q, status, owner });
+  const filtered = filterRequirements(requirements, data, { q, status, owner, family });
   const groups = groupByFamily(filtered);
-  const filtersActive = Boolean(q || status || owner);
+  const filtersActive = Boolean(q || status || owner || family);
 
   function setParam(name: string, value: string) {
     const next = new URLSearchParams(query);
@@ -70,6 +74,17 @@ export function RequirementsPage({ query }: { query: URLSearchParams }) {
             placeholder="e.g. 3.5.3 or password"
             onChange={(e) => setParam("q", e.target.value)}
           />
+        </div>
+        <div className="field">
+          <label htmlFor={`${ids}-family`}>Family</label>
+          <select id={`${ids}-family`} value={family} onChange={(e) => setParam("family", e.target.value)}>
+            <option value="">All families</option>
+            {familyOptions.map((f) => (
+              <option key={f} value={f}>
+                {f}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="field">
           <label htmlFor={`${ids}-status`}>Status</label>

@@ -3,7 +3,7 @@ import { useProgress } from "../lib/progress";
 import { href, type Route } from "../lib/router";
 
 const NAV: { label: string; href: string; active: (r: Route) => boolean }[] = [
-  { label: "Home", href: href.home(), active: (r) => r.name === "home" },
+  { label: "Dashboard", href: href.home(), active: (r) => r.name === "home" },
   { label: "Requirements", href: href.requirements(), active: (r) => r.name === "requirements" || r.name === "requirement" },
   { label: "Backup & data", href: href.data(), active: (r) => r.name === "data" },
 ];

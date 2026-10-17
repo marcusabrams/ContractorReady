@@ -10,7 +10,8 @@ function data(): AppData {
   d.progress["3.5.3"] = { status: "in_progress", owner: "Sam", dueDate: null, notes: "", updatedAt: "x" };
   return d;
 }
-const ids = (q: string, status = "", owner = "") => filterRequirements(requirements, data(), { q, status, owner }).map((r) => r.id);
+const ids = (q: string, status = "", owner = "", family = "") =>
+  filterRequirements(requirements, data(), { q, status, owner, family }).map((r) => r.id);
 
 describe("filterRequirements", () => {
   it("returns everything with no filters", () => {
@@ -33,5 +34,8 @@ describe("filterRequirements", () => {
   it("filters by owner and unassigned", () => {
     expect(ids("", "", "Sam")).toEqual(["3.5.3"]);
     expect(ids("", "", "__unassigned__")).not.toContain("3.1.1");
+  });
+  it("filters by exact family", () => {
+    expect(ids("", "", "", "Personnel Security")).toEqual(["3.9.1", "3.9.2"]);
   });
 });

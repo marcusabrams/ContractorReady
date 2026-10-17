@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Layout } from "./components/Layout";
 import { useRoute, type Route } from "./lib/router";
+import { DashboardPage } from "./pages/DashboardPage";
 import { DataPage } from "./pages/DataPage";
 import { DevPage } from "./pages/DevPage";
-import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { RequirementDetailPage } from "./pages/RequirementDetailPage";
 import { RequirementsPage } from "./pages/RequirementsPage";
@@ -30,7 +30,7 @@ export function App() {
 
   return (
     <Layout route={route}>
-      {route.name === "home" && <HomePage />}
+      {route.name === "home" && <DashboardPage />}
       {route.name === "requirements" && <RequirementsPage query={route.query} />}
       {route.name === "requirement" && <RequirementDetailPage key={route.id} id={route.id} />}
       {route.name === "data" && <DataPage />}

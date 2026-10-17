@@ -9,6 +9,7 @@
   --accent: #1d4ed8;
   --accent-text: #ffffff;
   --focus: #b45309;
+  --meter-track: #d6e0f9;
   --danger: #b42318;
   --warn-bg: #fff7e0;
   --warn-border: #b45309;
@@ -99,7 +100,7 @@ fieldset { border: 1px solid var(--border); border-radius: var(--radius); paddin
 .button-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
 /* Requirements list */
-.filters { display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 0 1rem; align-items: end; }
+.filters { display: grid; grid-template-columns: 2fr 1.4fr 1fr 1fr auto; gap: 0 1rem; align-items: end; }
 .filters .btn { margin-bottom: 0.75rem; }
 .result-count { color: var(--muted); margin: 0.25rem 0 0; }
 .family-group h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
@@ -136,10 +137,35 @@ fieldset { border: 1px solid var(--border); border-radius: var(--radius); paddin
 .confirm-box { margin-top: 1rem; padding: 0.75rem 1rem; border-radius: var(--radius); background: var(--warn-bg); border: 1px solid var(--warn-border); }
 .confirm-box p { margin-top: 0; }
 
-/* Home */
-.stat-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
-.stat-list li { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 1rem; min-width: 9rem; }
-.stat-num { display: block; font-size: 1.6rem; font-weight: 700; }
+/* Dashboard */
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.overall { max-width: 48rem; margin-top: 1.5rem; }
+.hero { display: flex; align-items: baseline; gap: 0.5rem; margin: 0 0 0.5rem; }
+.hero-value { font-size: 3.5rem; font-weight: 700; line-height: 1; }
+.hero-label { font-size: 1.25rem; color: var(--muted); }
+.overall .meter { height: 12px; }
+
+/* Meter: accent fill on a lighter step of the same blue; the value is always printed beside it. */
+.meter { display: block; width: 100%; height: 8px; border-radius: 4px; background: var(--meter-track); overflow: hidden; }
+.meter-fill { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.meter-cell { display: flex; align-items: center; gap: 0.6rem; }
+.meter-cell .meter { flex: 1; min-width: 4rem; }
+.meter-cell .num { min-width: 2.75rem; text-align: right; }
+.num { font-variant-numeric: tabular-nums; }
+
+.stat-list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+.stat { display: block; height: 100%; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 0.9rem; color: var(--text); text-decoration: none; }
+.stat:hover { background: var(--surface); }
+.stat-num { display: block; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.15rem; }
+
+.family-table { width: 100%; max-width: 48rem; border-collapse: collapse; }
+.family-table th, .family-table td { text-align: left; padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.family-table thead th { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+.family-table tbody th { font-weight: 600; }
+.family-table td:nth-child(3) { width: 40%; }
+
+.due { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+.due-overdue { color: var(--danger); font-weight: 600; }
 
 @media (max-width: 52rem) {
   .detail-grid { grid-template-columns: 1fr; gap: 0; }
@@ -152,4 +178,21 @@ fieldset { border: 1px solid var(--border); border-radius: var(--radius); paddin
   .req-row { grid-template-columns: 1fr; }
   .req-meta { flex-direction: row; align-items: center; gap: 0.5rem; }
   .filters { grid-template-columns: 1fr; }
+  .stat-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-value { font-size: 3rem; }
+  .req-meta { flex-wrap: wrap; }
+  /* Restack each family row: name and "x of y" on the left, bar and percent on the right. */
+  .family-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .family-table tr { display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem; column-gap: 0.75rem; padding: 0.55rem 0; border-bottom: 1px solid var(--border); }
+  .family-table th, .family-table td { padding: 0; border: 0; }
+  .family-table tbody th { grid-column: 1; }
+  .family-table td:nth-child(2) { grid-column: 1; font-size: 0.9rem; }
+  .family-table td:nth-child(3) { grid-column: 2; grid-row: 1 / span 2; width: auto; align-self: center; }
+  .meter-cell .meter { min-width: 0; }
+}
+
+/* High-contrast mode strips backgrounds, which would erase the meter bars. */
+@media (forced-colors: active) {
+  .meter { border: 1px solid CanvasText; }
+  .meter-fill { forced-color-adjust: none; background: CanvasText; }
 }
