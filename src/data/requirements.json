@@ -208,10 +208,10 @@
       "id": "3.1.8",
       "family": "Access Control",
       "text": "Limit unsuccessful logon attempts.",
-      "plainEnglish": "After several wrong passwords in a row, lock the account for a while or until someone unlocks it. Choose the number of attempts and the lockout time, write them down, and set your systems to enforce them.",
+      "plainEnglish": "After several wrong passwords in a row, lock the account for a while or until someone unlocks it. Choose the number of attempts and the lockout time, write them down, and set your systems to enforce them. The requirement doesn't set a specific number. Choose one that fits your risk and write it down.",
       "whyItMatters": "Attackers often try password after password until one works. Lockouts stop that kind of guessing.",
       "examples": [
-        "Accounts lock for 15 minutes after 5 failed sign-in attempts.",
+        "For example, accounts lock for 15 minutes after 5 failed sign-in attempts.",
         "Your cloud email system blocks sign-ins after repeated failures."
       ],
       "evidence": [
@@ -258,7 +258,7 @@
       "plainEnglish": "If a computer sits unused for a set time, lock the screen and hide what was on it. The user must sign in again to get back in.",
       "whyItMatters": "An unlocked, unattended screen lets anyone walking by see CUI or use the account.",
       "examples": [
-        "Company computers lock after 15 minutes of inactivity and show a lock screen instead of open documents.",
+        "For example, company computers lock after 15 minutes of inactivity and show a lock screen instead of open documents.",
         "Company phones lock automatically after a short idle time."
       ],
       "evidence": [
@@ -283,8 +283,8 @@
       "plainEnglish": "Sign users out automatically when certain conditions are met, such as a long period of inactivity or a maximum session length. Decide which conditions apply and set your systems to enforce them.",
       "whyItMatters": "Sessions left open indefinitely can be picked up and misused by someone else.",
       "examples": [
-        "Web applications sign users out after 8 hours.",
-        "Remote access sessions disconnect after 30 minutes of inactivity."
+        "For example, web applications sign users out after 8 hours.",
+        "For example, remote access sessions disconnect after 30 minutes of inactivity."
       ],
       "evidence": [
         "Documented conditions that end a session",
@@ -441,7 +441,7 @@
       "plainEnglish": "Protect your Wi-Fi with a strong sign-in method and encryption. Only approved people and devices should be able to connect, and nobody else should be able to read the traffic.",
       "whyItMatters": "Open or weakly protected Wi-Fi can be joined or listened in on from outside the building.",
       "examples": [
-        "The office Wi-Fi uses WPA2-Enterprise or WPA3, the strongest security settings on most Wi-Fi equipment.",
+        "The office Wi-Fi uses WPA3 or WPA2, the current secure Wi-Fi standards. Older settings such as WEP, or an open network with no password, are turned off.",
         "The Wi-Fi password is strong and is changed when someone leaves the company."
       ],
       "evidence": [
@@ -601,8 +601,8 @@
       "plainEnglish": "Make sure everyone who uses your systems, including managers and whoever runs your IT, knows the security risks that come with their work. They also need to know your security policies and procedures. Usually this means security awareness training when people start and regularly after that.",
       "whyItMatters": "Many security problems start with a person clicking a bad link, sharing a password, or not knowing a rule. People can't follow rules they've never been told.",
       "examples": [
-        "New employees complete security awareness training in their first week, covering phishing, passwords, and handling CUI.",
-        "Everyone repeats the training each year and signs that they've read the security policies.",
+        "For example, new employees complete security awareness training in their first week, covering phishing, passwords, and handling CUI.",
+        "For example, everyone repeats the training each year and signs that they've read the security policies.",
         "Short reminders about current scams are shared at staff meetings."
       ],
       "evidence": [
@@ -657,7 +657,7 @@
       "plainEnglish": "An insider threat is a risk from someone who already has access, such as an employee or contractor. They might misuse that access on purpose or by mistake. Teach managers and employees to notice and report the warning signs, and tell them who to report to. Warning signs include asking for access they don't need, copying large amounts of data, or repeatedly ignoring security rules.",
       "whyItMatters": "People inside the company already have access, so the usual defenses may not stop them. Coworkers are often the first to notice something is wrong.",
       "examples": [
-        "Annual security training includes a section on insider threat warning signs and how to report concerns.",
+        "For example, annual security training includes a section on insider threat warning signs and how to report concerns.",
         "Employees know they can report concerns confidentially to a named manager."
       ],
       "evidence": [
@@ -684,7 +684,7 @@
       "examples": [
         "Audit logging is turned on in your email and file sharing system, such as Microsoft 365 or Google Workspace.",
         "Computers and the firewall send their logs to one central place.",
-        "Logs are kept for one year, as set in your logging policy."
+        "For example, logs are kept for one year."
       ],
       "evidence": [
         "Logging policy listing the events to log, what each entry contains, and how long logs are kept",
@@ -741,7 +741,7 @@
       "plainEnglish": "Every so often, review which events your systems log, and change the list when needed. For example, start logging a system you've just added, or stop logging events that turned out to be useless. Decide how often you'll do this review.",
       "whyItMatters": "Your systems and risks change over time. A logging setup that never gets reviewed slowly stops capturing the events that matter.",
       "examples": [
-        "Logged events are reviewed once a year and whenever a new system is added.",
+        "For example, logged events are reviewed once a year and whenever a new system is added.",
         "After a security scare, logging was added for file downloads from the shared drive."
       ],
       "evidence": [
@@ -820,7 +820,7 @@
       "whyItMatters": "Logs are huge. Without a way to search and summarize them, they're nearly useless when you need answers quickly.",
       "examples": [
         "The admin console can search sign-in logs by user and date and export a report.",
-        "A monthly report of failed sign-ins and admin changes is produced from the logging tool."
+        "For example, a monthly report of failed sign-ins and admin changes is produced from the logging tool."
       ],
       "evidence": [
         "Screenshots of log search and reporting features",
@@ -927,7 +927,7 @@
       "examples": [
         "An inventory lists every laptop, phone, server, network device, and software subscription, with its owner.",
         "A document describes the standard laptop setup: operating system version, required software, and security settings.",
-        "The inventory is reviewed every quarter and whenever equipment is bought or retired."
+        "For example, the inventory is reviewed every quarter and whenever equipment is bought or retired."
       ],
       "evidence": [
         "Hardware and software inventory",
@@ -1241,7 +1241,7 @@
       "family": "Identification and Authentication",
       "text": "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts.",
       "plainEnglish": "Require a second step beyond a password, such as a code from a phone app or a security key. This is called multifactor authentication (MFA). Admin accounts need it everywhere. Regular accounts need it whenever they connect over a network. Examples are signing in to cloud email or to a VPN (a secure connection into the company network).",
-      "whyItMatters": "Stolen passwords are one of the most common ways attackers get in. A second factor stops most of those attempts.",
+      "whyItMatters": "Stolen passwords are one of the most common ways attackers get in. A second factor blocks many of those attempts.",
       "examples": [
         "All Microsoft 365 or Google Workspace accounts require an authenticator app at sign-in.",
         "Admin accounts require a hardware security key, even when signing in at the office."
@@ -1295,7 +1295,7 @@
       "plainEnglish": "Don't give a username that belonged to someone else to a new person until a set period has passed. Decide how long that period is.",
       "whyItMatters": "If a new person gets an old username right away, permissions, logs, and email from the two people can get mixed up.",
       "examples": [
-        "Usernames of former employees aren't reassigned for two years.",
+        "For example, usernames of former employees aren't reassigned for two years.",
         "A new employee with the same name as a former one gets a different username, such as jsmith2."
       ],
       "evidence": [
@@ -1317,11 +1317,11 @@
       "id": "3.5.6",
       "family": "Identification and Authentication",
       "text": "Disable identifiers after a defined period of inactivity.",
-      "plainEnglish": "Disable accounts that haven't been used for a set period, such as 90 days. Decide the period, and make sure your systems or a regular review enforce it.",
+      "plainEnglish": "Disable accounts that haven't been used for a set period, such as 90 days. Decide the period, and make sure your systems or a regular review enforce it. The requirement doesn't set a specific number. Choose one that fits your risk and write it down.",
       "whyItMatters": "Forgotten accounts are easy targets, because nobody notices when someone else starts using them.",
       "examples": [
-        "Accounts unused for 90 days are disabled automatically.",
-        "A monthly report of inactive accounts is reviewed, and unused accounts are disabled."
+        "For example, accounts unused for 90 days are disabled automatically.",
+        "For example, a monthly report of inactive accounts is reviewed, and unused accounts are disabled."
       ],
       "evidence": [
         "Policy stating the inactivity period",
@@ -1345,7 +1345,7 @@
       "plainEnglish": "Set minimum rules for new passwords, such as a minimum length and a mix of character types. Also require a new password to differ from the old one by a certain number of characters. Write the rules down and set your systems to enforce them.",
       "whyItMatters": "Short or simple passwords can be guessed quickly. Requiring real change stops people from just adding a number to their old password.",
       "examples": [
-        "New passwords must be at least 14 characters long and include several types of characters.",
+        "For example, new passwords must be at least 14 characters long and include several types of characters.",
         "A new password must change a set number of characters from the previous one, where the system supports this setting."
       ],
       "evidence": [
@@ -1369,10 +1369,10 @@
       "id": "3.5.8",
       "family": "Identification and Authentication",
       "text": "Prohibit password reuse for a specified number of generations.",
-      "plainEnglish": "Don't let people reuse their recent passwords. Decide how many previous passwords are blocked, such as the last 24, and set your systems to enforce it.",
+      "plainEnglish": "Don't let people reuse their recent passwords. Decide how many previous passwords are blocked, such as the last 24, and set your systems to enforce it. The requirement doesn't set a specific number. Choose one that fits your risk and write it down.",
       "whyItMatters": "If people can switch back to an old password, a password that was stolen once can work again.",
       "examples": [
-        "Systems remember each person's last 24 passwords and won't accept any of them again."
+        "For example, systems remember each person's last 24 passwords and won't accept any of them again."
       ],
       "evidence": [
         "Password policy stating how many previous passwords are blocked",
@@ -1527,7 +1527,7 @@
       "plainEnglish": "Practice your incident response plan to make sure it works. A simple way is a tabletop exercise: walk through a made-up incident, like ransomware, and talk through who does what. Fix any gaps you find.",
       "whyItMatters": "Plans that are never tested often fail when they're needed, because contacts are out of date or steps don't work.",
       "examples": [
-        "Once a year, the team walks through a pretend ransomware attack using the plan.",
+        "For example, once a year, the team walks through a pretend ransomware attack using the plan.",
         "A test restore from backup confirms that recovery works."
       ],
       "evidence": [
@@ -1550,7 +1550,7 @@
       "plainEnglish": "Keep your systems maintained: install updates, repair or replace failing equipment, and do routine upkeep on schedule. Keep records of the maintenance done.",
       "whyItMatters": "Neglected systems break down and develop security weaknesses. Records show what was done and when.",
       "examples": [
-        "Your IT provider performs monthly maintenance and logs the work.",
+        "For example, your IT provider performs monthly maintenance and logs the work.",
         "Failing hard drives and aging equipment are repaired or replaced on schedule."
       ],
       "evidence": [
@@ -1929,7 +1929,7 @@
       ],
       "evidence": [
         "Personnel screening policy",
-        "Records showing screening was completed before access was granted (without storing sensitive personal details in this tool)"
+        "Records showing screening was completed before access was granted"
       ],
       "sprsPoints": null,
       "objectives": [
@@ -2060,7 +2060,7 @@
       "whyItMatters": "Physical access records help you find out who was present if something goes missing or an incident happens.",
       "examples": [
         "The badge system records every door entry.",
-        "Visitors and after-hours entries are recorded in a sign-in book that is kept for a year."
+        "For example, visitors and after-hours entries are recorded in a sign-in book that is kept for a year."
       ],
       "evidence": [
         "Badge system logs",
@@ -2137,7 +2137,7 @@
       "plainEnglish": "Regularly assess the security risks to your business from the systems that handle CUI. Think about what could go wrong, how likely it is, and how bad it would be. Decide how often you'll do this, such as once a year.",
       "whyItMatters": "You can't protect against everything at once. A risk assessment shows where to focus your time and money.",
       "examples": [
-        "Once a year, the owner and IT provider list threats such as ransomware, lost laptops, and phishing, and rate how likely and how harmful each one is.",
+        "For example, once a year, the owner and IT provider list threats such as ransomware, lost laptops, and phishing, and rate how likely and how harmful each one is.",
         "The risk assessment is updated after major changes, such as moving to a new cloud service."
       ],
       "evidence": [
@@ -2163,7 +2163,7 @@
       "plainEnglish": "Scan your systems and applications for known security weaknesses, called vulnerabilities, on a regular schedule. Also scan when new weaknesses are announced that could affect you. Decide how often you'll scan.",
       "whyItMatters": "Attackers use automated tools to find known weaknesses. Scanning lets you find and fix them first.",
       "examples": [
-        "A vulnerability scanning tool checks all computers and servers every month.",
+        "For example, a vulnerability scanning tool checks all computers and servers every month.",
         "When a major new vulnerability is announced, an extra scan checks whether you're affected.",
         "Your IT provider runs the scans and sends you the reports."
       ],
@@ -2189,10 +2189,10 @@
       "id": "3.11.3",
       "family": "Risk Assessment",
       "text": "Remediate vulnerabilities in accordance with risk assessments.",
-      "plainEnglish": "Fix the weaknesses you find, starting with the most serious, based on your risk assessment. Track each one until it's fixed or a decision is made about it.",
+      "plainEnglish": "Fix the weaknesses you find, starting with the most serious, based on your risk assessment. Track each one until it's fixed or a decision is made about it. The requirement doesn't set a specific number. Choose one that fits your risk and write it down.",
       "whyItMatters": "Finding weaknesses doesn't help unless you fix them. Prioritizing by risk puts the dangerous ones first.",
       "examples": [
-        "Critical vulnerabilities are fixed within 15 days and others within 30 days, as your policy sets.",
+        "For example, critical vulnerabilities are fixed within 15 days and others within 30 days.",
         "Vulnerabilities that can't be fixed yet are tracked in your plan of action with a target date."
       ],
       "evidence": [
@@ -2219,7 +2219,7 @@
       "plainEnglish": "Regularly check whether your security measures actually work, not just whether they exist. Decide how often you'll do this, such as once a year.",
       "whyItMatters": "Security measures can quietly stop working, be set up wrong, or be bypassed. Checking catches problems before an attacker does.",
       "examples": [
-        "Once a year, the owner and IT provider go through each requirement and check the evidence that it works.",
+        "For example, once a year, the owner and IT provider go through each requirement and check the evidence that it works.",
         "Spot checks confirm multifactor authentication (MFA) is on for every account and that backups can be restored."
       ],
       "evidence": [
@@ -2246,7 +2246,7 @@
       "whyItMatters": "A written plan turns a list of problems into scheduled work and shows that you're making progress.",
       "examples": [
         "A plan of action lists each gap from the last assessment, the fix, the person responsible, and the due date.",
-        "The plan is reviewed monthly and updated as items are completed."
+        "For example, the plan is reviewed monthly and updated as items are completed."
       ],
       "evidence": [
         "Plan of action document",
@@ -2271,7 +2271,7 @@
       "plainEnglish": "Keep watching your security measures all the time, not just during a yearly check, so you notice quickly if something stops working.",
       "whyItMatters": "Problems can appear at any time. Ongoing monitoring catches them in days instead of months.",
       "examples": [
-        "Your IT provider reviews security dashboards every week, covering multifactor authentication (MFA) status, device settings, and backup results.",
+        "For example, your IT provider reviews security dashboards every week, covering multifactor authentication (MFA) status, device settings, and backup results.",
         "An alert goes out when antivirus is turned off on a computer."
       ],
       "evidence": [
@@ -2297,7 +2297,7 @@
       "whyItMatters": "The SSP is the central document that explains your security to customers and assessors. It also helps you keep track of your own setup.",
       "examples": [
         "The SSP includes a network diagram, a list of the systems that handle CUI, and a description of how each requirement is met.",
-        "The SSP is reviewed every year and whenever systems change."
+        "For example, the SSP is reviewed every year and whenever systems change."
       ],
       "evidence": [
         "System security plan",
@@ -2543,7 +2543,7 @@
       "plainEnglish": "End network connections when a session is over, or after a set period of inactivity. Decide what that period is and set your systems to enforce it.",
       "whyItMatters": "Connections left open can be taken over or misused.",
       "examples": [
-        "Remote access (VPN) connections disconnect after 30 minutes of inactivity.",
+        "For example, remote access (VPN) connections disconnect after 30 minutes of inactivity.",
         "Remote desktop sessions end when the user disconnects."
       ],
       "evidence": [
@@ -2743,12 +2743,12 @@
       "id": "3.14.1",
       "family": "System and Information Integrity",
       "text": "Identify, report, and correct system flaws in a timely manner.",
-      "plainEnglish": "Find, report, and fix security flaws in your systems within set time frames. Mostly this means installing software updates, also called patches. Decide how quickly you'll find, report, and fix flaws.",
+      "plainEnglish": "Find, report, and fix security flaws in your systems within set time frames. Mostly this means installing software updates, also called patches. Decide how quickly you'll find, report, and fix flaws. The requirement doesn't set a specific number. Choose one that fits your risk and write it down.",
       "whyItMatters": "Unpatched software is one of the most common ways attackers get in.",
       "examples": [
-        "Operating system and application updates install automatically within 14 days of release.",
+        "For example, operating system and application updates install automatically within 14 days of release.",
         "Critical security updates are installed within a few days.",
-        "Your IT provider reports monthly on which devices are missing updates."
+        "For example, your IT provider reports monthly on which devices are missing updates."
       ],
       "evidence": [
         "Patch management policy with time frames",
@@ -2851,7 +2851,7 @@
       "plainEnglish": "Run regular full malware scans of your systems. Also scan files from outside sources in real time, as they're downloaded, opened, or run. Decide how often full scans happen.",
       "whyItMatters": "Real-time scanning catches threats as they arrive, and regular full scans find anything that slipped through.",
       "examples": [
-        "Antivirus runs a full scan every week.",
+        "For example, antivirus runs a full scan every week.",
         "Real-time protection scans every file as it's downloaded or opened."
       ],
       "evidence": [
