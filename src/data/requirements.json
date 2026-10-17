@@ -199,7 +199,8 @@
       ],
       "relatedIds": [
         "3.1.5",
-        "3.1.6"
+        "3.1.6",
+        "3.3.1"
       ],
       "reviewed": false
     },
@@ -223,7 +224,8 @@
         "3.1.8[b]"
       ],
       "relatedIds": [
-        "3.5.2"
+        "3.5.2",
+        "3.5.3"
       ],
       "reviewed": false
     },
@@ -325,7 +327,8 @@
       "relatedIds": [
         "3.1.13",
         "3.1.14",
-        "3.1.15"
+        "3.1.15",
+        "3.3.1"
       ],
       "reviewed": false
     },
@@ -668,6 +671,248 @@
       "reviewed": false
     },
     {
+      "id": "3.3.1",
+      "family": "Audit and Accountability",
+      "text": "Create and retain system audit logs and records to the extent needed to enable the monitoring, analysis, investigation, and reporting of unlawful or unauthorized system activity.",
+      "plainEnglish": "Turn on logging in your systems so they record important events, such as sign-ins, failed sign-ins, admin changes, and access to CUI. Decide which events to log and what each log entry must include. Keep the logs for a set period of time.",
+      "whyItMatters": "Without logs, you can't tell what happened during a security incident, who did it, or when. Logs are often the only evidence.",
+      "examples": [
+        "Audit logging is turned on in your email and file sharing system, such as Microsoft 365 or Google Workspace.",
+        "Computers and the firewall send their logs to one central place.",
+        "Logs are kept for one year, as set in your logging policy."
+      ],
+      "evidence": [
+        "Logging policy listing the events to log, what each entry contains, and how long logs are kept",
+        "Screenshots of audit logging settings",
+        "Sample log entries"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.1[a]",
+        "3.3.1[b]",
+        "3.3.1[c]",
+        "3.3.1[d]",
+        "3.3.1[e]",
+        "3.3.1[f]"
+      ],
+      "relatedIds": [
+        "3.1.7",
+        "3.1.12",
+        "3.3.2",
+        "3.3.8"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.2",
+      "family": "Audit and Accountability",
+      "text": "Ensure that the actions of individual system users can be uniquely traced to those users, so they can be held accountable for their actions.",
+      "plainEnglish": "Make sure every action in your logs can be tied to one specific person. That means everyone uses their own account, and the logs record which account did what.",
+      "whyItMatters": "If several people share an account, a log entry can't show who did something, so no one can be held accountable.",
+      "examples": [
+        "No shared logins: each person signs in with their own named account.",
+        "Log entries include the username, the time, and what was done."
+      ],
+      "evidence": [
+        "Policy banning shared accounts",
+        "Sample log entries showing individual usernames",
+        "User account list showing each account belongs to one person"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.2[a]",
+        "3.3.2[b]"
+      ],
+      "relatedIds": [
+        "3.3.1",
+        "3.5.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.3",
+      "family": "Audit and Accountability",
+      "text": "Review and update logged events.",
+      "plainEnglish": "Every so often, review which events your systems log, and change the list when needed. For example, start logging a system you've just added, or stop logging events that turned out to be useless. Decide how often you'll do this review.",
+      "whyItMatters": "Your systems and risks change over time. A logging setup that never gets reviewed slowly stops capturing the events that matter.",
+      "examples": [
+        "Logged events are reviewed once a year and whenever a new system is added.",
+        "After a security scare, logging was added for file downloads from the shared drive."
+      ],
+      "evidence": [
+        "Documented schedule for reviewing logged events",
+        "Records of past reviews and the changes made"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.3[a]",
+        "3.3.3[b]",
+        "3.3.3[c]"
+      ],
+      "relatedIds": [
+        "3.3.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.4",
+      "family": "Audit and Accountability",
+      "text": "Alert in the event of an audit logging process failure.",
+      "plainEnglish": "Set up an alert so the right person finds out if logging stops working. For example, log storage might fill up or the logging service might stop. Decide who gets the alert and which failures trigger it.",
+      "whyItMatters": "If logging stops without anyone noticing, you lose the record of what's happening, and you may not find out until you need it.",
+      "examples": [
+        "The log system emails the IT provider if it stops receiving logs.",
+        "An alert is sent when log storage is almost full."
+      ],
+      "evidence": [
+        "Alert settings for logging failures",
+        "List of who receives the alerts",
+        "A sample alert"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.4[a]",
+        "3.3.4[b]",
+        "3.3.4[c]"
+      ],
+      "relatedIds": [
+        "3.3.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.5",
+      "family": "Audit and Accountability",
+      "text": "Correlate audit record review, analysis, and reporting processes for investigation and response to indications of unlawful, unauthorized, suspicious, or unusual activity.",
+      "plainEnglish": "When you investigate suspicious activity, look at the logs from different systems together, not one at a time. For example, compare email sign-in logs with remote access (VPN) logs and computer logs to piece together what happened. Write down how you review, analyze, and report on logs.",
+      "whyItMatters": "An attack often leaves small traces in several systems. Looking at them together shows the full picture.",
+      "examples": [
+        "Logs from email, computers, and the firewall are collected in one tool so they can be searched together.",
+        "A written procedure explains how suspicious activity in the logs is investigated and reported."
+      ],
+      "evidence": [
+        "Log review and investigation procedure",
+        "Settings showing logs from several systems collected in one place",
+        "Records of past log reviews"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.5[a]",
+        "3.3.5[b]"
+      ],
+      "relatedIds": [
+        "3.3.1",
+        "3.3.6"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.6",
+      "family": "Audit and Accountability",
+      "text": "Provide audit record reduction and report generation to support on-demand analysis and reporting.",
+      "plainEnglish": "Have tools that can filter large amounts of log data down to what matters and produce reports when you need them. Most cloud services and logging tools have built-in search and reporting that can do this.",
+      "whyItMatters": "Logs are huge. Without a way to search and summarize them, they're nearly useless when you need answers quickly.",
+      "examples": [
+        "The admin console can search sign-in logs by user and date and export a report.",
+        "A monthly report of failed sign-ins and admin changes is produced from the logging tool."
+      ],
+      "evidence": [
+        "Screenshots of log search and reporting features",
+        "Sample log reports"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.6[a]",
+        "3.3.6[b]"
+      ],
+      "relatedIds": [
+        "3.3.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.7",
+      "family": "Audit and Accountability",
+      "text": "Provide a system capability that compares and synchronizes internal system clocks with an authoritative source to generate time stamps for audit records.",
+      "plainEnglish": "Make sure all your systems set their clocks automatically from the same trusted time source. That way the times in your logs are accurate and match across systems.",
+      "whyItMatters": "If clocks disagree, you can't line up events from different systems during an investigation.",
+      "examples": [
+        "Company computers get their time from an official internet time service or the company server.",
+        "Cloud services use their provider's synchronized time."
+      ],
+      "evidence": [
+        "Time settings showing the time source each system uses",
+        "Documentation naming your trusted time source"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.7[a]",
+        "3.3.7[b]",
+        "3.3.7[c]"
+      ],
+      "relatedIds": [
+        "3.3.1",
+        "3.3.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.8",
+      "family": "Audit and Accountability",
+      "text": "Protect audit information and audit logging tools from unauthorized access, modification, and deletion.",
+      "plainEnglish": "Protect logs and logging tools so no one can read, change, or delete them without permission. That includes people who might want to cover their tracks.",
+      "whyItMatters": "An attacker or insider who can edit or erase logs can hide what they did.",
+      "examples": [
+        "Only a few named admins can view or manage logs.",
+        "Logs are copied to a separate system that regular users and most admins can't change.",
+        "Deleting logs is turned off or requires special approval."
+      ],
+      "evidence": [
+        "Permission settings for logs and logging tools",
+        "List of people with access to logs",
+        "Log storage settings showing logs are protected from changes and deletion"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.8[a]",
+        "3.3.8[b]",
+        "3.3.8[c]",
+        "3.3.8[d]",
+        "3.3.8[e]",
+        "3.3.8[f]"
+      ],
+      "relatedIds": [
+        "3.3.1",
+        "3.3.9"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.3.9",
+      "family": "Audit and Accountability",
+      "text": "Limit management of audit logging functionality to a subset of privileged users.",
+      "plainEnglish": "Only a small, named group of admins should be able to change logging settings, such as turning logging off or changing what's logged. Not every admin needs this power.",
+      "whyItMatters": "The fewer people who control logging, the less chance it gets turned off by mistake or to hide something.",
+      "examples": [
+        "Only the IT manager can change audit logging settings in the email system.",
+        "Other admins can view logs but can't change logging settings."
+      ],
+      "evidence": [
+        "List of people allowed to manage logging",
+        "Role settings showing only those people have that permission"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.3.9[a]",
+        "3.3.9[b]"
+      ],
+      "relatedIds": [
+        "3.1.5",
+        "3.3.8"
+      ],
+      "reviewed": false
+    },
+    {
       "id": "3.5.1",
       "family": "Identification and Authentication",
       "text": "Identify system users, processes acting on behalf of users, and devices.",
@@ -794,8 +1039,8 @@
         "3.9.2[c]"
       ],
       "relatedIds": [
-        "3.9.1",
-        "3.1.1"
+        "3.1.1",
+        "3.9.1"
       ],
       "reviewed": false
     }

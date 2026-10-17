@@ -23,6 +23,7 @@ describe("requirements.json", () => {
   it.each([
     ["Access Control", "3.1", 22],
     ["Awareness and Training", "3.2", 3],
+    ["Audit and Accountability", "3.3", 9],
     ["Personnel Security", "3.9", 2],
   ] as const)("%s (%s.x) is complete with %i requirements", (family, prefix, count) => {
     const ids = requirements.filter((r) => r.family === family).map((r) => r.id);
