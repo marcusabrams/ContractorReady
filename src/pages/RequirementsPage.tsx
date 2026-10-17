@@ -12,11 +12,18 @@ const familyOptions = groupByFamily(requirements).map((g) => g.family);
 /** Remembers the last filter query so "Back to requirements" returns to the same view. */
 export let lastRequirementsQuery = new URLSearchParams();
 
+/** A search like "3", "3.2", "3.1." or "3.1.1" is treated as an ID, not a keyword. */
+const ID_QUERY = /^\d+(\.\d+)*\.?$/;
+
 export function matchesSearch(r: Requirement, notes: string, term: string): boolean {
   const t = term.trim().toLowerCase();
   if (!t) return true;
-  if (r.id.startsWith(t)) return true;
-  return [r.id, r.family, r.text, r.plainEnglish, notes].some((s) => s.toLowerCase().includes(t));
+  if (ID_QUERY.test(t)) {
+    // Match whole segments: "3.2" finds 3.2.x but not 3.3.2; "3.1.1" finds 3.1.1 but not 3.1.10.
+    const prefix = t.replace(/\.$/, "");
+    return r.id === prefix || r.id.startsWith(prefix + ".");
+  }
+  return [r.family, r.text, r.plainEnglish, notes].some((s) => s.toLowerCase().includes(t));
 }
 
 export function filterRequirements(

@@ -20,6 +20,12 @@ describe("filterRequirements", () => {
   it("searches by ID prefix", () => {
     expect(ids("3.5")).toEqual(["3.5.1", "3.5.2", "3.5.3"]);
   });
+  it("treats an ID search as whole number segments, not a substring", () => {
+    // "3.2" must not match 3.3.2, and "3.1.1" must not match 3.1.10 through 3.1.19.
+    expect(ids("3.2")).toEqual(["3.2.1", "3.2.2", "3.2.3"]);
+    expect(ids("3.1.1")).toEqual(["3.1.1"]);
+    expect(ids("3.1.")).toHaveLength(22);
+  });
   it("searches by keyword, case-insensitively", () => {
     expect(ids("MULTIFACTOR")).toEqual(["3.5.3"]);
   });
