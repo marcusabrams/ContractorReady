@@ -352,7 +352,9 @@
         "3.1.13[b]"
       ],
       "relatedIds": [
-        "3.1.12"
+        "3.1.12",
+        "3.13.8",
+        "3.13.11"
       ],
       "reviewed": false
     },
@@ -502,7 +504,8 @@
       ],
       "relatedIds": [
         "3.1.18",
-        "3.8.6"
+        "3.8.6",
+        "3.13.11"
       ],
       "reviewed": false
     },
@@ -1428,7 +1431,8 @@
         "3.5.10[b]"
       ],
       "relatedIds": [
-        "3.5.2"
+        "3.5.2",
+        "3.13.8"
       ],
       "reviewed": false
     },
@@ -1834,7 +1838,8 @@
       ],
       "relatedIds": [
         "3.1.19",
-        "3.8.5"
+        "3.8.5",
+        "3.13.11"
       ],
       "reviewed": false
     },
@@ -1906,7 +1911,8 @@
         "3.8.9"
       ],
       "relatedIds": [
-        "3.8.1"
+        "3.8.1",
+        "3.13.16"
       ],
       "reviewed": false
     },
@@ -2309,6 +2315,422 @@
       "relatedIds": [
         "3.12.1",
         "3.12.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.1",
+      "family": "System and Communications Protection",
+      "text": "Monitor, control, and protect communications (i.e., information transmitted or received by organizational systems) at the external boundaries and key internal boundaries of organizational systems.",
+      "plainEnglish": "Watch, control, and protect the data going in and out of your network at its edge, for example with a firewall. Do the same at key boundaries inside your network, such as between the systems that handle CUI and everything else.",
+      "whyItMatters": "The network edge is where most attacks arrive. Controlling traffic there blocks many of them.",
+      "examples": [
+        "A firewall controls traffic between the office network and the internet.",
+        "Systems that handle CUI are on a separate part of the network with its own firewall rules.",
+        "Firewall logs are kept and reviewed."
+      ],
+      "evidence": [
+        "Network diagram showing the external and internal boundaries",
+        "Firewall rules",
+        "Firewall logs"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.1[a]",
+        "3.13.1[b]",
+        "3.13.1[c]",
+        "3.13.1[d]",
+        "3.13.1[e]",
+        "3.13.1[f]",
+        "3.13.1[g]",
+        "3.13.1[h]"
+      ],
+      "relatedIds": [
+        "3.13.5",
+        "3.13.6"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.2",
+      "family": "System and Communications Protection",
+      "text": "Employ architectural designs, software development techniques, and systems engineering principles that promote effective information security within organizational systems.",
+      "plainEnglish": "Plan and set up your systems with security in mind from the start. For example, use several layers of protection, keep systems that handle CUI separate, and follow secure coding practices if you develop software.",
+      "whyItMatters": "Security that's designed in from the start is stronger and cheaper than security added after something goes wrong.",
+      "examples": [
+        "New systems are planned with security built in, such as separating CUI systems and requiring multifactor authentication (MFA) from day one.",
+        "Any software you write follows secure coding guidelines and is reviewed before use."
+      ],
+      "evidence": [
+        "Documented security design principles",
+        "Network or system design documents",
+        "Secure development procedures, if you develop software"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.2[a]",
+        "3.13.2[b]",
+        "3.13.2[c]",
+        "3.13.2[d]",
+        "3.13.2[e]",
+        "3.13.2[f]"
+      ],
+      "relatedIds": [
+        "3.13.1",
+        "3.13.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.3",
+      "family": "System and Communications Protection",
+      "text": "Separate user functionality from system management functionality.",
+      "plainEnglish": "Keep everyday user functions separate from system administration. For example, admin tools and settings pages shouldn't be available to regular users or mixed into the screens they use every day.",
+      "whyItMatters": "If admin functions are mixed in with everyday use, regular users, or attackers using their accounts, can reach powerful controls.",
+      "examples": [
+        "Admin consoles can only be reached from admin accounts or a separate management network.",
+        "Regular users can't see or open system management tools."
+      ],
+      "evidence": [
+        "Settings showing admin functions are separated",
+        "Network or access settings for management tools"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.3[a]",
+        "3.13.3[b]",
+        "3.13.3[c]"
+      ],
+      "relatedIds": [
+        "3.1.6",
+        "3.13.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.4",
+      "family": "System and Communications Protection",
+      "text": "Prevent unauthorized and unintended information transfer via shared system resources.",
+      "plainEnglish": "Make sure information can't leak between users or programs through shared resources, such as memory, shared folders, or temporary files. Modern operating systems handle much of this on their own, but things like shared folders still need care.",
+      "whyItMatters": "Leftover data in shared resources can expose CUI to people who shouldn't see it.",
+      "examples": [
+        "Shared network folders have permissions so people only see what they're allowed to.",
+        "Shared computers clear temporary files and sign users out between sessions."
+      ],
+      "evidence": [
+        "Settings for shared folders and shared computers",
+        "Operating system documentation describing how memory is protected"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.4"
+      ],
+      "relatedIds": [
+        "3.1.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.5",
+      "family": "System and Communications Protection",
+      "text": "Implement subnetworks for publicly accessible system components that are physically or logically separated from internal networks.",
+      "plainEnglish": "Some systems may be reachable by the public, such as a web server. Put them on a separate network that's walled off from your internal network. This separate network is often called a DMZ (short for demilitarized zone).",
+      "whyItMatters": "Public-facing systems are attacked constantly. Keeping them separate stops an attacker who breaks into one from reaching your internal systems.",
+      "examples": [
+        "The company website is hosted by an outside provider, not on the office network.",
+        "A public-facing server sits on its own part of the network, and the firewall blocks it from reaching internal systems."
+      ],
+      "evidence": [
+        "List of systems the public can reach",
+        "Network diagram showing the separation",
+        "Firewall rules"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.5[a]",
+        "3.13.5[b]"
+      ],
+      "relatedIds": [
+        "3.1.22",
+        "3.13.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.6",
+      "family": "System and Communications Protection",
+      "text": "Deny network communications traffic by default and allow network communications traffic by exception (i.e., deny all, permit by exception).",
+      "plainEnglish": "Set your firewalls to block all network traffic unless it's specifically allowed. Then allow only the traffic you need.",
+      "whyItMatters": "Blocking by default means anything you didn't plan for is stopped instead of let through.",
+      "examples": [
+        "The firewall's rules end with a rule that blocks everything, with specific rules above it for the traffic you need.",
+        "Each allowed rule has a documented business reason."
+      ],
+      "evidence": [
+        "Firewall rules",
+        "Documentation of the reason for each allowed rule"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.6[a]",
+        "3.13.6[b]"
+      ],
+      "relatedIds": [
+        "3.4.7",
+        "3.13.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.7",
+      "family": "System and Communications Protection",
+      "text": "Prevent remote devices from simultaneously establishing non-remote connections with organizational systems and communicating via some other connection to resources in external networks (i.e., split tunneling).",
+      "plainEnglish": "Someone may connect to your network remotely, such as over a VPN (a secure connection into the company network). While connected, their device shouldn't also reach the internet through a separate path. That setup is called split tunneling, and it should be turned off.",
+      "whyItMatters": "With split tunneling, a device connected to both the internet and your network can become a bridge for attackers into your network.",
+      "examples": [
+        "The VPN sends all of the device's traffic through the company connection while it's on.",
+        "Users can't change the VPN settings to allow split tunneling."
+      ],
+      "evidence": [
+        "VPN settings showing split tunneling is turned off"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.7"
+      ],
+      "relatedIds": [
+        "3.1.12",
+        "3.1.14"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.8",
+      "family": "System and Communications Protection",
+      "text": "Implement cryptographic mechanisms to prevent unauthorized disclosure of CUI during transmission unless otherwise protected by alternative physical safeguards.",
+      "plainEnglish": "Encrypt CUI whenever it's sent over a network, such as by email, file transfer, or a website. The exception is when it's protected physically in some other way. When encryption protects CUI, it generally needs to be FIPS-validated, meaning tested and approved under a U.S. government standard. Requirement 3.13.11 covers this.",
+      "whyItMatters": "Data sent without encryption can be intercepted and read.",
+      "examples": [
+        "Email containing CUI is sent encrypted.",
+        "File sharing and websites use encrypted connections (HTTPS).",
+        "Remote access uses an encrypted VPN (a secure connection into the company network)."
+      ],
+      "evidence": [
+        "Settings showing encryption for email, file transfer, and remote access",
+        "Documentation showing the encryption is FIPS-validated"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.8[a]",
+        "3.13.8[b]",
+        "3.13.8[c]"
+      ],
+      "relatedIds": [
+        "3.1.13",
+        "3.5.10",
+        "3.13.11"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.9",
+      "family": "System and Communications Protection",
+      "text": "Terminate network connections associated with communications sessions at the end of the sessions or after a defined period of inactivity.",
+      "plainEnglish": "End network connections when a session is over, or after a set period of inactivity. Decide what that period is and set your systems to enforce it.",
+      "whyItMatters": "Connections left open can be taken over or misused.",
+      "examples": [
+        "Remote access (VPN) connections disconnect after 30 minutes of inactivity.",
+        "Remote desktop sessions end when the user disconnects."
+      ],
+      "evidence": [
+        "Documented inactivity period",
+        "Settings showing connections are ended"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.9[a]",
+        "3.13.9[b]",
+        "3.13.9[c]"
+      ],
+      "relatedIds": [
+        "3.1.11"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.10",
+      "family": "System and Communications Protection",
+      "text": "Establish and manage cryptographic keys for cryptography employed in organizational systems.",
+      "plainEnglish": "When you use encryption, manage the keys properly. Encryption keys are the secret values that lock and unlock encrypted data. Create them securely, store them safely, control who can use them, and replace them when needed.",
+      "whyItMatters": "Encryption is only as strong as its keys. A stolen key can expose data, and a lost key can lock you out of it.",
+      "examples": [
+        "Laptop encryption recovery keys are stored in your device management system, not on sticky notes.",
+        "Website certificates are renewed before they expire.",
+        "Only named admins can access encryption keys."
+      ],
+      "evidence": [
+        "Key management procedure",
+        "Records of where keys are stored and who can access them"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.10[a]",
+        "3.13.10[b]"
+      ],
+      "relatedIds": [
+        "3.13.8",
+        "3.13.11"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.11",
+      "family": "System and Communications Protection",
+      "text": "Employ FIPS-validated cryptography when used to protect the confidentiality of CUI.",
+      "plainEnglish": "When you use encryption to protect CUI, the encryption must be FIPS-validated. That means the encryption software or hardware has been tested and approved under a U.S. government standard called FIPS 140. Many common products have FIPS-validated versions or settings, but you may need to turn them on.",
+      "whyItMatters": "Not all encryption is equally strong. Validated encryption has been tested to work the way it claims.",
+      "examples": [
+        "Laptops use disk encryption that has a FIPS 140 validation certificate.",
+        "The cloud email service is set up to use its FIPS-validated encryption."
+      ],
+      "evidence": [
+        "List of the products used to encrypt CUI, with their FIPS validation certificate numbers",
+        "Settings showing FIPS mode is on where needed"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.11"
+      ],
+      "relatedIds": [
+        "3.1.13",
+        "3.1.19",
+        "3.8.6",
+        "3.13.8",
+        "3.13.16"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.12",
+      "family": "System and Communications Protection",
+      "text": "Prohibit remote activation of collaborative computing devices and provide indication of devices in use to users present at the device.",
+      "plainEnglish": "Devices like webcams, microphones, and conference room systems shouldn't be able to be turned on remotely without the people in the room knowing. They should clearly show when they're on, such as with a light.",
+      "whyItMatters": "A webcam or microphone turned on remotely could let someone watch or listen in on conversations about CUI.",
+      "examples": [
+        "Webcams have an indicator light that comes on when they're in use.",
+        "Conference room systems can't be turned on remotely unless someone in the room accepts.",
+        "Laptop cameras have privacy covers."
+      ],
+      "evidence": [
+        "List of collaborative devices, such as cameras and conference systems",
+        "Settings showing remote activation is blocked and indicators are on"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.12[a]",
+        "3.13.12[b]",
+        "3.13.12[c]"
+      ],
+      "relatedIds": [
+        "3.13.14"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.13",
+      "family": "System and Communications Protection",
+      "text": "Control and monitor the use of mobile code.",
+      "plainEnglish": "Mobile code is software that runs automatically from websites, documents, or emails, such as browser scripts and document macros. Control which mobile code is allowed to run, and keep an eye on its use.",
+      "whyItMatters": "Malicious macros and scripts are a common way to install malware.",
+      "examples": [
+        "Office document macros from the internet are blocked by default.",
+        "Browsers are kept up to date and block outdated plug-ins.",
+        "Security tools report attempts to run blocked scripts."
+      ],
+      "evidence": [
+        "Mobile code policy",
+        "Settings that block macros and outdated plug-ins",
+        "Security tool reports"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.13[a]",
+        "3.13.13[b]"
+      ],
+      "relatedIds": [
+        "3.4.8"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.14",
+      "family": "System and Communications Protection",
+      "text": "Control and monitor the use of Voice over Internet Protocol (VoIP) technologies.",
+      "plainEnglish": "VoIP (Voice over Internet Protocol) means phone calls made over the internet, such as with a cloud phone service. Control how it's set up and used, and monitor it for misuse.",
+      "whyItMatters": "Internet phone systems can be hacked to listen in on calls or run up charges, and they can be a way into your network.",
+      "examples": [
+        "The cloud phone service requires multifactor authentication (MFA) for admin accounts.",
+        "Phone system settings are reviewed, and call logs are checked for unusual activity."
+      ],
+      "evidence": [
+        "VoIP security settings",
+        "Call logs or monitoring reports"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.14[a]",
+        "3.13.14[b]"
+      ],
+      "relatedIds": [
+        "3.13.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.15",
+      "family": "System and Communications Protection",
+      "text": "Protect the authenticity of communications sessions.",
+      "plainEnglish": "Protect network sessions so attackers can't hijack them or pretend to be the system on the other end. Encrypted connections with valid certificates, such as HTTPS and modern VPNs, do this.",
+      "whyItMatters": "Without this protection, an attacker could take over a signed-in session or trick users into connecting to a fake system.",
+      "examples": [
+        "Websites and web apps use HTTPS with valid certificates.",
+        "Users are trained not to click past browser certificate warnings."
+      ],
+      "evidence": [
+        "Settings showing encrypted, verified connections are required",
+        "List of certificates and when they expire"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.15"
+      ],
+      "relatedIds": [
+        "3.13.8"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.13.16",
+      "family": "System and Communications Protection",
+      "text": "Protect the confidentiality of CUI at rest.",
+      "plainEnglish": "Protect CUI while it's stored, whether on computers, servers, cloud services, or backups, so people who shouldn't see it can't read it. Encryption is the usual way, along with access controls. When encryption protects CUI, it generally needs to be FIPS-validated, meaning tested and approved under a U.S. government standard. Requirement 3.13.11 covers this.",
+      "whyItMatters": "Stored data is what attackers usually want. Protecting it limits the damage if a device or account is compromised.",
+      "examples": [
+        "Full-disk encryption is on for all laptops and servers.",
+        "Cloud storage holding CUI is encrypted and limited to authorized users."
+      ],
+      "evidence": [
+        "Encryption settings for devices, servers, and cloud storage",
+        "Access permissions for CUI storage"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.13.16"
+      ],
+      "relatedIds": [
+        "3.1.19",
+        "3.8.9",
+        "3.13.11"
       ],
       "reviewed": false
     }
