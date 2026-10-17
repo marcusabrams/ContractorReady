@@ -28,10 +28,10 @@ npm run preview    # serve the production build
 ## Build progress
 
 - [x] 1. Scaffold Vite + React + TS, routing, layout
-- [x] 2. Content schema, sample requirements (7 of 110), browser and detail views
+- [x] 2. Content schema, sample requirements, browser and detail views
 - [x] 3. Progress state, localStorage persistence, export/import, reset
 - [x] 4. Dashboard
 - [x] 5. Print summary
 - [x] 6. About/disclaimer page
-- [ ] 7. Generate and review real content, family by family
+- [ ] 7. Generate and review real content, family by family (drafted: Access Control 22/22, unreviewed)
 - [ ] 8. Deploy

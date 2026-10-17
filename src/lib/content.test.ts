@@ -16,6 +16,16 @@ describe("requirements.json", () => {
     expect(FAMILIES).toHaveLength(14);
   });
 
+  // Families are added one at a time (build step 7). Each finished family must be
+  // complete: exactly 3.F.1 through 3.F.N, in order, per NIST SP 800-171 Rev 2.
+  it.each([
+    ["Access Control", "3.1", 22],
+    ["Personnel Security", "3.9", 2],
+  ] as const)("%s (%s.x) is complete with %i requirements", (family, prefix, count) => {
+    const ids = requirements.filter((r) => r.family === family).map((r) => r.id);
+    expect(ids).toEqual(Array.from({ length: count }, (_, i) => `${prefix}.${i + 1}`));
+  });
+
   // Enabled once the full content set is generated (build step 7).
   it.todo("contains exactly 110 requirements across 14 families");
 });

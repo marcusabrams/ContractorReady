@@ -19,8 +19,21 @@
         "Screenshots of user lists from your systems (for example, Microsoft 365 or Google Workspace admin)"
       ],
       "sprsPoints": null,
-      "objectives": ["3.1.1[a]", "3.1.1[b]", "3.1.1[c]", "3.1.1[d]", "3.1.1[e]", "3.1.1[f]"],
-      "relatedIds": ["3.1.2", "3.5.1", "3.5.2"],
+      "objectives": [
+        "3.1.1[a]",
+        "3.1.1[b]",
+        "3.1.1[c]",
+        "3.1.1[d]",
+        "3.1.1[e]",
+        "3.1.1[f]"
+      ],
+      "relatedIds": [
+        "3.1.2",
+        "3.1.5",
+        "3.1.20",
+        "3.5.1",
+        "3.5.2"
+      ],
       "reviewed": false
     },
     {
@@ -40,8 +53,537 @@
         "Screenshots of folder or application permissions"
       ],
       "sprsPoints": null,
-      "objectives": ["3.1.2[a]", "3.1.2[b]"],
-      "relatedIds": ["3.1.1"],
+      "objectives": [
+        "3.1.2[a]",
+        "3.1.2[b]"
+      ],
+      "relatedIds": [
+        "3.1.1",
+        "3.1.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.3",
+      "family": "Access Control",
+      "text": "Control the flow of CUI in accordance with approved authorizations.",
+      "plainEnglish": "Decide where CUI is allowed to go, and set up your systems so it can only go there. For example, you might share CUI with your prime contractor through an approved portal. It should not be emailed to personal accounts or uploaded to unapproved cloud storage.",
+      "whyItMatters": "CUI often leaks by being sent somewhere it shouldn't go, not by being stolen. Controlling where it can flow keeps it inside the places you protect.",
+      "examples": [
+        "Email rules that block or warn when CUI-labeled messages are sent outside the company.",
+        "Company files can only sync to the approved cloud storage, not to personal accounts.",
+        "A firewall that only allows traffic to and from approved destinations."
+      ],
+      "evidence": [
+        "Data handling or information flow policy",
+        "Diagram showing where CUI is stored and where it is allowed to go",
+        "Firewall, email, or data loss prevention (DLP) settings that enforce those limits"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.3[a]",
+        "3.1.3[b]",
+        "3.1.3[c]",
+        "3.1.3[d]",
+        "3.1.3[e]"
+      ],
+      "relatedIds": [
+        "3.1.20",
+        "3.1.22"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.4",
+      "family": "Access Control",
+      "text": "Separate the duties of individuals to reduce the risk of malevolent activity without collusion.",
+      "plainEnglish": "Split up important tasks so one person can't do something harmful alone. For example, the person who approves new accounts shouldn't be the only one who creates them. In a very small company, a second person reviewing the work can serve the same purpose.",
+      "whyItMatters": "When key tasks need two people, it's much harder for one person to cause damage, by mistake or on purpose, without someone noticing.",
+      "examples": [
+        "A manager approves account requests, and IT sets them up.",
+        "An outside IT provider administers systems, and the owner reviews reports of admin activity.",
+        "A second person reviews changes to firewall rules before they are made."
+      ],
+      "evidence": [
+        "List of key duties and who performs each one",
+        "Separation of duties policy or procedure",
+        "Role assignments in your systems that match the documented split"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.4[a]",
+        "3.1.4[b]",
+        "3.1.4[c]"
+      ],
+      "relatedIds": [
+        "3.1.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.5",
+      "family": "Access Control",
+      "text": "Employ the principle of least privilege, including for specific security functions and privileged accounts.",
+      "plainEnglish": "Give each person and account only the access needed for their job, and nothing more. This matters most for admin accounts and for security settings.",
+      "whyItMatters": "The less access each account has, the less damage a mistake, a misuse, or a stolen password can cause.",
+      "examples": [
+        "Staff use standard accounts. Only IT has admin rights.",
+        "Only one or two named people can change security settings in your email system.",
+        "Access is reviewed regularly and removed when no longer needed."
+      ],
+      "evidence": [
+        "List of admin (privileged) accounts and who holds them",
+        "Records of regular access reviews",
+        "Access control policy describing least privilege"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.5[a]",
+        "3.1.5[b]",
+        "3.1.5[c]",
+        "3.1.5[d]"
+      ],
+      "relatedIds": [
+        "3.1.2",
+        "3.1.6",
+        "3.1.7"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.6",
+      "family": "Access Control",
+      "text": "Use non-privileged accounts or roles when accessing nonsecurity functions.",
+      "plainEnglish": "People with admin rights should also have a regular account and use it for everyday work like email and web browsing. They sign in with the admin account only for admin tasks.",
+      "whyItMatters": "If an admin opens a malicious email while signed in as admin, the attacker gets admin powers. Using a regular account for daily work limits that risk.",
+      "examples": [
+        "Your IT person has two accounts: one for daily work and a separate one for admin tasks.",
+        "Admin accounts have no mailbox and are not used to browse the web."
+      ],
+      "evidence": [
+        "List of admin users and their separate everyday accounts",
+        "Policy requiring regular accounts for everyday work"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.6[a]",
+        "3.1.6[b]"
+      ],
+      "relatedIds": [
+        "3.1.5",
+        "3.1.7"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.7",
+      "family": "Access Control",
+      "text": "Prevent non-privileged users from executing privileged functions and capture the execution of such functions in audit logs.",
+      "plainEnglish": "Regular users should not be able to do admin-level things, like installing software, changing security settings, or turning off antivirus. When admin actions do happen, your systems should record them in logs.",
+      "whyItMatters": "Blocking admin actions for regular users stops many attacks. Logging the admin actions that do happen lets you spot misuse and investigate problems.",
+      "examples": [
+        "Regular users can't install software or change system settings on company computers.",
+        "Admin sign-ins and admin changes are recorded in the audit logs of your email and device management systems."
+      ],
+      "evidence": [
+        "Settings showing that standard users don't have admin rights",
+        "Audit logging settings",
+        "Sample log entries showing admin actions being recorded"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.7[a]",
+        "3.1.7[b]",
+        "3.1.7[c]",
+        "3.1.7[d]"
+      ],
+      "relatedIds": [
+        "3.1.5",
+        "3.1.6"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.8",
+      "family": "Access Control",
+      "text": "Limit unsuccessful logon attempts.",
+      "plainEnglish": "After several wrong passwords in a row, lock the account for a while or until someone unlocks it. Choose the number of attempts and the lockout time, write them down, and set your systems to enforce them.",
+      "whyItMatters": "Attackers often try password after password until one works. Lockouts stop that kind of guessing.",
+      "examples": [
+        "Accounts lock for 15 minutes after 5 failed sign-in attempts.",
+        "Your cloud email system blocks sign-ins after repeated failures."
+      ],
+      "evidence": [
+        "Account lockout policy stating the number of attempts and the lockout time",
+        "Screenshots of lockout settings in your systems"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.8[a]",
+        "3.1.8[b]"
+      ],
+      "relatedIds": [
+        "3.5.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.9",
+      "family": "Access Control",
+      "text": "Provide privacy and security notices consistent with applicable CUI rules.",
+      "plainEnglish": "Show a notice when people sign in to systems that handle CUI. It tells users the system is for authorized use only, that activity may be monitored, and anything else your CUI rules require.",
+      "whyItMatters": "The notice reminds users of their responsibilities and makes the rules clear to anyone who uses the system.",
+      "examples": [
+        "A sign-in banner on company computers saying the system is for authorized business use and may be monitored.",
+        "The same notice on the sign-in page for remote access."
+      ],
+      "evidence": [
+        "The text of your notice",
+        "Screenshots of the notice shown at sign-in"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.9[a]",
+        "3.1.9[b]"
+      ],
+      "relatedIds": [],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.10",
+      "family": "Access Control",
+      "text": "Use session lock with pattern-hiding displays to prevent access and viewing of data after a period of inactivity.",
+      "plainEnglish": "If a computer sits unused for a set time, lock the screen and hide what was on it. The user must sign in again to get back in.",
+      "whyItMatters": "An unlocked, unattended screen lets anyone walking by see CUI or use the account.",
+      "examples": [
+        "Company computers lock after 15 minutes of inactivity and show a lock screen instead of open documents.",
+        "Company phones lock automatically after a short idle time."
+      ],
+      "evidence": [
+        "Screen lock policy stating the time limit",
+        "Device management or group policy settings that enforce it"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.10[a]",
+        "3.1.10[b]",
+        "3.1.10[c]"
+      ],
+      "relatedIds": [
+        "3.1.11"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.11",
+      "family": "Access Control",
+      "text": "Terminate (automatically) a user session after a defined condition.",
+      "plainEnglish": "Sign users out automatically when certain conditions are met, such as a long period of inactivity or a maximum session length. Decide which conditions apply and set your systems to enforce them.",
+      "whyItMatters": "Sessions left open indefinitely can be picked up and misused by someone else.",
+      "examples": [
+        "Web applications sign users out after 8 hours.",
+        "Remote access sessions disconnect after 30 minutes of inactivity."
+      ],
+      "evidence": [
+        "Documented conditions that end a session",
+        "Screenshots of session timeout settings"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.11[a]",
+        "3.1.11[b]"
+      ],
+      "relatedIds": [
+        "3.1.10",
+        "3.1.12"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.12",
+      "family": "Access Control",
+      "text": "Monitor and control remote access sessions.",
+      "plainEnglish": "Keep track of who connects to your systems from outside the office, and be able to control or cut off those connections. Remote access includes VPNs (secure connections into the company network), remote desktop, and remote support tools.",
+      "whyItMatters": "Remote access is a common way in for attackers. Watching and controlling it helps you notice and stop connections that shouldn't be there.",
+      "examples": [
+        "VPN connection logs are kept and reviewed.",
+        "Remote support tools require the user to approve each session.",
+        "Remote access for an account can be turned off immediately when needed."
+      ],
+      "evidence": [
+        "Remote access policy",
+        "List of approved remote access methods",
+        "Sample remote access logs"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.12[a]",
+        "3.1.12[b]",
+        "3.1.12[c]",
+        "3.1.12[d]"
+      ],
+      "relatedIds": [
+        "3.1.13",
+        "3.1.14",
+        "3.1.15"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.13",
+      "family": "Access Control",
+      "text": "Employ cryptographic mechanisms to protect the confidentiality of remote access sessions.",
+      "plainEnglish": "Encrypt remote connections so no one can read the data as it travels over the internet. Most modern VPNs and remote access tools can do this. Confirm yours does and that it's turned on. When encryption protects CUI, it generally needs to be FIPS-validated, meaning tested and approved under a U.S. government standard. Requirement 3.13.11 covers this.",
+      "whyItMatters": "Unencrypted connections can be intercepted, exposing CUI and passwords.",
+      "examples": [
+        "Staff connect through a VPN that uses FIPS-validated encryption.",
+        "Remote desktop is only allowed over an encrypted connection."
+      ],
+      "evidence": [
+        "Remote access settings showing encryption is on",
+        "Vendor documentation showing the encryption is FIPS-validated"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.13[a]",
+        "3.1.13[b]"
+      ],
+      "relatedIds": [
+        "3.1.12"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.14",
+      "family": "Access Control",
+      "text": "Route remote access via managed access control points.",
+      "plainEnglish": "Send all remote connections through a few approved entry points that you manage, such as one company VPN. Don't let people connect directly to individual computers from outside.",
+      "whyItMatters": "A few managed entry points are easier to protect and monitor than many scattered ones.",
+      "examples": [
+        "All remote access goes through the company VPN or a single remote access gateway.",
+        "Direct remote desktop connections from the internet to office computers are blocked."
+      ],
+      "evidence": [
+        "Network diagram showing the remote access entry points",
+        "Firewall rules that block other remote access paths"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.14[a]",
+        "3.1.14[b]"
+      ],
+      "relatedIds": [
+        "3.1.12"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.15",
+      "family": "Access Control",
+      "text": "Authorize remote execution of privileged commands and remote access to security-relevant information.",
+      "plainEnglish": "Decide in advance who may do admin tasks remotely, and who may remotely view security information such as logs and security settings. Allow only those approved people.",
+      "whyItMatters": "Remote admin access is powerful. Limiting it to approved people reduces the chance it's misused.",
+      "examples": [
+        "Only your IT provider's named technicians may administer systems remotely.",
+        "Remote admin access is approved and documented before it's set up."
+      ],
+      "evidence": [
+        "List of people approved for remote admin access",
+        "Approval records or policy",
+        "Settings that limit remote admin access to those people"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.15[a]",
+        "3.1.15[b]",
+        "3.1.15[c]",
+        "3.1.15[d]"
+      ],
+      "relatedIds": [
+        "3.1.5",
+        "3.1.12"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.16",
+      "family": "Access Control",
+      "text": "Authorize wireless access prior to allowing such connections.",
+      "plainEnglish": "Approve Wi-Fi access before anyone uses it to connect to your systems. Decide which wireless networks are allowed and how devices may connect to them.",
+      "whyItMatters": "Unapproved wireless connections can let outsiders onto your network.",
+      "examples": [
+        "Only the company Wi-Fi network is approved for company devices in the office.",
+        "Visitors use a separate guest Wi-Fi with no access to company systems."
+      ],
+      "evidence": [
+        "Wireless access policy",
+        "List of approved wireless networks and their settings"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.16[a]",
+        "3.1.16[b]"
+      ],
+      "relatedIds": [
+        "3.1.17"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.17",
+      "family": "Access Control",
+      "text": "Protect wireless access using authentication and encryption.",
+      "plainEnglish": "Protect your Wi-Fi with a strong sign-in method and encryption. Only approved people and devices should be able to connect, and nobody else should be able to read the traffic.",
+      "whyItMatters": "Open or weakly protected Wi-Fi can be joined or listened in on from outside the building.",
+      "examples": [
+        "The office Wi-Fi uses WPA2-Enterprise or WPA3, the strongest security settings on most Wi-Fi equipment.",
+        "The Wi-Fi password is strong and is changed when someone leaves the company."
+      ],
+      "evidence": [
+        "Wireless router or access point settings showing the sign-in method and encryption",
+        "Wireless access policy"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.17[a]",
+        "3.1.17[b]"
+      ],
+      "relatedIds": [
+        "3.1.16"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.18",
+      "family": "Access Control",
+      "text": "Control connection of mobile devices.",
+      "plainEnglish": "Decide which phones, tablets, and laptops may connect to your systems, and under what conditions. Enforce those rules, for example with a mobile device management (MDM) tool.",
+      "whyItMatters": "Uncontrolled mobile devices can carry CUI out of your protected systems or bring in malware.",
+      "examples": [
+        "Only company-managed phones can access company email.",
+        "Devices must have a passcode and current updates before they can connect."
+      ],
+      "evidence": [
+        "Mobile device policy",
+        "Device management settings and a list of enrolled devices"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.18[a]",
+        "3.1.18[b]",
+        "3.1.18[c]"
+      ],
+      "relatedIds": [
+        "3.1.19"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.19",
+      "family": "Access Control",
+      "text": "Encrypt CUI on mobile devices and mobile computing platforms.",
+      "plainEnglish": "Turn on encryption for laptops, phones, and tablets that store CUI, so the data can't be read if the device is lost or stolen. When encryption protects CUI, it generally needs to be FIPS-validated, meaning tested and approved under a U.S. government standard. Requirement 3.13.11 covers this.",
+      "whyItMatters": "Mobile devices are easily lost or stolen. Encryption keeps the data on them unreadable to whoever ends up with the device.",
+      "examples": [
+        "Full-disk encryption, such as BitLocker or FileVault, is on for all company laptops.",
+        "Company phones are encrypted and require a passcode."
+      ],
+      "evidence": [
+        "Device management report showing encryption status for each device",
+        "Encryption policy"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.19[a]",
+        "3.1.19[b]"
+      ],
+      "relatedIds": [
+        "3.1.18"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.20",
+      "family": "Access Control",
+      "text": "Verify and control/limit connections to and use of external systems.",
+      "plainEnglish": "External systems are ones you don't own or control, like personal computers, a customer's network, or a third-party service. Decide whether and how they may connect to your systems or handle your CUI, and enforce those limits.",
+      "whyItMatters": "You can't vouch for the security of systems you don't control. Limiting their use keeps CUI from ending up somewhere unprotected.",
+      "examples": [
+        "Employees may not use personal computers to access CUI.",
+        "Cloud services must be approved before use, and only approved services may store CUI."
+      ],
+      "evidence": [
+        "Policy on using external systems",
+        "List of approved external systems and services",
+        "Agreements with service providers"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.20[a]",
+        "3.1.20[b]",
+        "3.1.20[c]",
+        "3.1.20[d]",
+        "3.1.20[e]",
+        "3.1.20[f]"
+      ],
+      "relatedIds": [
+        "3.1.3",
+        "3.1.21"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.21",
+      "family": "Access Control",
+      "text": "Limit use of portable storage devices on external systems.",
+      "plainEnglish": "Limit how company USB drives and other portable storage are used on computers you don't control. Examples are a customer's computer or a home computer.",
+      "whyItMatters": "Plugging company storage into an unknown computer can expose CUI or bring malware back into your company.",
+      "examples": [
+        "Company USB drives may only be used on company computers.",
+        "Using portable storage on outside computers requires approval."
+      ],
+      "evidence": [
+        "Portable storage policy",
+        "Device control settings, if you use them"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.21[a]",
+        "3.1.21[b]",
+        "3.1.21[c]"
+      ],
+      "relatedIds": [
+        "3.1.20"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.1.22",
+      "family": "Access Control",
+      "text": "Control CUI posted or processed on publicly accessible systems.",
+      "plainEnglish": "Make sure CUI never ends up on public systems like your website or public social media. Decide who may post content, and review content before it goes public.",
+      "whyItMatters": "Once CUI is posted publicly, anyone can copy it, and it can't be taken back.",
+      "examples": [
+        "Only two named people can publish to the company website.",
+        "Content is checked for CUI before it's posted.",
+        "Public content is reviewed regularly, and any CUI found is removed."
+      ],
+      "evidence": [
+        "List of people authorized to post public content",
+        "Procedure for reviewing content before posting",
+        "Records of those reviews"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.1.22[a]",
+        "3.1.22[b]",
+        "3.1.22[c]",
+        "3.1.22[d]",
+        "3.1.22[e]"
+      ],
+      "relatedIds": [
+        "3.1.3"
+      ],
       "reviewed": false
     },
     {
@@ -61,8 +603,15 @@
         "Identification and authentication policy"
       ],
       "sprsPoints": null,
-      "objectives": ["3.5.1[a]", "3.5.1[b]", "3.5.1[c]"],
-      "relatedIds": ["3.1.1", "3.5.2"],
+      "objectives": [
+        "3.5.1[a]",
+        "3.5.1[b]",
+        "3.5.1[c]"
+      ],
+      "relatedIds": [
+        "3.1.1",
+        "3.5.2"
+      ],
       "reviewed": false
     },
     {
@@ -81,8 +630,15 @@
         "Device enrollment or certificate configuration"
       ],
       "sprsPoints": null,
-      "objectives": ["3.5.2[a]", "3.5.2[b]", "3.5.2[c]"],
-      "relatedIds": ["3.5.1", "3.5.3"],
+      "objectives": [
+        "3.5.2[a]",
+        "3.5.2[b]",
+        "3.5.2[c]"
+      ],
+      "relatedIds": [
+        "3.5.1",
+        "3.5.3"
+      ],
       "reviewed": false
     },
     {
@@ -101,8 +657,15 @@
         "Identification and authentication policy"
       ],
       "sprsPoints": null,
-      "objectives": ["3.5.3[a]", "3.5.3[b]", "3.5.3[c]", "3.5.3[d]"],
-      "relatedIds": ["3.5.2"],
+      "objectives": [
+        "3.5.3[a]",
+        "3.5.3[b]",
+        "3.5.3[c]",
+        "3.5.3[d]"
+      ],
+      "relatedIds": [
+        "3.5.2"
+      ],
       "reviewed": false
     },
     {
@@ -120,8 +683,12 @@
         "Records showing screening was completed before access was granted (without storing sensitive personal details in this tool)"
       ],
       "sprsPoints": null,
-      "objectives": ["3.9.1[a]"],
-      "relatedIds": ["3.9.2"],
+      "objectives": [
+        "3.9.1[a]"
+      ],
+      "relatedIds": [
+        "3.9.2"
+      ],
       "reviewed": false
     },
     {
@@ -140,8 +707,15 @@
         "Account logs showing timely deactivation"
       ],
       "sprsPoints": null,
-      "objectives": ["3.9.2[a]", "3.9.2[b]", "3.9.2[c]"],
-      "relatedIds": ["3.9.1", "3.1.1"],
+      "objectives": [
+        "3.9.2[a]",
+        "3.9.2[b]",
+        "3.9.2[c]"
+      ],
+      "relatedIds": [
+        "3.9.1",
+        "3.1.1"
+      ],
       "reviewed": false
     }
   ]
