@@ -1,3 +1,4 @@
+import { formatTimestamp, latestUpdate } from "../lib/backup";
 import { groupByFamily } from "../lib/content";
 import { formatDueDate, summarize } from "../lib/dashboard";
 import { entryFor } from "../lib/progress";
@@ -16,13 +17,16 @@ interface Props {
 export function PrintSummary({ data, requirements, generatedOn }: Props) {
   const summary = summarize(requirements, data);
   const orgName = data.org.name.trim();
+  const asOf = latestUpdate(data);
 
   return (
     <div className="print-summary">
       <header className="print-head">
         <p className="eyebrow">NIST SP 800-171 Rev 2 · Self-tracking summary</p>
         <h2 className="print-org">{orgName || "Organization not set"}</h2>
-        <p className="muted">Generated {formatDueDate(generatedOn)}</p>
+        <p className="muted">
+          Generated {formatDueDate(generatedOn)} · {asOf ? `Progress as of ${formatTimestamp(asOf)}` : "No progress recorded yet"}
+        </p>
       </header>
 
       <p className="print-disclaimer">

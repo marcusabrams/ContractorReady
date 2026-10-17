@@ -1,5 +1,17 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { STORAGE_KEY, clearData, emptyData, getBrowserStorage, loadData, parseDataText, saveData } from "./storage";
+import {
+  LAST_EXPORT_KEY,
+  STORAGE_KEY,
+  clearData,
+  emptyData,
+  getBrowserStorage,
+  isTimestamp,
+  loadData,
+  loadLastExport,
+  parseDataText,
+  saveData,
+  saveLastExport,
+} from "./storage";
 import type { AppData, ProgressEntry } from "./types";
 
 export const DEFAULT_ENTRY: Omit<ProgressEntry, "updatedAt"> = {
@@ -33,6 +45,10 @@ interface ProgressContextValue {
   setOrgName: (name: string) => void;
   replaceAll: (data: AppData) => void;
   resetAll: () => void;
+  /** When this browser last exported a backup (ISO-8601), or null if never. */
+  lastExport: string | null;
+  /** Records a completed export. */
+  recordExport: (when: string) => void;
 }
 
 const ProgressContext = createContext<ProgressContextValue | null>(null);
@@ -43,6 +59,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<AppData>(initial.data);
   const [loadWarning, setLoadWarning] = useState(initial.warning);
   const [saveFailed, setSaveFailed] = useState(false);
+  const [lastExport, setLastExport] = useState<string | null>(() => loadLastExport(store));
   // The object currently persisted (or deliberately not persisted). Autosave
   // writes only when `data` is a different object, so the initial render and
   // StrictMode's repeated effects never write unchanged data.
@@ -60,7 +77,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!store) return;
     const onStorage = (e: StorageEvent) => {
-      if (e.storageArea !== window.localStorage || (e.key !== STORAGE_KEY && e.key !== null)) return;
+      if (e.storageArea !== window.localStorage) return;
+      if (e.key === LAST_EXPORT_KEY || e.key === null) setLastExport(isTimestamp(e.newValue) ? e.newValue : null);
+      if (e.key !== STORAGE_KEY && e.key !== null) return;
       let next: AppData;
       if (e.newValue === null) {
         next = emptyData(); // another tab reset (key removed) or cleared all storage
@@ -92,8 +111,17 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     const fresh = emptyData();
     persisted.current = fresh;
     setSaveFailed(store !== null && !clearData(store));
+    setLastExport(null);
     setData(fresh);
   }, [store]);
+
+  const recordExport = useCallback(
+    (when: string) => {
+      setLastExport(when);
+      saveLastExport(store, when);
+    },
+    [store],
+  );
 
   const value = useMemo<ProgressContextValue>(
     () => ({
@@ -107,8 +135,10 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       setOrgName,
       replaceAll,
       resetAll,
+      lastExport,
+      recordExport,
     }),
-    [data, store, saveFailed, loadWarning, updateEntry, setOrgName, replaceAll, resetAll],
+    [data, store, saveFailed, loadWarning, updateEntry, setOrgName, replaceAll, resetAll, lastExport, recordExport],
   );
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;

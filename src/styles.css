@@ -71,6 +71,8 @@ main { padding-bottom: 3rem; }
 .notice p { margin: 0.25rem 0; }
 .notice-warn { background: var(--warn-bg); border-color: var(--warn-border); }
 .notice-info { background: var(--info-bg); border-color: var(--accent); }
+.backup-reminder { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding-block: 0.5rem; font-size: 0.95rem; }
+.backup-reminder p { margin: 0; flex: 1 1 20rem; min-width: 0; }
 .notice-success { background: var(--success-bg); border-color: #067647; }
 .notice-error { background: var(--error-bg); border-color: var(--danger); }
 
@@ -207,6 +209,17 @@ fieldset { border: 1px solid var(--border); border-radius: var(--radius); paddin
   .meter { border: 1px solid CanvasText; }
   .meter-fill { forced-color-adjust: none; background: CanvasText; }
 }
+
+/* Backup page */
+.backup-status { margin: 0 0 0.75rem; display: grid; gap: 0.25rem; }
+.backup-status div { display: flex; flex-wrap: wrap; gap: 0 0.5rem; }
+.backup-status dt { font-weight: 600; }
+.backup-status dt::after { content: ":"; }
+.backup-status dd { margin: 0; }
+.import-preview h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.preview-group h4 { margin: 0.75rem 0 0.2rem; font-size: 0.95rem; }
+.preview-group .id-text { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.id-list { margin: 0.25rem 0 0; gap: 0.25rem 0.75rem; }
 
 /* Long-form text pages */
 .prose { max-width: 46rem; }

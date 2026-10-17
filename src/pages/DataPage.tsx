@@ -1,5 +1,8 @@
 import { useId, useRef, useState } from "react";
+import { changesSince, formatTimestamp, latestUpdate, mergeData, type MergeSummary } from "../lib/backup";
+import { compareIds, getRequirement } from "../lib/content";
 import { useProgress } from "../lib/progress";
+import { href } from "../lib/router";
 import { MAX_IMPORT_BYTES, parseDataText, serializeForExport } from "../lib/storage";
 import type { AppData } from "../lib/types";
 
@@ -22,25 +25,68 @@ function downloadJson(filename: string, text: string) {
 }
 
 const countTracked = (d: AppData) => Object.keys(d.progress).length;
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+
+interface PendingImport {
+  name: string;
+  data: AppData;
+  exportedAt?: string;
+  /** What a merge would do, computed against the data at the time the file was chosen. */
+  preview: MergeSummary;
+}
+
+type ImportResult =
+  | { mode: "merge"; name: string; updated: string[]; kept: number }
+  | { mode: "replace"; name: string };
+
+/** Requirement IDs as links where the requirement exists, plain text otherwise. */
+function IdLinks({ ids }: { ids: string[] }) {
+  return (
+    <ul className="inline-list id-list">
+      {ids.map((id) => (
+        <li key={id}>{getRequirement(id) ? <a href={href.requirement(id)}>{id}</a> : id}</li>
+      ))}
+    </ul>
+  );
+}
+
+function PreviewGroup({ title, ids }: { title: string; ids: string[] }) {
+  if (ids.length === 0) return null;
+  return (
+    <div className="preview-group">
+      <h4>
+        {title} <span className="muted">({ids.length})</span>
+      </h4>
+      <p className="id-text">{ids.join(", ")}</p>
+    </div>
+  );
+}
 
 export function DataPage() {
-  const { data, setOrgName, replaceAll, resetAll, storageAvailable } = useProgress();
+  const { data, setOrgName, replaceAll, resetAll, storageAvailable, lastExport, recordExport } = useProgress();
   const ids = useId();
   const fileInput = useRef<HTMLInputElement>(null);
-  const [pendingImport, setPendingImport] = useState<{ name: string; data: AppData } | null>(null);
+  const [pendingImport, setPendingImport] = useState<PendingImport | null>(null);
+  const [importResult, setImportResult] = useState<ImportResult | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
 
+  const asOf = latestUpdate(data);
+  const unexported = changesSince(data, lastExport);
+
   function onExport() {
     const slug = data.org.name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    downloadJson(`n171tracker-${slug ? slug + "-" : ""}${todayStamp()}.json`, serializeForExport(data));
+    const now = new Date().toISOString();
+    downloadJson(`n171tracker-${slug ? slug + "-" : ""}${todayStamp()}.json`, serializeForExport(data, now));
+    recordExport(now);
     setMessage("Backup downloaded. Keep it somewhere safe.");
   }
 
   async function onFileChosen(file: File | undefined) {
     setImportError(null);
     setMessage(null);
+    setImportResult(null);
     setPendingImport(null);
     // Clear the input so choosing the same file again still fires onChange.
     if (fileInput.current) fileInput.current.value = "";
@@ -60,14 +106,33 @@ export function DataPage() {
     if (!result.ok) {
       setImportError(`Import failed: ${result.error} Your current data was not changed.`);
     } else {
-      setPendingImport({ name: file.name, data: result.data });
+      setPendingImport({
+        name: file.name,
+        data: result.data,
+        exportedAt: result.exportedAt,
+        preview: mergeData(data, result.data).summary,
+      });
     }
   }
 
-  function confirmImport() {
+  function confirmMerge() {
+    if (!pendingImport) return;
+    // Merge against the data as it is now, in case it changed while the preview was open.
+    const { data: merged, summary } = mergeData(data, pendingImport.data);
+    replaceAll(merged);
+    setImportResult({
+      mode: "merge",
+      name: pendingImport.name,
+      updated: [...summary.fileNewer, ...summary.onlyInFile].sort(compareIds),
+      kept: summary.yoursNewer.length + summary.tied.length + summary.onlyHere.length,
+    });
+    setPendingImport(null);
+  }
+
+  function confirmReplace() {
     if (!pendingImport) return;
     replaceAll(pendingImport.data);
-    setMessage(`Imported ${pendingImport.name}.`);
+    setImportResult({ mode: "replace", name: pendingImport.name });
     setPendingImport(null);
   }
 
@@ -109,6 +174,18 @@ export function DataPage() {
 
       <section className="card">
         <h2>Export backup</h2>
+        <dl className="backup-status">
+          <div>
+            <dt>Progress as of</dt>
+            <dd>{asOf ? formatTimestamp(asOf) : "No progress recorded yet"}</dd>
+          </div>
+          <div>
+            <dt>Last backup</dt>
+            <dd>
+              {lastExport ? formatTimestamp(lastExport) : "Never"} · {plural(unexported, "change", "changes")} since
+            </dd>
+          </div>
+        </dl>
         <p>Downloads a JSON file with your organization name and the progress for {countTracked(data)} requirement(s).</p>
         <button type="button" className="btn" onClick={onExport}>
           Export backup
@@ -117,7 +194,10 @@ export function DataPage() {
 
       <section className="card">
         <h2>Import backup</h2>
-        <p>Restores progress from a backup file. You'll be asked to confirm before anything is replaced.</p>
+        <p>
+          Restores progress from a backup file. You'll see what would change and choose to merge or replace before
+          anything happens.
+        </p>
         <div className="field">
           <label htmlFor={`${ids}-import`}>Backup file (.json)</label>
           <input
@@ -134,20 +214,66 @@ export function DataPage() {
           </p>
         )}
         {pendingImport && (
-          <div className="confirm-box" role="group" aria-labelledby={`${ids}-import-confirm`}>
-            <p id={`${ids}-import-confirm`}>
-              Replace your current data ({countTracked(data)} tracked requirement(s)) with <strong>{pendingImport.name}</strong>{" "}
-              ({countTracked(pendingImport.data)} tracked requirement(s)
-              {pendingImport.data.org.name ? `, organization "${pendingImport.data.org.name}"` : ""})?
+          <div className="confirm-box import-preview" role="group" aria-labelledby={`${ids}-import-confirm`}>
+            <h3 id={`${ids}-import-confirm`}>Import {pendingImport.name}?</h3>
+            <p className="muted">
+              {pendingImport.exportedAt
+                ? `Exported ${formatTimestamp(pendingImport.exportedAt)}`
+                : "Export date not recorded (made before export dates were added)"}{" "}
+              · {plural(countTracked(pendingImport.data), "tracked requirement", "tracked requirements")}
+              {pendingImport.data.org.name.trim() ? ` · Organization "${pendingImport.data.org.name}"` : ""}
+            </p>
+            <PreviewGroup title="File is newer (merge uses the file's)" ids={pendingImport.preview.fileNewer} />
+            <PreviewGroup title="Yours is newer (merge keeps yours)" ids={pendingImport.preview.yoursNewer} />
+            <PreviewGroup title="Only in file (merge adds them)" ids={pendingImport.preview.onlyInFile} />
+            <PreviewGroup title="Only here (merge keeps them)" ids={pendingImport.preview.onlyHere} />
+            {pendingImport.preview.fileNewer.length + pendingImport.preview.onlyInFile.length === 0 && (
+              <p>Nothing in this file is newer than your data, so merging won't change any requirement.</p>
+            )}
+            {pendingImport.preview.tied.length > 0 && (
+              <p className="muted small">
+                {plural(pendingImport.preview.tied.length, "requirement has", "requirements have")} the same change time in
+                both; merge keeps yours.
+              </p>
+            )}
+            {pendingImport.preview.orgName === "fromFile" && (
+              <p className="small">Merge sets the organization name to "{pendingImport.data.org.name}" from the file.</p>
+            )}
+            <p className="small">
+              <strong>Replace everything</strong> discards your current data ({plural(countTracked(data), "tracked requirement", "tracked requirements")})
+              and uses the file's exactly.
             </p>
             <div className="button-row">
-              <button type="button" className="btn" onClick={confirmImport}>
-                Replace my data
+              <button type="button" className="btn" onClick={confirmMerge} autoFocus>
+                Merge (newest change wins)
               </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setPendingImport(null)} autoFocus>
+              <button type="button" className="btn btn-secondary" onClick={confirmReplace}>
+                Replace everything
+              </button>
+              <button type="button" className="btn btn-secondary" onClick={() => setPendingImport(null)}>
                 Cancel
               </button>
             </div>
+          </div>
+        )}
+        {importResult && (
+          <div className="notice notice-success" role="status">
+            {importResult.mode === "replace" ? (
+              <p>Replaced your data with {importResult.name}.</p>
+            ) : (
+              <>
+                <p>
+                  Merged {importResult.name}: {plural(importResult.updated.length, "entry", "entries")} updated,{" "}
+                  {plural(importResult.kept, "entry", "entries")} kept.
+                </p>
+                {importResult.updated.length > 0 && (
+                  <>
+                    <p className="small">Updated requirements:</p>
+                    <IdLinks ids={importResult.updated} />
+                  </>
+                )}
+              </>
+            )}
           </div>
         )}
       </section>

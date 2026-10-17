@@ -68,4 +68,15 @@ describe("PrintSummary", () => {
     expect(html).not.toContain("<img");
     expect(html).toContain("&lt;img");
   });
+
+  it("shows when the progress was last changed", () => {
+    const d = sample();
+    d.progress["3.5.3"].updatedAt = "2026-10-12T12:00:00.000Z";
+    d.progress["3.1.1"].updatedAt = "2026-10-01T12:00:00.000Z";
+    expect(text(render(d))).toMatch(/Progress as of Oct 12, 2026/);
+  });
+
+  it("says when no progress has been recorded", () => {
+    expect(text(render(emptyData()))).toContain("No progress recorded yet");
+  });
 });
