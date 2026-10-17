@@ -1052,7 +1052,8 @@
       ],
       "relatedIds": [
         "3.1.5",
-        "3.4.3"
+        "3.4.3",
+        "3.10.1"
       ],
       "reviewed": false
     },
@@ -1682,7 +1683,8 @@
         "3.7.6"
       ],
       "relatedIds": [
-        "3.7.2"
+        "3.7.2",
+        "3.10.3"
       ],
       "reviewed": false
     },
@@ -1710,7 +1712,8 @@
         "3.8.1[d]"
       ],
       "relatedIds": [
-        "3.8.2"
+        "3.8.2",
+        "3.10.1"
       ],
       "reviewed": false
     },
@@ -1954,6 +1957,169 @@
       "relatedIds": [
         "3.1.1",
         "3.9.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.10.1",
+      "family": "Physical Protection",
+      "text": "Limit physical access to organizational systems, equipment, and the respective operating environments to authorized individuals.",
+      "plainEnglish": "Only authorized people should be able to physically get to your computers, servers, network equipment, and the rooms they're in. Keep a list of who is allowed, and use locks, keys, or badges to keep everyone else out.",
+      "whyItMatters": "Someone with physical access can steal equipment, plug in a malicious device, or read CUI off a screen.",
+      "examples": [
+        "The server and network equipment are in a locked closet.",
+        "Office doors are locked, and only employees have keys or badges.",
+        "The list of people with keys is reviewed whenever someone leaves."
+      ],
+      "evidence": [
+        "List of people authorized for physical access",
+        "Description or photos of locks and secure areas",
+        "Key or badge records"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.10.1[a]",
+        "3.10.1[b]",
+        "3.10.1[c]",
+        "3.10.1[d]"
+      ],
+      "relatedIds": [
+        "3.4.5",
+        "3.8.1",
+        "3.10.2",
+        "3.10.5"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.10.2",
+      "family": "Physical Protection",
+      "text": "Protect and monitor the physical facility and support infrastructure for organizational systems.",
+      "plainEnglish": "Protect and keep watch over your office and the things your systems depend on, such as power, cooling, and network cabling. Common measures include locks, alarms, and security cameras.",
+      "whyItMatters": "Break-ins, power failures, and tampering with cables can expose CUI or knock your systems offline.",
+      "examples": [
+        "The office alarm system is monitored after hours.",
+        "Security cameras cover the entrances and the equipment room.",
+        "Network cables and equipment can't be reached from public areas."
+      ],
+      "evidence": [
+        "Description of physical security measures",
+        "Alarm and camera system records",
+        "Facility security procedures"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.10.2[a]",
+        "3.10.2[b]",
+        "3.10.2[c]",
+        "3.10.2[d]"
+      ],
+      "relatedIds": [
+        "3.10.1",
+        "3.10.4"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.10.3",
+      "family": "Physical Protection",
+      "text": "Escort visitors and monitor visitor activity.",
+      "plainEnglish": "Escort visitors while they're in areas with your systems or CUI, and keep track of what they do there.",
+      "whyItMatters": "Visitors left alone could see CUI, take something, or plug in a device without anyone noticing.",
+      "examples": [
+        "Visitors sign in at the front desk and are escorted by an employee at all times.",
+        "Visitors wear visitor badges so they stand out."
+      ],
+      "evidence": [
+        "Visitor policy",
+        "Visitor sign-in log"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.10.3[a]",
+        "3.10.3[b]"
+      ],
+      "relatedIds": [
+        "3.7.6",
+        "3.10.4"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.10.4",
+      "family": "Physical Protection",
+      "text": "Maintain audit logs of physical access.",
+      "plainEnglish": "Keep records of who enters your office and secure areas, and when. This can be a badge system's logs or a paper sign-in sheet.",
+      "whyItMatters": "Physical access records help you find out who was present if something goes missing or an incident happens.",
+      "examples": [
+        "The badge system records every door entry.",
+        "Visitors and after-hours entries are recorded in a sign-in book that is kept for a year."
+      ],
+      "evidence": [
+        "Badge system logs",
+        "Visitor and entry logs",
+        "Policy for how long access records are kept"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.10.4"
+      ],
+      "relatedIds": [
+        "3.3.1",
+        "3.10.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.10.5",
+      "family": "Physical Protection",
+      "text": "Control and manage physical access devices.",
+      "plainEnglish": "Keep track of physical access devices, such as keys, key cards, badges, and door codes. Know who has each one, collect them when people leave, and change locks or codes when needed.",
+      "whyItMatters": "Lost keys or badges, or door codes that never change, let in people who shouldn't be there.",
+      "examples": [
+        "A key log lists every key and who holds it.",
+        "Badges are deactivated and keys collected on an employee's last day.",
+        "Door codes are changed when someone leaves."
+      ],
+      "evidence": [
+        "Inventory of keys, badges, and codes, and who holds each",
+        "Records of keys collected and badges deactivated"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.10.5[a]",
+        "3.10.5[b]",
+        "3.10.5[c]"
+      ],
+      "relatedIds": [
+        "3.9.2",
+        "3.10.1"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.10.6",
+      "family": "Physical Protection",
+      "text": "Enforce safeguarding measures for CUI at alternate work sites.",
+      "plainEnglish": "Set rules for protecting CUI when people work somewhere other than the office, such as at home or while traveling. Make sure the rules are followed.",
+      "whyItMatters": "Home offices and public places don't have the office's locks and controls. Clear rules help keep CUI safe there.",
+      "examples": [
+        "Remote workers must use company laptops, lock their screens, and keep CUI out of view of family members and the public.",
+        "CUI may not be printed at home.",
+        "Remote workers sign that they've read the remote work rules."
+      ],
+      "evidence": [
+        "Remote work security policy",
+        "Signed acknowledgments from remote workers"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.10.6[a]",
+        "3.10.6[b]"
+      ],
+      "relatedIds": [
+        "3.1.12",
+        "3.8.1"
       ],
       "reviewed": false
     }
