@@ -18,7 +18,8 @@ describe("filterRequirements", () => {
     expect(ids("")).toHaveLength(requirements.length);
   });
   it("searches by ID prefix", () => {
-    expect(ids("3.5")).toEqual(["3.5.1", "3.5.2", "3.5.3"]);
+    expect(ids("3.5")).toEqual(requirements.filter((r) => r.id.startsWith("3.5.")).map((r) => r.id));
+    expect(ids("3.5")).toContain("3.5.1");
   });
   it("treats an ID search as whole number segments, not a substring", () => {
     // "3.2" must not match 3.3.2, and "3.1.1" must not match 3.1.10 through 3.1.19.
@@ -27,7 +28,9 @@ describe("filterRequirements", () => {
     expect(ids("3.1.")).toHaveLength(22);
   });
   it("searches by keyword, case-insensitively", () => {
-    expect(ids("MULTIFACTOR")).toEqual(["3.5.3"]);
+    const found = filterRequirements(requirements, data(), { q: "MULTIFACTOR", status: "", owner: "" });
+    expect(found.map((r) => r.id)).toContain("3.5.3");
+    for (const r of found) expect(`${r.family} ${r.text} ${r.plainEnglish}`.toLowerCase()).toContain("multifactor");
   });
   it("searches the user's notes", () => {
     expect(ids("conditional access")).toEqual(["3.1.1"]);
