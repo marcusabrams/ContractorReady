@@ -1176,7 +1176,7 @@
       "id": "3.5.1",
       "family": "Identification and Authentication",
       "text": "Identify system users, processes acting on behalf of users, and devices.",
-      "plainEnglish": "Give every person, automated program, and device a unique name or ID in your systems, so you can always tell who or what did something.",
+      "plainEnglish": "Give every person, automated program, and device its own unique name or ID in your systems. Then you can always tell who or what did something.",
       "whyItMatters": "Unique IDs make it possible to control access and to trace actions back to a specific person or device.",
       "examples": [
         "Each employee has a unique username such as jsmith@yourcompany.com.",
@@ -1223,7 +1223,9 @@
       ],
       "relatedIds": [
         "3.5.1",
-        "3.5.3"
+        "3.5.3",
+        "3.5.7",
+        "3.5.10"
       ],
       "reviewed": false
     },
@@ -1231,7 +1233,7 @@
       "id": "3.5.3",
       "family": "Identification and Authentication",
       "text": "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts.",
-      "plainEnglish": "Require a second step beyond a password, such as a code from a phone app or a security key. Admin accounts need it everywhere. Regular accounts need it whenever they connect over a network, such as signing in to cloud email or a VPN.",
+      "plainEnglish": "Require a second step beyond a password, such as a code from a phone app or a security key. This is called multifactor authentication (MFA). Admin accounts need it everywhere. Regular accounts need it whenever they connect over a network, such as signing in to cloud email or a VPN (a secure connection into the company network).",
       "whyItMatters": "Stolen passwords are one of the most common ways attackers get in. A second factor stops most of those attempts.",
       "examples": [
         "All Microsoft 365 or Google Workspace accounts require an authenticator app at sign-in.",
@@ -1248,6 +1250,199 @@
         "3.5.3[b]",
         "3.5.3[c]",
         "3.5.3[d]"
+      ],
+      "relatedIds": [
+        "3.5.2",
+        "3.5.4"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.4",
+      "family": "Identification and Authentication",
+      "text": "Employ replay-resistant authentication mechanisms for network access to privileged and non-privileged accounts.",
+      "plainEnglish": "Use sign-in methods that can't be fooled by an attacker who records a sign-in and plays it back later. Modern multifactor authentication (MFA) with one-time codes or security keys, and sign-ins over encrypted connections, are designed to resist this.",
+      "whyItMatters": "If a recorded sign-in could be reused, an attacker who captured it once could sign in as that person again.",
+      "examples": [
+        "Network sign-ins use modern, encrypted sign-in methods, and older methods that send reusable passwords are turned off.",
+        "MFA uses one-time codes or security keys, which can't be reused."
+      ],
+      "evidence": [
+        "Documentation of the sign-in methods your systems use",
+        "Settings showing older, replayable sign-in methods are turned off"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.4"
+      ],
+      "relatedIds": [
+        "3.5.2",
+        "3.5.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.5",
+      "family": "Identification and Authentication",
+      "text": "Prevent reuse of identifiers for a defined period.",
+      "plainEnglish": "Don't give a username that belonged to someone else to a new person until a set period has passed. Decide how long that period is.",
+      "whyItMatters": "If a new person gets an old username right away, permissions, logs, and email from the two people can get mixed up.",
+      "examples": [
+        "Usernames of former employees aren't reassigned for two years.",
+        "A new employee with the same name as a former one gets a different username, such as jsmith2."
+      ],
+      "evidence": [
+        "Account management policy stating how long a username can't be reused",
+        "Account records showing the rule is followed"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.5[a]",
+        "3.5.5[b]"
+      ],
+      "relatedIds": [
+        "3.5.1",
+        "3.5.6"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.6",
+      "family": "Identification and Authentication",
+      "text": "Disable identifiers after a defined period of inactivity.",
+      "plainEnglish": "Disable accounts that haven't been used for a set period, such as 90 days. Decide the period, and make sure your systems or a regular review enforce it.",
+      "whyItMatters": "Forgotten accounts are easy targets, because nobody notices when someone else starts using them.",
+      "examples": [
+        "Accounts unused for 90 days are disabled automatically.",
+        "A monthly report of inactive accounts is reviewed, and unused accounts are disabled."
+      ],
+      "evidence": [
+        "Policy stating the inactivity period",
+        "Settings or reports showing inactive accounts are disabled"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.6[a]",
+        "3.5.6[b]"
+      ],
+      "relatedIds": [
+        "3.5.5",
+        "3.9.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.7",
+      "family": "Identification and Authentication",
+      "text": "Enforce a minimum password complexity and change of characters when new passwords are created.",
+      "plainEnglish": "Set minimum rules for new passwords, such as a minimum length and a mix of character types. Also require a new password to differ from the old one by a certain number of characters. Write the rules down and set your systems to enforce them.",
+      "whyItMatters": "Short or simple passwords can be guessed quickly. Requiring real change stops people from just adding a number to their old password.",
+      "examples": [
+        "New passwords must be at least 14 characters long and include several types of characters.",
+        "A new password must change a set number of characters from the previous one, where the system supports this setting."
+      ],
+      "evidence": [
+        "Password policy stating the complexity and change rules",
+        "Screenshots of password settings in your systems"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.7[a]",
+        "3.5.7[b]",
+        "3.5.7[c]",
+        "3.5.7[d]"
+      ],
+      "relatedIds": [
+        "3.5.2",
+        "3.5.8"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.8",
+      "family": "Identification and Authentication",
+      "text": "Prohibit password reuse for a specified number of generations.",
+      "plainEnglish": "Don't let people reuse their recent passwords. Decide how many previous passwords are blocked, such as the last 24, and set your systems to enforce it.",
+      "whyItMatters": "If people can switch back to an old password, a password that was stolen once can work again.",
+      "examples": [
+        "Systems remember each person's last 24 passwords and won't accept any of them again."
+      ],
+      "evidence": [
+        "Password policy stating how many previous passwords are blocked",
+        "Screenshots of password history settings"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.8[a]",
+        "3.5.8[b]"
+      ],
+      "relatedIds": [
+        "3.5.7"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.9",
+      "family": "Identification and Authentication",
+      "text": "Allow temporary password use for system logons with an immediate change to a permanent password.",
+      "plainEnglish": "Sometimes you give someone a temporary password, such as for a new account or a password reset. Make them change it to a password of their own the first time they sign in.",
+      "whyItMatters": "Temporary passwords are often sent by email or written down. Forcing a change means only the user knows the real password.",
+      "examples": [
+        "New accounts and password resets are set to require a password change at the next sign-in."
+      ],
+      "evidence": [
+        "Account setup and password reset procedure",
+        "Settings showing users must change temporary passwords at first sign-in"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.9"
+      ],
+      "relatedIds": [
+        "3.5.7"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.10",
+      "family": "Identification and Authentication",
+      "text": "Store and transmit only cryptographically-protected passwords.",
+      "plainEnglish": "Passwords should never be stored or sent in readable form. Systems should store them scrambled in a way that can't be reversed (called hashing) and send them only over encrypted connections.",
+      "whyItMatters": "If passwords are stored or sent as plain text, anyone who gets the file or intercepts the traffic gets every password.",
+      "examples": [
+        "Sign-in pages use encrypted connections (HTTPS).",
+        "Shared passwords are kept in a password manager, not in spreadsheets or documents.",
+        "Any custom application stores passwords hashed, never as plain text."
+      ],
+      "evidence": [
+        "Vendor documentation showing passwords are stored hashed and sent encrypted",
+        "Policy banning passwords in plain-text files or email"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.10[a]",
+        "3.5.10[b]"
+      ],
+      "relatedIds": [
+        "3.5.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.5.11",
+      "family": "Identification and Authentication",
+      "text": "Obscure feedback of authentication information.",
+      "plainEnglish": "When someone types a password, show dots or asterisks instead of the actual characters. This is the default on almost all systems, so mainly make sure it hasn't been turned off.",
+      "whyItMatters": "Hiding passwords on screen stops people nearby from reading them over the user's shoulder.",
+      "examples": [
+        "Password fields on computers, phones, and sign-in pages show dots instead of characters."
+      ],
+      "evidence": [
+        "Screenshots of sign-in screens showing hidden password entry"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.5.11"
       ],
       "relatedIds": [
         "3.5.2"
