@@ -37,5 +37,5 @@ npm run preview    # serve the production build
 - [x] 4. Dashboard
 - [x] 5. Print summary
 - [x] 6. About/disclaimer page
-- [ ] 7. Generate and review real content, family by family (drafted, unreviewed: Access Control 22/22, Awareness and Training 3/3)
+- [ ] 7. Generate and review real content, family by family (all 110 drafted; human review pending, 0 of 110 reviewed)
 - [ ] 8. Deploy

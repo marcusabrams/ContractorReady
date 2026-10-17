@@ -1240,7 +1240,7 @@
       "id": "3.5.3",
       "family": "Identification and Authentication",
       "text": "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts.",
-      "plainEnglish": "Require a second step beyond a password, such as a code from a phone app or a security key. This is called multifactor authentication (MFA). Admin accounts need it everywhere. Regular accounts need it whenever they connect over a network, such as signing in to cloud email or a VPN (a secure connection into the company network).",
+      "plainEnglish": "Require a second step beyond a password, such as a code from a phone app or a security key. This is called multifactor authentication (MFA). Admin accounts need it everywhere. Regular accounts need it whenever they connect over a network. Examples are signing in to cloud email or to a VPN (a secure connection into the company network).",
       "whyItMatters": "Stolen passwords are one of the most common ways attackers get in. A second factor stops most of those attempts.",
       "examples": [
         "All Microsoft 365 or Google Workspace accounts require an authenticator app at sign-in.",

@@ -18,30 +18,21 @@ describe("requirements.json", () => {
     expect(FAMILIES).toHaveLength(14);
   });
 
-  // Families are added one at a time (build step 7). Each finished family must be
-  // complete: exactly 3.F.1 through 3.F.N, in order, per NIST SP 800-171 Rev 2.
-  it.each([
-    ["Access Control", "3.1", 22],
-    ["Awareness and Training", "3.2", 3],
-    ["Audit and Accountability", "3.3", 9],
-    ["Personnel Security", "3.9", 2],
-    ["Configuration Management", "3.4", 9],
-    ["Identification and Authentication", "3.5", 11],
-    ["Incident Response", "3.6", 3],
-    ["Maintenance", "3.7", 6],
-    ["Media Protection", "3.8", 9],
-    ["Physical Protection", "3.10", 6],
-    ["Risk Assessment", "3.11", 3],
-    ["Security Assessment", "3.12", 4],
-    ["System and Communications Protection", "3.13", 16],
-    ["System and Information Integrity", "3.14", 7],
-  ] as const)("%s (%s.x) is complete with %i requirements", (family, prefix, count) => {
-    const ids = requirements.filter((r) => r.family === family).map((r) => r.id);
-    expect(ids).toEqual(Array.from({ length: count }, (_, i) => `${prefix}.${i + 1}`));
-  });
+  // Requirement count per family in NIST SP 800-171 Rev 2, in document order (3.1 through 3.14).
+  const FAMILY_COUNTS = [22, 3, 9, 9, 11, 3, 6, 9, 2, 6, 3, 4, 16, 7];
 
-  // Enabled once the full content set is generated (build step 7).
-  it.todo("contains exactly 110 requirements across 14 families");
+  it.each(FAMILIES.map((family, i) => [family, `3.${i + 1}`, FAMILY_COUNTS[i]] as const))(
+    "%s (%s.x) is complete with %i requirements",
+    (family, prefix, count) => {
+      const ids = requirements.filter((r) => r.family === family).map((r) => r.id);
+      expect(ids).toEqual(Array.from({ length: count }, (_, i) => `${prefix}.${i + 1}`));
+    },
+  );
+
+  it("contains exactly 110 requirements across 14 families", () => {
+    expect(requirements).toHaveLength(110);
+    expect(new Set(requirements.map((r) => r.family)).size).toBe(14);
+  });
 });
 
 describe("validateContent", () => {
