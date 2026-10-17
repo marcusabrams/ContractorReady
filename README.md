@@ -31,7 +31,7 @@ npm run preview    # serve the production build
 
 ## Deploy
 
-The site is published to GitHub Pages at https://marcusabrams.github.io/contractorready/ by
+The site is published to GitHub Pages at https://marcusabrams.github.io/ContractorReady/ by
 `.github/workflows/deploy.yml`:
 
 - Every push and pull request runs the type check, tests, `npm audit`, and build.
@@ -52,4 +52,4 @@ Actions; each runs the same checks.
 - [x] 5. Print summary
 - [x] 6. About/disclaimer page
 - [ ] 7. Generate and review real content, family by family (all 110 drafted; human review pending, 0 of 110 reviewed)
-- [ ] 8. Deploy
+- [x] 8. Deploy (GitHub Pages: https://marcusabrams.github.io/ContractorReady/)
