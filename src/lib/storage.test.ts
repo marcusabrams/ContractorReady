@@ -1,14 +1,17 @@
 import { describe, expect, it } from "vitest";
 import {
   CORRUPT_BACKUP_KEY,
+  LAST_EXPORT_KEY,
   STORAGE_KEY,
   clearData,
   emptyData,
   isValidDate,
   loadData,
+  loadLastExport,
   parseData,
   parseDataText,
   saveData,
+  saveLastExport,
   serializeForExport,
   type KeyValueStore,
 } from "./storage";
@@ -179,5 +182,74 @@ describe("reset", () => {
     expect(clearData(store)).toBe(true);
     expect(store.getItem(STORAGE_KEY)).toBeNull();
     expect(loadData(store)).toEqual({ data: emptyData() });
+  });
+});
+
+describe("export stamp (exportedAt)", () => {
+  it("reads old backups that have no exportedAt", () => {
+    const old = JSON.stringify(sample());
+    const r = parseDataText(old);
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.data).toEqual(sample());
+      expect(r.exportedAt).toBeUndefined();
+    }
+  });
+
+  it("adds exportedAt to exported files and returns it on import, outside the app data", () => {
+    const text = serializeForExport(sample(), "2026-10-17T15:05:00.000Z");
+    expect(JSON.parse(text).exportedAt).toBe("2026-10-17T15:05:00.000Z");
+    const r = parseDataText(text);
+    expect(r).toEqual({ ok: true, data: sample(), exportedAt: "2026-10-17T15:05:00.000Z" });
+    if (r.ok) expect("exportedAt" in r.data).toBe(false);
+  });
+
+  it("keeps schemaVersion 1 in exported files", () => {
+    expect(JSON.parse(serializeForExport(sample(), "2026-10-17T15:05:00.000Z")).schemaVersion).toBe(1);
+  });
+
+  it("rejects a malformed exportedAt instead of guessing", () => {
+    const bad = (exportedAt: unknown) => parseData({ ...sample(), exportedAt });
+    expect(bad("yesterday").ok).toBe(false);
+    expect(bad(12345).ok).toBe(false);
+    expect(bad(null).ok).toBe(false);
+  });
+
+  it("never saves exportedAt into the browser's copy", () => {
+    const store = memoryStore();
+    const r = parseDataText(serializeForExport(sample(), "2026-10-17T15:05:00.000Z"));
+    if (r.ok) saveData(store, r.data);
+    expect(store.getItem(STORAGE_KEY)).not.toContain("exportedAt");
+  });
+});
+
+describe("last export time", () => {
+  it("is null before any export and round-trips after one", () => {
+    const store = memoryStore();
+    expect(loadLastExport(store)).toBeNull();
+    expect(saveLastExport(store, "2026-10-17T15:05:00.000Z")).toBe(true);
+    expect(store.getItem(LAST_EXPORT_KEY)).toBe("2026-10-17T15:05:00.000Z");
+    expect(loadLastExport(store)).toBe("2026-10-17T15:05:00.000Z");
+  });
+
+  it("ignores an unreadable stored value", () => {
+    const store = memoryStore();
+    store.setItem(LAST_EXPORT_KEY, "garbage");
+    expect(loadLastExport(store)).toBeNull();
+  });
+
+  it("never throws when storage is missing or throws", () => {
+    expect(loadLastExport(null)).toBeNull();
+    expect(saveLastExport(null, "2026-10-17T15:05:00.000Z")).toBe(false);
+    expect(loadLastExport(throwingStore)).toBeNull();
+    expect(saveLastExport(throwingStore, "2026-10-17T15:05:00.000Z")).toBe(false);
+  });
+
+  it("is cleared by reset", () => {
+    const store = memoryStore();
+    saveData(store, sample());
+    saveLastExport(store, "2026-10-17T15:05:00.000Z");
+    clearData(store);
+    expect([...store.map.keys()]).toEqual([]);
   });
 });
