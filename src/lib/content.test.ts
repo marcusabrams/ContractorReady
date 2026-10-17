@@ -116,3 +116,40 @@ describe("objectivesFor", () => {
     ]);
   });
 });
+
+describe("content cleanup rules", () => {
+  // A specific setting in an example (a lockout count, a timeout, a retention period,
+  // a review or scan frequency) must read as an example, not as the requirement.
+  const POLICY_NUMBER =
+    /\b\d+ (minutes?|hours?|days?|years?|characters?|passwords?|failed)\b|\b(once|each|every|a|one|two) (year|week|month|quarter)s?\b|\b(monthly|weekly|annual(ly)?|quarterly|yearly|first week)\b|\blast \d+\b/i;
+  // Fixed by contract, not chosen by the organization: DFARS 252.204-7012's 72-hour reporting rule.
+  const FIXED_BY_RULE = new Set(["3.6.2"]);
+
+  it("examples that give a specific setting read as examples", () => {
+    const offenders = requirements
+      .filter((r) => !FIXED_BY_RULE.has(r.id))
+      .flatMap((r) => r.examples.filter((e) => POLICY_NUMBER.test(e)).map((e) => `${r.id}: ${e}`))
+      .filter((s) => !/: For example, /.test(s) && !s.endsWith("or whatever your policy sets."));
+    expect(offenders).toEqual([]);
+  });
+
+  it.each(["3.1.8", "3.5.6", "3.5.8", "3.11.3", "3.14.1"])("%s says the requirement sets no specific number", (id) => {
+    expect(getRequirement(id)!.plainEnglish).toContain(
+      "The requirement doesn't set a specific number. Choose one that fits your risk and write it down.",
+    );
+  });
+
+  it("3.9.1 evidence contains no instructions about this app", () => {
+    expect(getRequirement("3.9.1")!.evidence.join(" ")).not.toContain("in this tool");
+  });
+
+  it("3.5.3 does not overstate what a second factor does", () => {
+    expect(getRequirement("3.5.3")!.whyItMatters).toContain("A second factor blocks many of those attempts.");
+  });
+
+  it("3.1.17 names current Wi-Fi standards and the settings to turn off", () => {
+    expect(getRequirement("3.1.17")!.examples[0]).toBe(
+      "The office Wi-Fi uses WPA3 or WPA2, the current secure Wi-Fi standards. Older settings such as WEP, or an open network with no password, are turned off.",
+    );
+  });
+});
