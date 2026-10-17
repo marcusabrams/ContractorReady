@@ -3,6 +3,8 @@ import { STATUSES, type AppData, type ProgressEntry } from "./types";
 export const STORAGE_KEY = "n171tracker.v1";
 /** Where unreadable saved data is moved so it is never silently overwritten. */
 export const CORRUPT_BACKUP_KEY = "n171tracker.v1.unreadable-backup";
+/** When this browser last exported a backup (ISO-8601). Kept apart from the progress data. */
+export const LAST_EXPORT_KEY = "n171tracker.v1.last-export";
 export const SCHEMA_VERSION = 1;
 /** Largest backup file we will read. A full backup with long notes is well under 1 MB. */
 export const MAX_IMPORT_BYTES = 5 * 1024 * 1024;
@@ -27,7 +29,14 @@ export function getBrowserStorage(): KeyValueStore | null {
   }
 }
 
-export type ParseResult = { ok: true; data: AppData } | { ok: false; error: string };
+/**
+ * `exportedAt` is set only when the input was an exported file that carries one. It is
+ * returned beside the data, never inside it, so it is never saved into the browser's copy.
+ */
+export type ParseResult = { ok: true; data: AppData; exportedAt?: string } | { ok: false; error: string };
+
+/** True for a string that parses as a date and time (e.g. an ISO-8601 timestamp). */
+export const isTimestamp = (v: unknown): v is string => typeof v === "string" && v !== "" && !Number.isNaN(Date.parse(v));
 
 const isObject = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const ID_RE = /^3\.\d{1,2}\.\d{1,2}$/;
@@ -61,6 +70,10 @@ export function parseData(value: unknown): ParseResult {
     return { ok: false, error: "The backup's organization section is missing or malformed." };
   }
   if (!isObject(value.progress)) return { ok: false, error: "The backup's progress section is missing or malformed." };
+  // Optional, and only in exported files. Older backups don't have it.
+  if ("exportedAt" in value && !isTimestamp(value.exportedAt)) {
+    return { ok: false, error: "The backup's export date is malformed." };
+  }
 
   const progress: Record<string, ProgressEntry> = {};
   for (const [id, entry] of Object.entries(value.progress)) {
@@ -79,7 +92,8 @@ export function parseData(value: unknown): ParseResult {
     if (typeof updatedAt !== "string") return { ok: false, error: `Progress for ${id} has a malformed updatedAt.` };
     progress[id] = { status: status as ProgressEntry["status"], owner, dueDate, notes, updatedAt };
   }
-  return { ok: true, data: { schemaVersion: SCHEMA_VERSION, org: { name: value.org.name }, progress } };
+  const data: AppData = { schemaVersion: SCHEMA_VERSION, org: { name: value.org.name }, progress };
+  return isTimestamp(value.exportedAt) ? { ok: true, data, exportedAt: value.exportedAt } : { ok: true, data };
 }
 
 /** Parses JSON text (an imported file) and validates it. Never throws. */
@@ -137,12 +151,35 @@ export function clearData(store: KeyValueStore | null): boolean {
   try {
     store.removeItem(STORAGE_KEY);
     store.removeItem(CORRUPT_BACKUP_KEY);
+    store.removeItem(LAST_EXPORT_KEY);
     return true;
   } catch {
     return false;
   }
 }
 
-export function serializeForExport(data: AppData): string {
-  return JSON.stringify(data, null, 2) + "\n";
+/** The text of an exported backup file. `exportedAt` is stamped on the file only. */
+export function serializeForExport(data: AppData, exportedAt?: string): string {
+  return JSON.stringify(exportedAt ? { ...data, exportedAt } : data, null, 2) + "\n";
+}
+
+/** The last export time, or null if there has never been one (or it can't be read). Never throws. */
+export function loadLastExport(store: KeyValueStore | null): string | null {
+  if (!store) return null;
+  try {
+    const v = store.getItem(LAST_EXPORT_KEY);
+    return isTimestamp(v) ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveLastExport(store: KeyValueStore | null, when: string): boolean {
+  if (!store) return false;
+  try {
+    store.setItem(LAST_EXPORT_KEY, when);
+    return true;
+  } catch {
+    return false;
+  }
 }
