@@ -2122,6 +2122,85 @@
         "3.8.1"
       ],
       "reviewed": false
+    },
+    {
+      "id": "3.11.1",
+      "family": "Risk Assessment",
+      "text": "Periodically assess the risk to organizational operations (including mission, functions, image, or reputation), organizational assets, and individuals, resulting from the operation of organizational systems and the associated processing, storage, or transmission of CUI.",
+      "plainEnglish": "Regularly assess the security risks to your business from the systems that handle CUI. Think about what could go wrong, how likely it is, and how bad it would be. Decide how often you'll do this, such as once a year.",
+      "whyItMatters": "You can't protect against everything at once. A risk assessment shows where to focus your time and money.",
+      "examples": [
+        "Once a year, the owner and IT provider list threats such as ransomware, lost laptops, and phishing, and rate how likely and how harmful each one is.",
+        "The risk assessment is updated after major changes, such as moving to a new cloud service."
+      ],
+      "evidence": [
+        "Risk assessment document, with the date it was done",
+        "Policy stating how often risk is assessed"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.11.1[a]",
+        "3.11.1[b]"
+      ],
+      "relatedIds": [
+        "3.11.2",
+        "3.11.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.11.2",
+      "family": "Risk Assessment",
+      "text": "Scan for vulnerabilities in organizational systems and applications periodically and when new vulnerabilities affecting those systems and applications are identified.",
+      "plainEnglish": "Scan your systems and applications for known security weaknesses, called vulnerabilities, on a regular schedule. Also scan when new weaknesses are announced that could affect you. Decide how often you'll scan.",
+      "whyItMatters": "Attackers use automated tools to find known weaknesses. Scanning lets you find and fix them first.",
+      "examples": [
+        "A vulnerability scanning tool checks all computers and servers every month.",
+        "When a major new vulnerability is announced, an extra scan checks whether you're affected.",
+        "Your IT provider runs the scans and sends you the reports."
+      ],
+      "evidence": [
+        "Vulnerability scanning policy stating how often scans run",
+        "Scan reports"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.11.2[a]",
+        "3.11.2[b]",
+        "3.11.2[c]",
+        "3.11.2[d]",
+        "3.11.2[e]"
+      ],
+      "relatedIds": [
+        "3.11.3"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.11.3",
+      "family": "Risk Assessment",
+      "text": "Remediate vulnerabilities in accordance with risk assessments.",
+      "plainEnglish": "Fix the weaknesses you find, starting with the most serious, based on your risk assessment. Track each one until it's fixed or a decision is made about it.",
+      "whyItMatters": "Finding weaknesses doesn't help unless you fix them. Prioritizing by risk puts the dangerous ones first.",
+      "examples": [
+        "Critical vulnerabilities are fixed within 15 days and others within 30 days, as your policy sets.",
+        "Vulnerabilities that can't be fixed yet are tracked in your plan of action with a target date."
+      ],
+      "evidence": [
+        "Vulnerability fix records or tickets",
+        "Policy with time frames for fixing vulnerabilities",
+        "Follow-up scan reports showing the fixes worked"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.11.3[a]",
+        "3.11.3[b]"
+      ],
+      "relatedIds": [
+        "3.11.1",
+        "3.11.2"
+      ],
+      "reviewed": false
     }
   ]
 }
