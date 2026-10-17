@@ -1537,6 +1537,152 @@
       "reviewed": false
     },
     {
+      "id": "3.7.1",
+      "family": "Maintenance",
+      "text": "Perform maintenance on organizational systems.",
+      "plainEnglish": "Keep your systems maintained: install updates, repair or replace failing equipment, and do routine upkeep on schedule. Keep records of the maintenance done.",
+      "whyItMatters": "Neglected systems break down and develop security weaknesses. Records show what was done and when.",
+      "examples": [
+        "Your IT provider performs monthly maintenance and logs the work.",
+        "Failing hard drives and aging equipment are repaired or replaced on schedule."
+      ],
+      "evidence": [
+        "Maintenance procedure or schedule",
+        "Maintenance records or tickets"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.7.1"
+      ],
+      "relatedIds": [
+        "3.7.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.7.2",
+      "family": "Maintenance",
+      "text": "Provide controls on the tools, techniques, mechanisms, and personnel used to conduct system maintenance.",
+      "plainEnglish": "Control who does maintenance on your systems and what tools and methods they use. Only approved people and tools should be used, especially remote support software.",
+      "whyItMatters": "Maintenance tools and the people who use them often have powerful access. If they're not controlled, they can be misused or bring in malware.",
+      "examples": [
+        "Only the approved IT provider and named staff may perform maintenance.",
+        "Only approved remote support tools are allowed, and others are blocked.",
+        "Maintenance tools are kept up to date and stored securely."
+      ],
+      "evidence": [
+        "List of approved maintenance staff and tools",
+        "Maintenance policy",
+        "Settings that block unapproved remote support tools"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.7.2[a]",
+        "3.7.2[b]",
+        "3.7.2[c]",
+        "3.7.2[d]"
+      ],
+      "relatedIds": [
+        "3.7.5",
+        "3.7.6"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.7.3",
+      "family": "Maintenance",
+      "text": "Ensure equipment removed for off-site maintenance is sanitized of any CUI.",
+      "plainEnglish": "Before sending equipment out for repair, remove any CUI from it. For example, wipe or remove the hard drive before a laptop goes back to the manufacturer.",
+      "whyItMatters": "Repair shops are outside your control. CUI left on a device could be seen by people with no right to see it.",
+      "examples": [
+        "Hard drives are removed or securely wiped before laptops are sent for repair.",
+        "A checklist for off-site repairs includes removing or wiping storage."
+      ],
+      "evidence": [
+        "Procedure for preparing equipment for off-site repair",
+        "Records showing equipment was wiped or its drive removed before it left"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.7.3"
+      ],
+      "relatedIds": [],
+      "reviewed": false
+    },
+    {
+      "id": "3.7.4",
+      "family": "Maintenance",
+      "text": "Check media containing diagnostic and test programs for malicious code before the media are used in organizational systems.",
+      "plainEnglish": "Scan USB drives, discs, or downloads that contain diagnostic or repair tools for malware before using them on your systems. This includes tools a visiting technician brings in.",
+      "whyItMatters": "Maintenance tools run with powerful access, so infected tools can spread malware deep into your systems.",
+      "examples": [
+        "Technicians' USB drives are scanned with antivirus software before use.",
+        "Diagnostic software is downloaded only from the vendor's official website."
+      ],
+      "evidence": [
+        "Maintenance procedure requiring malware scans of diagnostic media",
+        "Antivirus scan logs"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.7.4"
+      ],
+      "relatedIds": [
+        "3.7.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.7.5",
+      "family": "Maintenance",
+      "text": "Require multifactor authentication to establish nonlocal maintenance sessions via external network connections and terminate such connections when nonlocal maintenance is complete.",
+      "plainEnglish": "When someone maintains your systems remotely over the internet (called nonlocal maintenance), require multifactor authentication (MFA) to start the session. End the connection as soon as the work is done.",
+      "whyItMatters": "Remote maintenance access is a favorite target for attackers. MFA and promptly closed sessions limit the chance it's misused.",
+      "examples": [
+        "Your IT provider's remote support tool requires MFA for its technicians.",
+        "Remote sessions are ended, and unattended access is turned off, when the work is complete."
+      ],
+      "evidence": [
+        "Remote maintenance tool settings showing MFA is required",
+        "Logs showing when sessions start and end",
+        "Remote maintenance procedure"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.7.5[a]",
+        "3.7.5[b]"
+      ],
+      "relatedIds": [
+        "3.1.12",
+        "3.5.3",
+        "3.7.2"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "3.7.6",
+      "family": "Maintenance",
+      "text": "Supervise the maintenance activities of maintenance personnel without required access authorization.",
+      "plainEnglish": "Some maintenance people don't have approved access to your systems, such as a visiting technician. An employee with approved access should supervise their work.",
+      "whyItMatters": "Outsiders working on your systems without supervision could access CUI or make unapproved changes.",
+      "examples": [
+        "An employee stays with the copier technician during repairs.",
+        "Visiting maintenance staff are escorted, and their visits are logged."
+      ],
+      "evidence": [
+        "Procedure for supervising outside maintenance staff",
+        "Visitor or maintenance logs"
+      ],
+      "sprsPoints": null,
+      "objectives": [
+        "3.7.6"
+      ],
+      "relatedIds": [
+        "3.7.2"
+      ],
+      "reviewed": false
+    },
+    {
       "id": "3.9.1",
       "family": "Personnel Security",
       "text": "Screen individuals prior to authorizing access to organizational systems containing CUI.",

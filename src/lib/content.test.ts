@@ -28,6 +28,7 @@ describe("requirements.json", () => {
     ["Configuration Management", "3.4", 9],
     ["Identification and Authentication", "3.5", 11],
     ["Incident Response", "3.6", 3],
+    ["Maintenance", "3.7", 6],
   ] as const)("%s (%s.x) is complete with %i requirements", (family, prefix, count) => {
     const ids = requirements.filter((r) => r.family === family).map((r) => r.id);
     expect(ids).toEqual(Array.from({ length: count }, (_, i) => `${prefix}.${i + 1}`));
