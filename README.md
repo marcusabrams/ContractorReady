@@ -17,9 +17,10 @@ npm run preview    # serve the production build
 ```
 
 - Content lives in `src/data/requirements.json`, separate from the UI.
-- `src/data/sources/nist-sp800-171a.json` holds the official requirement text and assessment
-  objectives, extracted from NIST SP 800-171A by `scripts/extract_800_171a.py` (instructions in the
-  script). A test fails if any requirement's text or objective IDs drift from it.
+- `src/data/sources/` holds extracts of the NIST PDFs: requirement text from SP 800-171 Rev 2
+  (`scripts/extract_800_171r2.py`) and assessment objectives from SP 800-171A
+  (`scripts/extract_800_171a.py`); usage is in each script. A test fails if any requirement's text
+  drifts from Rev 2 or its objective IDs drift from 800-171A.
 - Progress is stored in `localStorage` under `n171tracker.v1`.
 - `#/dev` (dev server only) lists schema problems and unreviewed content entries.
 - Production builds include a Content-Security-Policy with `connect-src 'none'`, so the browser

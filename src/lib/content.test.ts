@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import nist from "../data/sources/nist-sp800-171a.json";
+import nist171a from "../data/sources/nist-sp800-171a.json";
+import nistRev2 from "../data/sources/nist-sp800-171r2.json";
 import { compareIds, content, groupByFamily, requirements, validateContent } from "./content";
 import { FAMILIES, type ContentFile, type Requirement } from "./types";
 
@@ -75,20 +76,25 @@ describe("helpers", () => {
   });
 });
 
-describe("official text matches NIST SP 800-171A", () => {
-  // src/data/sources/nist-sp800-171a.json is extracted from the NIST PDF by
-  // scripts/extract_800_171a.py. 800-171A restates each Rev 2 requirement verbatim.
-  const source = new Map(nist.requirements.map((r) => [r.id, r]));
+describe("official text and objectives match NIST", () => {
+  // Extracted from the NIST PDFs by scripts/extract_800_171r2.py and scripts/extract_800_171a.py.
+  // Rev 2 is the authority for requirement wording; 800-171A is the source of objectives.
+  const rev2 = new Map(nistRev2.requirements.map((r) => [r.id, r.text]));
+  const assess = new Map(nist171a.requirements.map((r) => [r.id, r]));
 
-  it("source extract has all 110 requirements and 320 objectives", () => {
-    expect(nist.requirements).toHaveLength(110);
-    expect(nist.requirements.reduce((n, r) => n + r.objectives.length, 0)).toBe(320);
+  it("source extracts have all 110 requirements, and 800-171A has 320 objectives", () => {
+    expect(nistRev2.requirements).toHaveLength(110);
+    expect(nist171a.requirements).toHaveLength(110);
+    expect(nist171a.requirements.reduce((n, r) => n + r.objectives.length, 0)).toBe(320);
   });
 
-  it.each(requirements.map((r) => [r.id, r] as const))("%s text and objectives match", (_id, r) => {
-    const s = source.get(r.id);
-    expect(s).toBeDefined();
-    expect(r.text).toBe(s!.text);
-    expect(r.objectives).toEqual(s!.objectives.map((o) => o.id));
+  it("the two NIST documents word every requirement the same, except a comma in 3.3.2", () => {
+    const differing = nistRev2.requirements.filter((r) => assess.get(r.id)?.text !== r.text).map((r) => r.id);
+    expect(differing).toEqual(["3.3.2"]);
+  });
+
+  it.each(requirements.map((r) => [r.id, r] as const))("%s text matches Rev 2 and objectives match 800-171A", (_id, r) => {
+    expect(r.text).toBe(rev2.get(r.id));
+    expect(r.objectives).toEqual(assess.get(r.id)!.objectives.map((o) => o.id));
   });
 });
